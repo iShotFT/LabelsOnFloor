@@ -26,6 +26,10 @@ namespace LabelsOnFloor
 
         private SettingHandle<bool> _showZoneLabels;
 
+        private SettingHandle<bool> _showGrowingZoneLabels;
+
+        private SettingHandle<bool> _showStockpileZoneLabels;
+
         private SettingHandle<float> _maxFontScale;
 
         private SettingHandle<float> _minFontScale;
@@ -94,6 +98,16 @@ namespace LabelsOnFloor
         public bool ShowZoneNames()
         {
             return _showZoneLabels;
+        }
+
+        public bool ShowGrowingZoneLabels()
+        {
+            return _showZoneLabels && _showGrowingZoneLabels;
+        }
+
+        public bool ShowStockpileZoneLabels()
+        {
+            return _showZoneLabels && _showStockpileZoneLabels;
         }
 
         public float GetMaxFontScale()
@@ -166,6 +180,14 @@ namespace LabelsOnFloor
                 "showZoneLabels", "FALCLF.ShowZoneLabels".Translate(),
                 "FALCLF.ShowZoneLabelsDesc".Translate(), true);
 
+            _showGrowingZoneLabels = Settings.GetHandle(
+                "showGrowingZoneLabels", "Show growing zone labels",
+                "Display labels for growing zones (crops, plants)", true);
+
+            _showStockpileZoneLabels = Settings.GetHandle(
+                "showStockpileZoneLabels", "Show stockpile zone labels",
+                "Display labels for stockpile/storage zones", true);
+
             _maxFontScale = Settings.GetHandle(
                 "maxFontScale", "FALCLF.MaxFontScale".Translate(),
                 "FALCLF.MaxFontScaleDesc".Translate(), 1f,
@@ -187,6 +209,10 @@ namespace LabelsOnFloor
             _showRoomLabels.OnValueChanged = val => { LabelPlacementHandler.SetDirty(); };
 
             _showZoneLabels.OnValueChanged = val => { LabelPlacementHandler.SetDirty(); };
+
+            _showGrowingZoneLabels.OnValueChanged = val => { LabelPlacementHandler.SetDirty(); };
+
+            _showStockpileZoneLabels.OnValueChanged = val => { LabelPlacementHandler.SetDirty(); };
 
             _maxFontScale.OnValueChanged = val => { LabelPlacementHandler.SetDirty(); };
 

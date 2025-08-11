@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using RimWorld;
 using UnityEngine.Assertions.Must;
 using Verse;
 
@@ -92,6 +93,23 @@ namespace LabelsOnFloor
 
             if (zone.Map != _map)
                 return;
+
+            // Check granular zone type settings
+            if (zone is Zone_Growing)
+            {
+                if (!Main.Instance.ShowGrowingZoneLabels())
+                    return;
+            }
+            else if (zone is Zone_Stockpile)
+            {
+                if (!Main.Instance.ShowStockpileZoneLabels())
+                    return;
+            }
+            // For any other zone types, use the general zone setting
+            else if (!Main.Instance.ShowZoneNames())
+            {
+                return;
+            }
 
             var text = _labelMaker.GetZoneLabel(zone);
             var addedLabel = 

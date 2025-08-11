@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Analyzer>
+  <LabelsOnFloor>
+    <Methods>
+      <li>LabelsOnFloor.Main:Draw</li>
+      <li>LabelsOnFloor.LabelHolder:GetLabels</li>
+      <li>LabelsOnFloor.LabelHolder:UpdateFilteredLabels</li>
+      <li>LabelsOnFloor.LabelHolder:RemoveRoomsWithZonesOptimized</li>
+      <li>LabelsOnFloor.LabelDrawer:Draw</li>
+      <li>LabelsOnFloor.LabelPlacementHandler:RegenerateIfNeeded</li>
+      <li>LabelsOnFloor.LabelPlacementHandler:AddOrUpdateZone</li>
+    </Methods>
+  </LabelsOnFloor>
+</Analyzer>
