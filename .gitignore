@@ -291,3 +291,12 @@ __pycache__/
 ThirdParty/HugsLib.xml
 dist/
 /ThirdParty/
+
+RimWorldSourceCode
+SETUP_BUILD_TOOLS.md
+dotnet-install.ps1
+NDP472-DevPack.exe
+STEAM_WORKSHOP_DESCRIPTION.txt
+Preview_original.png
+nuget.exe
+RimWorldDubsPerfomanceAnalyzer
