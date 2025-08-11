@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-  <name>Labels on Floor</name>
+  <name>Labels on Floor (continued)</name>
   <packageId>falconne.LabelsOnFloor</packageId>
   <author>Falconne</author>
   <description>Draws the names of rooms, stockpiles and growing zones as labels on the floor, like Prison Architect does.</description>
