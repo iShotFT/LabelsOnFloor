@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <FALCLF.Enabled>Habilitado</FALCLF.Enabled>
+  <FALCLF.EnabledDesc>Habilitar el mod</FALCLF.EnabledDesc>
+
+  <FALCLF.DefaultLabelColor>Color de etiqueta por defecto</FALCLF.DefaultLabelColor>
+  <FALCLF.DefaultLabelColorDesc>Color por defecto para todas las etiquetas (se puede anular por habitación)</FALCLF.DefaultLabelColorDesc>
+
+  <FALCLF.TextOpacity>Opacidad del texto</FALCLF.TextOpacity>
+  <FALCLF.TextOpacityDesc>Qué tan sólidas se ven las etiquetas</FALCLF.TextOpacityDesc>
+
+  <FALCLF.ShowRoomLabels>Mostrar nombres de habitaciones</FALCLF.ShowRoomLabels>
+  <FALCLF.ShowRoomLabelsDesc>Mostrar nombres de habitaciones en el suelo</FALCLF.ShowRoomLabelsDesc>
+
+  <FALCLF.ShowZoneLabels>Mostrar nombres de zonas</FALCLF.ShowZoneLabels>
+  <FALCLF.ShowZoneLabelsDesc>Interruptor maestro para todas las etiquetas de zona (almacén, cultivo, pesca, etc.)</FALCLF.ShowZoneLabelsDesc>
+
+  <FALCLF.ShowGrowingZoneLabels>Mostrar etiquetas de zonas de cultivo</FALCLF.ShowGrowingZoneLabels>
+  <FALCLF.ShowGrowingZoneLabelsDesc>Mostrar etiquetas para zonas de cultivo y plantas</FALCLF.ShowGrowingZoneLabelsDesc>
+
+  <FALCLF.ShowStockpileZoneLabels>Mostrar etiquetas de zonas de almacén</FALCLF.ShowStockpileZoneLabels>
+  <FALCLF.ShowStockpileZoneLabelsDesc>Mostrar etiquetas para almacenes y zonas de vertido</FALCLF.ShowStockpileZoneLabelsDesc>
+
+  <FALCLF.MaxFontScale>Escala máxima de fuente</FALCLF.MaxFontScale>
+  <FALCLF.MaxFontScaleDesc>Valor decimal que limita el tamaño máximo del texto. En 1.0 una letra tiene aproximadamente un mosaico de ancho. Debe estar entre 0.1 y 5.0.</FALCLF.MaxFontScaleDesc>
+
+  <FALCLF.MinFontScale>Escala mínima de fuente</FALCLF.MinFontScale>
+  <FALCLF.MinFontScaleDesc>Valor decimal que limita el tamaño mínimo del texto. Una etiqueta que necesite texto más pequeño no se mostrará. En 1.0 una letra tiene aproximadamente un mosaico de ancho. Debe estar entre 0.1 y 1.0.</FALCLF.MinFontScaleDesc>
+
+  <FALCLF.MaxAllowedZoom>Zoom máximo para etiquetas</FALCLF.MaxAllowedZoom>
+  <FALCLF.MaxAllowedZoomDesc>Zoom más lejano en el que se dibujarán las etiquetas visibles. Ten en cuenta que las etiquetas muy pequeñas pueden no dibujarse en algunos niveles de zoom, independientemente de esta configuración.</FALCLF.MaxAllowedZoomDesc>
+
+  <FALCLF.RenameDesc>Renombrar una habitación o zona</FALCLF.RenameDesc>
+  <FALCLF.RenameRoom>Renombrar Habitación</FALCLF.RenameRoom>
+  <FALCLF.RoomName>Nombre de la habitación:</FALCLF.RoomName>
+  <FALCLF.RoomColor>Color de la habitación:</FALCLF.RoomColor>
+  <FALCLF.CustomColor>Color Personalizado</FALCLF.CustomColor>
+  <FALCLF.DefaultColor>Color Por Defecto</FALCLF.DefaultColor>
+  <FALCLF.UseDefaultColor>Usar color por defecto</FALCLF.UseDefaultColor>
+  <FALCLF.UseCustomColor>Usar color personalizado</FALCLF.UseCustomColor>
+  <FALCLF.UseCustomColorDesc>Activar color personalizado para la etiqueta de esta habitación</FALCLF.UseCustomColorDesc>
+  
+  <FALCLF.ChooseColor>Elegir Color</FALCLF.ChooseColor>
+  <FALCLF.ChooseDefaultLabelColor>Elegir Color de Etiqueta Por Defecto</FALCLF.ChooseDefaultLabelColor>
+  <FALCLF.CurrentColor>Color Actual</FALCLF.CurrentColor>
+  <FALCLF.SelectFromPalette>Seleccionar de la paleta:</FALCLF.SelectFromPalette>
+  <FALCLF.SelectColor>Seleccionar Color</FALCLF.SelectColor>
+  <FALCLF.Reset>Restablecer</FALCLF.Reset>
+  <FALCLF.Cancel>Cancelar</FALCLF.Cancel>
+  <FALCLF.OK>Aceptar</FALCLF.OK>
+
+  <FALCLF.enumSetting_Closest>Más cercano</FALCLF.enumSetting_Closest>
+  <FALCLF.enumSetting_Close>Cercano</FALCLF.enumSetting_Close>
+  <FALCLF.enumSetting_Middle>Medio</FALCLF.enumSetting_Middle>
+  <FALCLF.enumSetting_Far>Lejano</FALCLF.enumSetting_Far>
+  <FALCLF.enumSetting_Furthest>Más lejano</FALCLF.enumSetting_Furthest>
+</LanguageData>

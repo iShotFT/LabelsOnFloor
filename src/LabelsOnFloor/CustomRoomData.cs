@@ -1,10 +1,13 @@
-﻿using Verse;
+﻿using UnityEngine;
+using Verse;
 
 namespace LabelsOnFloor
 {
     public class CustomRoomData : IExposable
     {
         public string Label;
+        
+        public Color? CustomColor;
 
         public Room RoomObject;
 
@@ -46,6 +49,12 @@ namespace LabelsOnFloor
         public void ExposeData()
         {
             Scribe_Values.Look(ref Label, "label", "");
+            Color tempColor = CustomColor ?? Color.white;
+            Scribe_Values.Look(ref tempColor, "customColor", Color.white);
+            if (Scribe.mode == LoadSaveMode.LoadingVars && tempColor != Color.white)
+            {
+                CustomColor = tempColor;
+            }
             Scribe_References.Look(ref _map, "map");
             Scribe_Values.Look(ref _keyCell, "keyCell");
         }

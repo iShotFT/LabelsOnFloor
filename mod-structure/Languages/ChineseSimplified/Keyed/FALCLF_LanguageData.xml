@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <FALCLF.Enabled>启用</FALCLF.Enabled>
+  <FALCLF.EnabledDesc>启用此模组</FALCLF.EnabledDesc>
+
+  <FALCLF.DefaultLabelColor>默认标签颜色</FALCLF.DefaultLabelColor>
+  <FALCLF.DefaultLabelColorDesc>所有标签的默认颜色（可按房间覆盖）</FALCLF.DefaultLabelColorDesc>
+
+  <FALCLF.TextOpacity>文字不透明度</FALCLF.TextOpacity>
+  <FALCLF.TextOpacityDesc>标签看起来的清晰程度</FALCLF.TextOpacityDesc>
+
+  <FALCLF.ShowRoomLabels>显示房间名称</FALCLF.ShowRoomLabels>
+  <FALCLF.ShowRoomLabelsDesc>在地板上显示房间名称</FALCLF.ShowRoomLabelsDesc>
+
+  <FALCLF.ShowZoneLabels>显示区域名称</FALCLF.ShowZoneLabels>
+  <FALCLF.ShowZoneLabelsDesc>所有区域标签的主开关（储存区、种植区、钓鱼区等）</FALCLF.ShowZoneLabelsDesc>
+
+  <FALCLF.ShowGrowingZoneLabels>显示种植区标签</FALCLF.ShowGrowingZoneLabels>
+  <FALCLF.ShowGrowingZoneLabelsDesc>显示作物和植物种植区的标签</FALCLF.ShowGrowingZoneLabelsDesc>
+
+  <FALCLF.ShowStockpileZoneLabels>显示储存区标签</FALCLF.ShowStockpileZoneLabels>
+  <FALCLF.ShowStockpileZoneLabelsDesc>显示储存区和倾倒区的标签</FALCLF.ShowStockpileZoneLabelsDesc>
+
+  <FALCLF.MaxFontScale>最大字体缩放</FALCLF.MaxFontScale>
+  <FALCLF.MaxFontScaleDesc>限制文字最大尺寸的小数值。在1.0时，一个字母大约一个格子宽。必须在0.1到5.0之间。</FALCLF.MaxFontScaleDesc>
+
+  <FALCLF.MinFontScale>最小字体缩放</FALCLF.MinFontScale>
+  <FALCLF.MinFontScaleDesc>限制文字最小尺寸的小数值。需要比这更小文字的标签将不会显示。在1.0时，一个字母大约一个格子宽。必须在0.1到1.0之间。</FALCLF.MinFontScaleDesc>
+
+  <FALCLF.MaxAllowedZoom>标签的最大缩放</FALCLF.MaxAllowedZoom>
+  <FALCLF.MaxAllowedZoomDesc>绘制可见标签的最远缩放。注意，无论此设置如何，某些缩放级别可能不会绘制非常小的标签。</FALCLF.MaxAllowedZoomDesc>
+
+  <FALCLF.RenameDesc>重命名房间或区域</FALCLF.RenameDesc>
+  <FALCLF.RenameRoom>重命名房间</FALCLF.RenameRoom>
+  <FALCLF.RoomName>房间名称:</FALCLF.RoomName>
+  <FALCLF.RoomColor>房间颜色:</FALCLF.RoomColor>
+  <FALCLF.CustomColor>自定义颜色</FALCLF.CustomColor>
+  <FALCLF.DefaultColor>默认颜色</FALCLF.DefaultColor>
+  <FALCLF.UseDefaultColor>使用默认颜色</FALCLF.UseDefaultColor>
+  <FALCLF.UseCustomColor>使用自定义颜色</FALCLF.UseCustomColor>
+  <FALCLF.UseCustomColorDesc>为此房间的标签启用自定义颜色</FALCLF.UseCustomColorDesc>
+  
+  <FALCLF.ChooseColor>选择颜色</FALCLF.ChooseColor>
+  <FALCLF.ChooseDefaultLabelColor>选择默认标签颜色</FALCLF.ChooseDefaultLabelColor>
+  <FALCLF.CurrentColor>当前颜色</FALCLF.CurrentColor>
+  <FALCLF.SelectFromPalette>从调色板中选择:</FALCLF.SelectFromPalette>
+  <FALCLF.SelectColor>选择颜色</FALCLF.SelectColor>
+  <FALCLF.Reset>重置</FALCLF.Reset>
+  <FALCLF.Cancel>取消</FALCLF.Cancel>
+  <FALCLF.OK>确定</FALCLF.OK>
+
+  <FALCLF.enumSetting_Closest>最近</FALCLF.enumSetting_Closest>
+  <FALCLF.enumSetting_Close>近</FALCLF.enumSetting_Close>
+  <FALCLF.enumSetting_Middle>中等</FALCLF.enumSetting_Middle>
+  <FALCLF.enumSetting_Far>远</FALCLF.enumSetting_Far>
+  <FALCLF.enumSetting_Furthest>最远</FALCLF.enumSetting_Furthest>
+</LanguageData>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <FALCLF.Enabled>Abilitato</FALCLF.Enabled>
+  <FALCLF.EnabledDesc>Abilita il mod</FALCLF.EnabledDesc>
+
+  <FALCLF.DefaultLabelColor>Colore etichetta predefinito</FALCLF.DefaultLabelColor>
+  <FALCLF.DefaultLabelColorDesc>Colore predefinito per tutte le etichette (può essere sovrascritto per stanza)</FALCLF.DefaultLabelColorDesc>
+
+  <FALCLF.TextOpacity>Opacità del testo</FALCLF.TextOpacity>
+  <FALCLF.TextOpacityDesc>Quanto solide appaiono le etichette</FALCLF.TextOpacityDesc>
+
+  <FALCLF.ShowRoomLabels>Mostra nomi delle stanze</FALCLF.ShowRoomLabels>
+  <FALCLF.ShowRoomLabelsDesc>Mostra i nomi delle stanze sul pavimento</FALCLF.ShowRoomLabelsDesc>
+
+  <FALCLF.ShowZoneLabels>Mostra nomi delle zone</FALCLF.ShowZoneLabels>
+  <FALCLF.ShowZoneLabelsDesc>Interruttore principale per tutte le etichette di zona (deposito, coltivazione, pesca, ecc.)</FALCLF.ShowZoneLabelsDesc>
+
+  <FALCLF.ShowGrowingZoneLabels>Mostra etichette zone di coltivazione</FALCLF.ShowGrowingZoneLabels>
+  <FALCLF.ShowGrowingZoneLabelsDesc>Mostra etichette per zone di colture e piante</FALCLF.ShowGrowingZoneLabelsDesc>
+
+  <FALCLF.ShowStockpileZoneLabels>Mostra etichette zone di deposito</FALCLF.ShowStockpileZoneLabels>
+  <FALCLF.ShowStockpileZoneLabelsDesc>Mostra etichette per depositi e zone di scarico</FALCLF.ShowStockpileZoneLabelsDesc>
+
+  <FALCLF.MaxFontScale>Scala massima del carattere</FALCLF.MaxFontScale>
+  <FALCLF.MaxFontScaleDesc>Valore decimale che limita la dimensione massima del testo. A 1.0 una lettera è larga circa una tessera. Deve essere tra 0.1 e 5.0.</FALCLF.MaxFontScaleDesc>
+
+  <FALCLF.MinFontScale>Scala minima del carattere</FALCLF.MinFontScale>
+  <FALCLF.MinFontScaleDesc>Valore decimale che limita la dimensione minima del testo. Un'etichetta che richiede testo più piccolo non verrà visualizzata. A 1.0 una lettera è larga circa una tessera. Deve essere tra 0.1 e 1.0.</FALCLF.MinFontScaleDesc>
+
+  <FALCLF.MaxAllowedZoom>Zoom massimo per etichette</FALCLF.MaxAllowedZoom>
+  <FALCLF.MaxAllowedZoomDesc>Zoom più lontano al quale verranno disegnate le etichette visibili. Nota che etichette molto piccole potrebbero non essere disegnate a alcuni livelli di zoom, indipendentemente da questa impostazione.</FALCLF.MaxAllowedZoomDesc>
+
+  <FALCLF.RenameDesc>Rinomina una stanza o zona</FALCLF.RenameDesc>
+  <FALCLF.RenameRoom>Rinomina Stanza</FALCLF.RenameRoom>
+  <FALCLF.RoomName>Nome della stanza:</FALCLF.RoomName>
+  <FALCLF.RoomColor>Colore della stanza:</FALCLF.RoomColor>
+  <FALCLF.CustomColor>Colore Personalizzato</FALCLF.CustomColor>
+  <FALCLF.DefaultColor>Colore Predefinito</FALCLF.DefaultColor>
+  <FALCLF.UseDefaultColor>Usa colore predefinito</FALCLF.UseDefaultColor>
+  <FALCLF.UseCustomColor>Usa colore personalizzato</FALCLF.UseCustomColor>
+  <FALCLF.UseCustomColorDesc>Attiva colore personalizzato per l'etichetta di questa stanza</FALCLF.UseCustomColorDesc>
+  
+  <FALCLF.ChooseColor>Scegli Colore</FALCLF.ChooseColor>
+  <FALCLF.ChooseDefaultLabelColor>Scegli Colore Etichetta Predefinito</FALCLF.ChooseDefaultLabelColor>
+  <FALCLF.CurrentColor>Colore Attuale</FALCLF.CurrentColor>
+  <FALCLF.SelectFromPalette>Seleziona dalla tavolozza:</FALCLF.SelectFromPalette>
+  <FALCLF.SelectColor>Seleziona Colore</FALCLF.SelectColor>
+  <FALCLF.Reset>Reimposta</FALCLF.Reset>
+  <FALCLF.Cancel>Annulla</FALCLF.Cancel>
+  <FALCLF.OK>OK</FALCLF.OK>
+
+  <FALCLF.enumSetting_Closest>Più vicino</FALCLF.enumSetting_Closest>
+  <FALCLF.enumSetting_Close>Vicino</FALCLF.enumSetting_Close>
+  <FALCLF.enumSetting_Middle>Medio</FALCLF.enumSetting_Middle>
+  <FALCLF.enumSetting_Far>Lontano</FALCLF.enumSetting_Far>
+  <FALCLF.enumSetting_Furthest>Più lontano</FALCLF.enumSetting_Furthest>
+</LanguageData>

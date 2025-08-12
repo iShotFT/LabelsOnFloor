@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <!-- Define category for LabelsOnFloor keybindings -->
+  <KeyBindingCategoryDef>
+    <defName>LabelsOnFloor</defName>
+    <label>Labels On Floor</label>
+    <description>Key bindings for the Labels On Floor mod</description>
+    <isGameUniversal>false</isGameUniversal>
+    <selfConflicting>true</selfConflicting>
+    <!-- Empty checkForConflicts to avoid errors -->
+  </KeyBindingCategoryDef>
+
+  <!-- Rename room at cursor hotkey -->
+  <KeyBindingDef>
+    <defName>LabelsOnFloor_RenameRoom</defName>
+    <label>Rename room under cursor</label>
+    <description>Opens the rename dialog for the room under the mouse cursor (only when no pawns are selected)</description>
+    <category>LabelsOnFloor</category>
+    <defaultKeyCodeA>R</defaultKeyCodeA>
+    <devModeOnly>false</devModeOnly>
+  </KeyBindingDef>
+  
+  <!-- Toggle labels visibility -->
+  <KeyBindingDef>
+    <defName>LabelsOnFloor_ToggleLabels</defName>
+    <label>Toggle labels visibility</label>
+    <description>Quickly toggle the visibility of all room and zone labels</description>
+    <category>LabelsOnFloor</category>
+    <defaultKeyCodeA>L</defaultKeyCodeA>
+    <devModeOnly>false</devModeOnly>
+  </KeyBindingDef>
+</Defs>

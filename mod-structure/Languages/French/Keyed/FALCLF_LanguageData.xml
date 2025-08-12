@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <FALCLF.Enabled>Activé</FALCLF.Enabled>
+  <FALCLF.EnabledDesc>Activer le mod</FALCLF.EnabledDesc>
+
+  <FALCLF.DefaultLabelColor>Couleur d'étiquette par défaut</FALCLF.DefaultLabelColor>
+  <FALCLF.DefaultLabelColorDesc>Couleur par défaut pour toutes les étiquettes (peut être remplacée par pièce)</FALCLF.DefaultLabelColorDesc>
+
+  <FALCLF.TextOpacity>Opacité du texte</FALCLF.TextOpacity>
+  <FALCLF.TextOpacityDesc>À quel point les étiquettes paraissent solides</FALCLF.TextOpacityDesc>
+
+  <FALCLF.ShowRoomLabels>Afficher les noms des pièces</FALCLF.ShowRoomLabels>
+  <FALCLF.ShowRoomLabelsDesc>Afficher les noms des pièces sur le sol</FALCLF.ShowRoomLabelsDesc>
+
+  <FALCLF.ShowZoneLabels>Afficher les noms des zones</FALCLF.ShowZoneLabels>
+  <FALCLF.ShowZoneLabelsDesc>Interrupteur principal pour toutes les étiquettes de zone (stockage, culture, pêche, etc.)</FALCLF.ShowZoneLabelsDesc>
+
+  <FALCLF.ShowGrowingZoneLabels>Afficher les étiquettes des zones de culture</FALCLF.ShowGrowingZoneLabels>
+  <FALCLF.ShowGrowingZoneLabelsDesc>Afficher les étiquettes pour les zones de culture et de plantes</FALCLF.ShowGrowingZoneLabelsDesc>
+
+  <FALCLF.ShowStockpileZoneLabels>Afficher les étiquettes des zones de stockage</FALCLF.ShowStockpileZoneLabels>
+  <FALCLF.ShowStockpileZoneLabelsDesc>Afficher les étiquettes pour les zones de stockage et de décharge</FALCLF.ShowStockpileZoneLabelsDesc>
+
+  <FALCLF.MaxFontScale>Échelle maximale de police</FALCLF.MaxFontScale>
+  <FALCLF.MaxFontScaleDesc>Valeur décimale limitant la taille maximale du texte. À 1.0, une lettre fait environ une tuile de large. Doit être entre 0.1 et 5.0.</FALCLF.MaxFontScaleDesc>
+
+  <FALCLF.MinFontScale>Échelle minimale de police</FALCLF.MinFontScale>
+  <FALCLF.MinFontScaleDesc>Valeur décimale limitant la taille minimale du texte. Une étiquette nécessitant un texte plus petit ne sera pas affichée. À 1.0, une lettre fait environ une tuile de large. Doit être entre 0.1 et 1.0.</FALCLF.MinFontScaleDesc>
+
+  <FALCLF.MaxAllowedZoom>Zoom maximum pour les étiquettes</FALCLF.MaxAllowedZoom>
+  <FALCLF.MaxAllowedZoomDesc>Zoom le plus éloigné auquel les étiquettes visibles seront dessinées. Notez que les très petites étiquettes peuvent ne pas être dessinées à certains niveaux de zoom, indépendamment de ce paramètre.</FALCLF.MaxAllowedZoomDesc>
+
+  <FALCLF.RenameDesc>Renommer une pièce ou une zone</FALCLF.RenameDesc>
+  <FALCLF.RenameRoom>Renommer la Pièce</FALCLF.RenameRoom>
+  <FALCLF.RoomName>Nom de la pièce:</FALCLF.RoomName>
+  <FALCLF.RoomColor>Couleur de la pièce:</FALCLF.RoomColor>
+  <FALCLF.CustomColor>Couleur Personnalisée</FALCLF.CustomColor>
+  <FALCLF.DefaultColor>Couleur Par Défaut</FALCLF.DefaultColor>
+  <FALCLF.UseDefaultColor>Utiliser la couleur par défaut</FALCLF.UseDefaultColor>
+  <FALCLF.UseCustomColor>Utiliser une couleur personnalisée</FALCLF.UseCustomColor>
+  <FALCLF.UseCustomColorDesc>Activer la couleur personnalisée pour l'étiquette de cette pièce</FALCLF.UseCustomColorDesc>
+  
+  <FALCLF.ChooseColor>Choisir une Couleur</FALCLF.ChooseColor>
+  <FALCLF.ChooseDefaultLabelColor>Choisir la Couleur d'Étiquette Par Défaut</FALCLF.ChooseDefaultLabelColor>
+  <FALCLF.CurrentColor>Couleur Actuelle</FALCLF.CurrentColor>
+  <FALCLF.SelectFromPalette>Sélectionner dans la palette:</FALCLF.SelectFromPalette>
+  <FALCLF.SelectColor>Sélectionner une Couleur</FALCLF.SelectColor>
+  <FALCLF.Reset>Réinitialiser</FALCLF.Reset>
+  <FALCLF.Cancel>Annuler</FALCLF.Cancel>
+  <FALCLF.OK>OK</FALCLF.OK>
+
+  <FALCLF.enumSetting_Closest>Le plus proche</FALCLF.enumSetting_Closest>
+  <FALCLF.enumSetting_Close>Proche</FALCLF.enumSetting_Close>
+  <FALCLF.enumSetting_Middle>Moyen</FALCLF.enumSetting_Middle>
+  <FALCLF.enumSetting_Far>Loin</FALCLF.enumSetting_Far>
+  <FALCLF.enumSetting_Furthest>Le plus loin</FALCLF.enumSetting_Furthest>
+</LanguageData>

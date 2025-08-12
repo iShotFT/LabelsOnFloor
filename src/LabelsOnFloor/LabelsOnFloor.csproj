@@ -227,11 +227,18 @@
   <ItemGroup>
     <Compile Include="CustomRoomData.cs" />
     <Compile Include="CustomRoomLabelManager.cs" />
+    <Compile Include="CustomRoomLabelManager_Legacy.cs" />
     <Compile Include="Designator_Rename.cs" />
+    <Compile Include="Dialog_RenameRoomWithColor.cs" />
+    <Compile Include="Dialog_RoomColorPicker.cs" />
+    <Compile Include="Dialog_DefaultLabelColorPicker.cs" />
+    <Compile Include="ColorGridFloatMenu.cs" />
+    <Compile Include="KeyBindingDefOf_LabelsOnFloor.cs" />
     <Compile Include="Patches\Building_Bed_Medical_Patch.cs" />
+    <Compile Include="Patches\MapInterface_HandleLowPriorityInput_Patch.cs" />
     <Compile Include="Patches\DesignationCategoryDef_ResolvedAllowedDesignators_Patch.cs" />
-    <Compile Include="Patches\Dialog_RenameRoom.cs" />
     <Compile Include="Patches\Dialog_RenameZone_SetName_Patch.cs" />
+    <Compile Include="Patches\LegacyMigrationPatch.cs" />
     <Compile Include="Patches\DynamicDrawManager_DrawDynamicThings_Patch.cs" />
     <Compile Include="EdgeFinder.cs" />
     <Compile Include="FontHandler.cs" />
@@ -296,7 +303,9 @@
   <PropertyGroup>
     <PreBuildEvent>powershell.exe -EP Unrestricted $(ProjectDir)..\..\build.ps1 doPreBuild</PreBuildEvent>
   </PropertyGroup>
+  <!-- Disabled auto post-build because it hangs when RimWorld is running
   <PropertyGroup>
     <PostBuildEvent>powershell.exe -EP Unrestricted $(ProjectDir)..\..\build.ps1 doPostBuild</PostBuildEvent>
   </PropertyGroup>
+  -->
 </Project>

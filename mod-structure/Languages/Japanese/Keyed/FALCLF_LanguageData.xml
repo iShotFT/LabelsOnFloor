@@ -3,8 +3,8 @@
   <FALCLF.Enabled>使用する</FALCLF.Enabled>
   <FALCLF.EnabledDesc>チェックを入れるとModを使用可能にします。</FALCLF.EnabledDesc>
 
-  <FALCLF.UseLightText>白文字を使用</FALCLF.UseLightText>
-  <FALCLF.UseLightTextDesc>黒色の文字の代わりに白色を使います。</FALCLF.UseLightTextDesc>
+  <FALCLF.DefaultLabelColor>デフォルトラベルの色</FALCLF.DefaultLabelColor>
+  <FALCLF.DefaultLabelColorDesc>すべてのラベルのデフォルト色（部屋ごとに上書き可能）</FALCLF.DefaultLabelColorDesc>
 
   <FALCLF.TextOpacity>文字の不透明度</FALCLF.TextOpacity>
   <FALCLF.TextOpacityDesc>表示される名前がどの程度はっきりとしているか設定できます。</FALCLF.TextOpacityDesc>
@@ -13,7 +13,13 @@
   <FALCLF.ShowRoomLabelsDesc>部屋に付けられた名前を床面に表示します。</FALCLF.ShowRoomLabelsDesc>
 
   <FALCLF.ShowZoneLabels>ゾーン名を表示</FALCLF.ShowZoneLabels>
-  <FALCLF.ShowZoneLabelsDesc>備蓄ゾーンと農業ゾーンの名前を床面に表示します。</FALCLF.ShowZoneLabelsDesc>
+  <FALCLF.ShowZoneLabelsDesc>すべてのゾーンラベルのマスター切り替え（備蓄、農業、釣りなど）</FALCLF.ShowZoneLabelsDesc>
+
+  <FALCLF.ShowGrowingZoneLabels>農業ゾーンラベルを表示</FALCLF.ShowGrowingZoneLabels>
+  <FALCLF.ShowGrowingZoneLabelsDesc>作物と植物の栽培ゾーンのラベルを表示します</FALCLF.ShowGrowingZoneLabelsDesc>
+
+  <FALCLF.ShowStockpileZoneLabels>備蓄ゾーンラベルを表示</FALCLF.ShowStockpileZoneLabels>
+  <FALCLF.ShowStockpileZoneLabelsDesc>保管場所と廃棄ゾーンのラベルを表示します</FALCLF.ShowStockpileZoneLabelsDesc>
 
   <FALCLF.MaxFontScale>最大文字サイズ</FALCLF.MaxFontScale>
   <FALCLF.MaxFontScaleDesc>表示される文字の最大サイズを制限します(10進法の数値を使用)。 1.0で、文字の大きさはおおよそ1タイル分の幅です。 この数値は0.1から5.0までの範囲内である必要があります。</FALCLF.MaxFontScaleDesc>
@@ -23,6 +29,25 @@
 
   <FALCLF.MaxAllowedZoom>名前の最大拡大倍率</FALCLF.MaxAllowedZoom>
   <FALCLF.MaxAllowedZoomDesc>表示可能な名前が画面で描画される、最も遠く表示させる際のズーム倍率です。 この設定に関係なく、一部の拡大レベルでは文字の大きさが非常に小さい名前が描画されないことがあります。</FALCLF.MaxAllowedZoomDesc>
+
+  <FALCLF.RenameDesc>部屋またはゾーンの名前を変更する</FALCLF.RenameDesc>
+  <FALCLF.RenameRoom>部屋の名前を変更</FALCLF.RenameRoom>
+  <FALCLF.RoomName>部屋名:</FALCLF.RoomName>
+  <FALCLF.RoomColor>部屋の色:</FALCLF.RoomColor>
+  <FALCLF.CustomColor>カスタムカラー</FALCLF.CustomColor>
+  <FALCLF.DefaultColor>デフォルトカラー</FALCLF.DefaultColor>
+  <FALCLF.UseDefaultColor>デフォルト色を使用</FALCLF.UseDefaultColor>
+  <FALCLF.UseCustomColor>カスタム色を使用</FALCLF.UseCustomColor>
+  <FALCLF.UseCustomColorDesc>この部屋のラベルにカスタム色を有効にする</FALCLF.UseCustomColorDesc>
+  
+  <FALCLF.ChooseColor>色を選択</FALCLF.ChooseColor>
+  <FALCLF.ChooseDefaultLabelColor>デフォルトラベル色を選択</FALCLF.ChooseDefaultLabelColor>
+  <FALCLF.CurrentColor>現在の色</FALCLF.CurrentColor>
+  <FALCLF.SelectFromPalette>パレットから選択:</FALCLF.SelectFromPalette>
+  <FALCLF.SelectColor>色を選択</FALCLF.SelectColor>
+  <FALCLF.Reset>リセット</FALCLF.Reset>
+  <FALCLF.Cancel>キャンセル</FALCLF.Cancel>
+  <FALCLF.OK>OK</FALCLF.OK>
 
   <FALCLF.enumSetting_Closest>最も近い</FALCLF.enumSetting_Closest>
   <FALCLF.enumSetting_Close>近い</FALCLF.enumSetting_Close>

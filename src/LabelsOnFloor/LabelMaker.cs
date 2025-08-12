@@ -7,9 +7,9 @@ namespace LabelsOnFloor
     {
         private readonly string _defaultGrowingZonePrefix;
 
-        private readonly CustomRoomLabelManager _customRoomLabelManager;
+        private readonly CustomRoomLabelManagerComponent _customRoomLabelManager;
 
-        public LabelMaker(CustomRoomLabelManager customRoomLabelManager)
+        public LabelMaker(CustomRoomLabelManagerComponent customRoomLabelManager)
         {
             _customRoomLabelManager = customRoomLabelManager;
             _defaultGrowingZonePrefix = "GrowingZone".Translate();

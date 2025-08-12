@@ -43,7 +43,7 @@ namespace LabelsOnFloor
             }
         }
 
-        public void RegenerateIfNeeded(CustomRoomLabelManager customRoomLabelManager)
+        public void RegenerateIfNeeded(CustomRoomLabelManagerComponent customRoomLabelManager)
         {
             if (_ready && _map == Find.CurrentMap)
                 return;
@@ -83,7 +83,21 @@ namespace LabelsOnFloor
                 placementDataFinderForRooms = new PlacementDataFinderForRooms(_map);
             }
 
-            AddLabelForArea(room, text, () => placementDataFinderForRooms.GetData(room, text.Length));
+            var label = AddLabelForArea(room, text, () => placementDataFinderForRooms.GetData(room, text.Length));
+            
+            // Apply custom color if available
+            if (label != null)
+            {
+                var customRoomLabelManager = Main.Instance.GetCustomRoomLabelManager();
+                if (customRoomLabelManager != null)
+                {
+                    var customData = customRoomLabelManager.GetCustomDataFor(room);
+                    if (customData != null && customData.CustomColor.HasValue)
+                    {
+                        label.CustomColor = customData.CustomColor;
+                    }
+                }
+            }
         }
 
         public void AddOrUpdateZone(Zone zone)

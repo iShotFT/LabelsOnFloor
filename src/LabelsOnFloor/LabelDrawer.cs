@@ -47,7 +47,18 @@ namespace LabelsOnFloor
 
             matrix.SetTRS(pos, rotation, label.LabelPlacementData.Scale);
 
-            Graphics.DrawMesh(label.LabelMesh, matrix, _fontHandler.GetMaterial(), 0);
+            // Get the material and apply custom color if available
+            var material = _fontHandler.GetMaterial();
+            if (label.CustomColor.HasValue)
+            {
+                // Create a new material instance with the custom color
+                material = new Material(material);
+                var colorWithOpacity = label.CustomColor.Value;
+                colorWithOpacity.a = Main.Instance.GetOpacity();
+                material.color = colorWithOpacity;
+            }
+
+            Graphics.DrawMesh(label.LabelMesh, matrix, material, 0);
 
         }
     }

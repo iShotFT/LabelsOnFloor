@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <FALCLF.Enabled>Aktiviert</FALCLF.Enabled>
+  <FALCLF.EnabledDesc>Mod aktivieren</FALCLF.EnabledDesc>
+
+  <FALCLF.DefaultLabelColor>Standard-Beschriftungsfarbe</FALCLF.DefaultLabelColor>
+  <FALCLF.DefaultLabelColorDesc>Standardfarbe für alle Beschriftungen (kann pro Raum überschrieben werden)</FALCLF.DefaultLabelColorDesc>
+
+  <FALCLF.TextOpacity>Textdeckkraft</FALCLF.TextOpacity>
+  <FALCLF.TextOpacityDesc>Wie undurchsichtig die Beschriftungen aussehen</FALCLF.TextOpacityDesc>
+
+  <FALCLF.ShowRoomLabels>Raumnamen anzeigen</FALCLF.ShowRoomLabels>
+  <FALCLF.ShowRoomLabelsDesc>Raumnamen auf dem Boden anzeigen</FALCLF.ShowRoomLabelsDesc>
+
+  <FALCLF.ShowZoneLabels>Zonennamen anzeigen</FALCLF.ShowZoneLabels>
+  <FALCLF.ShowZoneLabelsDesc>Hauptschalter für alle Zonenbeschriftungen (Lager, Anbau, Angeln usw.)</FALCLF.ShowZoneLabelsDesc>
+
+  <FALCLF.ShowGrowingZoneLabels>Anbauzonenbeschriftungen anzeigen</FALCLF.ShowGrowingZoneLabels>
+  <FALCLF.ShowGrowingZoneLabelsDesc>Beschriftungen für Anbau- und Pflanzenzonen anzeigen</FALCLF.ShowGrowingZoneLabelsDesc>
+
+  <FALCLF.ShowStockpileZoneLabels>Lagerzonenbeschriftungen anzeigen</FALCLF.ShowStockpileZoneLabels>
+  <FALCLF.ShowStockpileZoneLabelsDesc>Beschriftungen für Lager- und Müllzonen anzeigen</FALCLF.ShowStockpileZoneLabelsDesc>
+
+  <FALCLF.MaxFontScale>Maximale Schriftgröße</FALCLF.MaxFontScale>
+  <FALCLF.MaxFontScaleDesc>Dezimalwert, der die maximale Textgröße begrenzt. Bei 1.0 ist ein Buchstabe etwa eine Kachel breit. Muss zwischen 0.1 und 5.0 liegen.</FALCLF.MaxFontScaleDesc>
+
+  <FALCLF.MinFontScale>Minimale Schriftgröße</FALCLF.MinFontScale>
+  <FALCLF.MinFontScaleDesc>Dezimalwert, der die minimale Textgröße begrenzt. Eine Beschriftung, die kleineren Text benötigt, wird nicht angezeigt. Bei 1.0 ist ein Buchstabe etwa eine Kachel breit. Muss zwischen 0.1 und 1.0 liegen.</FALCLF.MinFontScaleDesc>
+
+  <FALCLF.MaxAllowedZoom>Maximaler Zoom für Beschriftungen</FALCLF.MaxAllowedZoom>
+  <FALCLF.MaxAllowedZoomDesc>Weitester Zoom, bei dem sichtbare Beschriftungen gezeichnet werden. Beachten Sie, dass sehr kleine Beschriftungen unabhängig von dieser Einstellung bei einigen Zoomstufen möglicherweise nicht gezeichnet werden.</FALCLF.MaxAllowedZoomDesc>
+
+  <FALCLF.RenameDesc>Einen Raum oder eine Zone umbenennen</FALCLF.RenameDesc>
+  <FALCLF.RenameRoom>Raum Umbenennen</FALCLF.RenameRoom>
+  <FALCLF.RoomName>Raumname:</FALCLF.RoomName>
+  <FALCLF.RoomColor>Raumfarbe:</FALCLF.RoomColor>
+  <FALCLF.CustomColor>Benutzerdefinierte Farbe</FALCLF.CustomColor>
+  <FALCLF.DefaultColor>Standardfarbe</FALCLF.DefaultColor>
+  <FALCLF.UseDefaultColor>Standardfarbe verwenden</FALCLF.UseDefaultColor>
+  <FALCLF.UseCustomColor>Benutzerdefinierte Farbe verwenden</FALCLF.UseCustomColor>
+  <FALCLF.UseCustomColorDesc>Benutzerdefinierte Farbe für die Beschriftung dieses Raumes aktivieren</FALCLF.UseCustomColorDesc>
+  
+  <FALCLF.ChooseColor>Farbe Wählen</FALCLF.ChooseColor>
+  <FALCLF.ChooseDefaultLabelColor>Standard-Beschriftungsfarbe Wählen</FALCLF.ChooseDefaultLabelColor>
+  <FALCLF.CurrentColor>Aktuelle Farbe</FALCLF.CurrentColor>
+  <FALCLF.SelectFromPalette>Aus Palette wählen:</FALCLF.SelectFromPalette>
+  <FALCLF.SelectColor>Farbe Auswählen</FALCLF.SelectColor>
+  <FALCLF.Reset>Zurücksetzen</FALCLF.Reset>
+  <FALCLF.Cancel>Abbrechen</FALCLF.Cancel>
+  <FALCLF.OK>OK</FALCLF.OK>
+
+  <FALCLF.enumSetting_Closest>Am nächsten</FALCLF.enumSetting_Closest>
+  <FALCLF.enumSetting_Close>Nah</FALCLF.enumSetting_Close>
+  <FALCLF.enumSetting_Middle>Mittel</FALCLF.enumSetting_Middle>
+  <FALCLF.enumSetting_Far>Fern</FALCLF.enumSetting_Far>
+  <FALCLF.enumSetting_Furthest>Am weitesten</FALCLF.enumSetting_Furthest>
+</LanguageData>

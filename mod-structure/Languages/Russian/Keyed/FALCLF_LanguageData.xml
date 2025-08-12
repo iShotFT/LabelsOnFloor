@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <FALCLF.Enabled>Включено</FALCLF.Enabled>
+  <FALCLF.EnabledDesc>Включить мод</FALCLF.EnabledDesc>
+
+  <FALCLF.DefaultLabelColor>Цвет метки по умолчанию</FALCLF.DefaultLabelColor>
+  <FALCLF.DefaultLabelColorDesc>Цвет по умолчанию для всех меток (может быть переопределён по комнатам)</FALCLF.DefaultLabelColorDesc>
+
+  <FALCLF.TextOpacity>Непрозрачность текста</FALCLF.TextOpacity>
+  <FALCLF.TextOpacityDesc>Насколько четкими выглядят надписи</FALCLF.TextOpacityDesc>
+
+  <FALCLF.ShowRoomLabels>Показывать названия комнат</FALCLF.ShowRoomLabels>
+  <FALCLF.ShowRoomLabelsDesc>Показывать названия комнат на полу</FALCLF.ShowRoomLabelsDesc>
+
+  <FALCLF.ShowZoneLabels>Показывать названия зон</FALCLF.ShowZoneLabels>
+  <FALCLF.ShowZoneLabelsDesc>Главный переключатель для всех меток зон (склад, выращивание, рыбалка и т.д.)</FALCLF.ShowZoneLabelsDesc>
+
+  <FALCLF.ShowGrowingZoneLabels>Показывать метки зон выращивания</FALCLF.ShowGrowingZoneLabels>
+  <FALCLF.ShowGrowingZoneLabelsDesc>Показывать метки для зон выращивания культур и растений</FALCLF.ShowGrowingZoneLabelsDesc>
+
+  <FALCLF.ShowStockpileZoneLabels>Показывать метки складских зон</FALCLF.ShowStockpileZoneLabels>
+  <FALCLF.ShowStockpileZoneLabelsDesc>Показывать метки для складов и зон свалки</FALCLF.ShowStockpileZoneLabelsDesc>
+
+  <FALCLF.MaxFontScale>Максимальный масштаб шрифта</FALCLF.MaxFontScale>
+  <FALCLF.MaxFontScaleDesc>Десятичное значение, ограничивающее максимальный размер текста. При 1.0 буква примерно шириной в одну клетку. Должно быть между 0.1 и 5.0.</FALCLF.MaxFontScaleDesc>
+
+  <FALCLF.MinFontScale>Минимальный масштаб шрифта</FALCLF.MinFontScale>
+  <FALCLF.MinFontScaleDesc>Десятичное значение, ограничивающее минимальный размер текста. Метка, требующая меньший текст, не будет отображаться. При 1.0 буква примерно шириной в одну клетку. Должно быть между 0.1 и 1.0.</FALCLF.MinFontScaleDesc>
+
+  <FALCLF.MaxAllowedZoom>Максимальный масштаб для меток</FALCLF.MaxAllowedZoom>
+  <FALCLF.MaxAllowedZoomDesc>Самый дальний масштаб, при котором будут отображаться видимые метки. Обратите внимание, что очень маленькие метки могут не отображаться при некоторых уровнях масштабирования, независимо от этой настройки.</FALCLF.MaxAllowedZoomDesc>
+
+  <FALCLF.RenameDesc>Переименовать комнату или зону</FALCLF.RenameDesc>
+  <FALCLF.RenameRoom>Переименовать Комнату</FALCLF.RenameRoom>
+  <FALCLF.RoomName>Название комнаты:</FALCLF.RoomName>
+  <FALCLF.RoomColor>Цвет комнаты:</FALCLF.RoomColor>
+  <FALCLF.CustomColor>Пользовательский Цвет</FALCLF.CustomColor>
+  <FALCLF.DefaultColor>Цвет По Умолчанию</FALCLF.DefaultColor>
+  <FALCLF.UseDefaultColor>Использовать цвет по умолчанию</FALCLF.UseDefaultColor>
+  <FALCLF.UseCustomColor>Использовать пользовательский цвет</FALCLF.UseCustomColor>
+  <FALCLF.UseCustomColorDesc>Включить пользовательский цвет для метки этой комнаты</FALCLF.UseCustomColorDesc>
+  
+  <FALCLF.ChooseColor>Выбрать Цвет</FALCLF.ChooseColor>
+  <FALCLF.ChooseDefaultLabelColor>Выбрать Цвет Метки По Умолчанию</FALCLF.ChooseDefaultLabelColor>
+  <FALCLF.CurrentColor>Текущий Цвет</FALCLF.CurrentColor>
+  <FALCLF.SelectFromPalette>Выбрать из палитры:</FALCLF.SelectFromPalette>
+  <FALCLF.SelectColor>Выбрать Цвет</FALCLF.SelectColor>
+  <FALCLF.Reset>Сбросить</FALCLF.Reset>
+  <FALCLF.Cancel>Отмена</FALCLF.Cancel>
+  <FALCLF.OK>OK</FALCLF.OK>
+
+  <FALCLF.enumSetting_Closest>Ближайший</FALCLF.enumSetting_Closest>
+  <FALCLF.enumSetting_Close>Близко</FALCLF.enumSetting_Close>
+  <FALCLF.enumSetting_Middle>Средне</FALCLF.enumSetting_Middle>
+  <FALCLF.enumSetting_Far>Далеко</FALCLF.enumSetting_Far>
+  <FALCLF.enumSetting_Furthest>Дальше всех</FALCLF.enumSetting_Furthest>
+</LanguageData>

@@ -19,6 +19,7 @@ namespace LabelsOnFloor
         public PlacementData LabelPlacementData;
         public object AssociatedArea;
         public bool IsZone = false;
+        public Color? CustomColor = null;
 
         public bool IsValid()
         {

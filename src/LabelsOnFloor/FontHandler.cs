@@ -30,7 +30,7 @@ namespace LabelsOnFloor
         {
             if (_material == null)
             {
-                var color = (Main.Instance.UseLightText()) ? Color.white : Color.black;
+                var color = Main.Instance.GetDefaultLabelColor();
                 color.a = Main.Instance.GetOpacity();
                 _material = MaterialPool.MatFrom(Resources.Font, ShaderDatabase.Transparent, color);
             }

@@ -7,9 +7,9 @@ namespace LabelsOnFloor
     {
         private RoomRoleDef _emptyRooomRole;
 
-        private readonly CustomRoomLabelManager _customRoomLabelManager;
+        private readonly CustomRoomLabelManagerComponent _customRoomLabelManager;
 
-        public RoomRoleFinder(CustomRoomLabelManager customRoomLabelManager)
+        public RoomRoleFinder(CustomRoomLabelManagerComponent customRoomLabelManager)
         {
             _customRoomLabelManager = customRoomLabelManager;
         }

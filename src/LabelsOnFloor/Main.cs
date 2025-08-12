@@ -1,6 +1,7 @@
 ﻿using HugsLib.Settings;
 using HugsLib.Utils;
 using RimWorld.Planet;
+using UnityEngine;
 using Verse;
 
 namespace LabelsOnFloor
@@ -18,7 +19,7 @@ namespace LabelsOnFloor
 
         private SettingHandle<bool> _enabled;
 
-        private SettingHandle<bool> _useLightText;
+        private SettingHandle<Color> _defaultLabelColor;
 
         private SettingHandle<int> _opacity;
 
@@ -42,7 +43,7 @@ namespace LabelsOnFloor
 
         private readonly FontHandler _fontHandler = new FontHandler();
 
-        private CustomRoomLabelManager _customRoomLabelManager;
+        private CustomRoomLabelManagerComponent _customRoomLabelManager;
 
 
         public Main()
@@ -50,11 +51,16 @@ namespace LabelsOnFloor
             Instance = this;
         }
 
-        public Dialog_RenameRoom GetRoomRenamer(Room room, IntVec3 loc)
+        public Dialog_RenameRoomWithColor GetRoomRenamer(Room room, IntVec3 loc)
         {
-            return new Dialog_RenameRoom(
+            return new Dialog_RenameRoomWithColor(
                 _customRoomLabelManager.GetOrCreateCustomRoomDataFor(room, loc)
             );
+        }
+        
+        public CustomRoomLabelManagerComponent GetCustomRoomLabelManager()
+        {
+            return _customRoomLabelManager;
         }
 
         public void Draw()
@@ -77,12 +83,12 @@ namespace LabelsOnFloor
             return _enabled
                    && Current.ProgramState == ProgramState.Playing
                    && Find.CurrentMap != null
-                   && !WorldRendererUtility.WorldRendered;
+                   && WorldRendererUtility.CurrentWorldRenderMode == WorldRenderMode.None;
         }
 
-        public bool UseLightText()
+        public Color GetDefaultLabelColor()
         {
-            return _useLightText;
+            return _defaultLabelColor ?? Color.white;
         }
 
         public float GetOpacity()
@@ -119,10 +125,15 @@ namespace LabelsOnFloor
         {
             return _minFontScale;
         }
+        
+        public SettingHandle<bool> GetEnabledSetting()
+        {
+            return _enabled;
+        }
 
         public override void OnGUI()
         {
-            if (WorldRendererUtility.WorldRendered)
+            if (WorldRendererUtility.CurrentWorldRenderMode != WorldRenderMode.None)
                 LabelPlacementHandler?.SetDirty();
 
             base.OnGUI();
@@ -132,8 +143,7 @@ namespace LabelsOnFloor
         {
             base.WorldLoaded();
 
-            _customRoomLabelManager = 
-                UtilityWorldObjectManager.GetUtilityWorldObject<CustomRoomLabelManager>();
+            _customRoomLabelManager = Find.World.GetComponent<CustomRoomLabelManagerComponent>();
 
             LabelPlacementHandler = new LabelPlacementHandler(
                 _labelHolder,
@@ -158,18 +168,19 @@ namespace LabelsOnFloor
                 "enabled", "FALCLF.Enabled".Translate(),
                 "FALCLF.EnabledDesc".Translate(), true);
 
-            _useLightText = Settings.GetHandle(
-                "useLightText", "FALCLF.UseLightText".Translate(),
-                "FALCLF.UseLightTextDesc".Translate(), false);
-
-            _useLightText.OnValueChanged = val => { _fontHandler?.Reset(); };
+            _defaultLabelColor = Settings.GetHandle(
+                "defaultLabelColor", "FALCLF.DefaultLabelColor".Translate(),
+                "FALCLF.DefaultLabelColorDesc".Translate(), Color.white);
+            
+            _defaultLabelColor.CustomDrawer = rect => ColorSettingDrawer(rect, _defaultLabelColor);
+            _defaultLabelColor.ValueChanged += val => { _fontHandler?.Reset(); };
 
             _opacity = Settings.GetHandle(
                 "opacity", "FALCLF.TextOpacity".Translate(),
                 "FALCLF.TextOpacityDesc".Translate(), 30,
                 Validators.IntRangeValidator(1, 100));
 
-            _opacity.OnValueChanged = val => { _fontHandler?.Reset(); };
+            _opacity.ValueChanged += val => { _fontHandler?.Reset(); };
 
 
             _showRoomLabels = Settings.GetHandle(
@@ -181,12 +192,12 @@ namespace LabelsOnFloor
                 "FALCLF.ShowZoneLabelsDesc".Translate(), true);
 
             _showGrowingZoneLabels = Settings.GetHandle(
-                "showGrowingZoneLabels", "Show growing zone labels",
-                "Display labels for growing zones (crops, plants)", true);
+                "showGrowingZoneLabels", "FALCLF.ShowGrowingZoneLabels".Translate(),
+                "FALCLF.ShowGrowingZoneLabelsDesc".Translate(), true);
 
             _showStockpileZoneLabels = Settings.GetHandle(
-                "showStockpileZoneLabels", "Show stockpile zone labels",
-                "Display labels for stockpile/storage zones", true);
+                "showStockpileZoneLabels", "FALCLF.ShowStockpileZoneLabels".Translate(),
+                "FALCLF.ShowStockpileZoneLabelsDesc".Translate(), true);
 
             _maxFontScale = Settings.GetHandle(
                 "maxFontScale", "FALCLF.MaxFontScale".Translate(),
@@ -204,19 +215,59 @@ namespace LabelsOnFloor
                 null, "FALCLF.enumSetting_");
 
 
-            _enabled.OnValueChanged = val => { LabelPlacementHandler.SetDirty(); };
+            _enabled.ValueChanged += val => { LabelPlacementHandler?.SetDirty(); };
 
-            _showRoomLabels.OnValueChanged = val => { LabelPlacementHandler.SetDirty(); };
+            _showRoomLabels.ValueChanged += val => { LabelPlacementHandler?.SetDirty(); };
 
-            _showZoneLabels.OnValueChanged = val => { LabelPlacementHandler.SetDirty(); };
+            _showZoneLabels.ValueChanged += val => { LabelPlacementHandler?.SetDirty(); };
 
-            _showGrowingZoneLabels.OnValueChanged = val => { LabelPlacementHandler.SetDirty(); };
+            _showGrowingZoneLabels.ValueChanged += val => { LabelPlacementHandler?.SetDirty(); };
 
-            _showStockpileZoneLabels.OnValueChanged = val => { LabelPlacementHandler.SetDirty(); };
+            _showStockpileZoneLabels.ValueChanged += val => { LabelPlacementHandler?.SetDirty(); };
 
-            _maxFontScale.OnValueChanged = val => { LabelPlacementHandler.SetDirty(); };
+            _maxFontScale.ValueChanged += val => { LabelPlacementHandler?.SetDirty(); };
 
-            _minFontScale.OnValueChanged = val => { LabelPlacementHandler.SetDirty(); };
+            _minFontScale.ValueChanged += val => { LabelPlacementHandler?.SetDirty(); };
+        }
+        
+        private bool ColorSettingDrawer(Rect rect, SettingHandle<Color> setting)
+        {
+            // Draw the label on the left
+            Rect labelRect = new Rect(rect.x, rect.y, rect.width * 0.6f, rect.height);
+            Widgets.Label(labelRect, setting.Title);
+            
+            // Draw the minimal color dropdown button on the right
+            Rect dropdownRect = new Rect(rect.x + rect.width * 0.65f, rect.y, rect.width * 0.3f, rect.height);
+            Color? currentColor = setting.Value;
+            
+            // Create tooltip with RGB values
+            string rgbTooltip = $"RGB ({(int)(setting.Value.r * 255)}, {(int)(setting.Value.g * 255)}, {(int)(setting.Value.b * 255)})";
+            
+            ColorDropdownWidget.DrawMinimalColorDropdownButton(
+                dropdownRect,
+                ref currentColor,
+                Color.white,  // Default color (white)
+                (color) => {
+                    if (color.HasValue)
+                    {
+                        setting.Value = color.Value;
+                    }
+                    else
+                    {
+                        setting.Value = Color.white; // Reset to default
+                    }
+                    LabelPlacementHandler?.SetDirty();
+                },
+                rgbTooltip
+            );
+            
+            // Update setting if color changed
+            if (currentColor.HasValue && currentColor.Value != setting.Value)
+            {
+                setting.Value = currentColor.Value;
+            }
+            
+            return false; // Don't draw the default widget
         }
     }
 }
