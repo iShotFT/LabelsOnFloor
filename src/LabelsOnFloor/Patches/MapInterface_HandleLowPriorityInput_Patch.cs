@@ -82,17 +82,14 @@ namespace LabelsOnFloor.Patches
         private static void HandleToggleLabelsHotkey()
         {
             // Toggle the main enabled setting
-            if (Main.Instance != null)
+            if (LabelsOnFloorMod.Instance != null && LabelsOnFloorMod.Settings != null)
             {
-                var enabledSetting = Main.Instance.GetEnabledSetting();
-                if (enabledSetting != null)
-                {
-                    enabledSetting.Value = !enabledSetting.Value;
-                    
-                    // Show a message to indicate the state change
-                    string messageKey = enabledSetting.Value ? "FALCLF.LabelsEnabled" : "FALCLF.LabelsDisabled";
-                    Messages.Message(messageKey.Translate(), MessageTypeDefOf.SilentInput, false);
-                }
+                LabelsOnFloorMod.Settings.enabled = !LabelsOnFloorMod.Settings.enabled;
+                LabelsOnFloorMod.Instance.WriteSettings(); // Save the change
+                
+                // Show a message to indicate the state change
+                string messageKey = LabelsOnFloorMod.Settings.enabled ? "FALCLF.LabelsEnabled" : "FALCLF.LabelsDisabled";
+                Messages.Message(messageKey.Translate(), MessageTypeDefOf.SilentInput, false);
             }
         }
     }

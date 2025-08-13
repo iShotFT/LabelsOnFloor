@@ -36,9 +36,6 @@
     <Reference Include="Assembly-CSharp">
       <HintPath>..\..\ThirdParty\Assembly-CSharp.dll</HintPath>
     </Reference>
-    <Reference Include="HugsLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UnlimitedHugs.Rimworld.HugsLib.10.0.1\lib\net472\HugsLib.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation" />
@@ -231,9 +228,13 @@
     <Compile Include="Designator_Rename.cs" />
     <Compile Include="Dialog_RenameRoomWithColor.cs" />
     <Compile Include="Dialog_RoomColorPicker.cs" />
-    <Compile Include="Dialog_DefaultLabelColorPicker.cs" />
     <Compile Include="ColorGridFloatMenu.cs" />
+    <Compile Include="GameComponent_LabelsOnFloor.cs" />
     <Compile Include="KeyBindingDefOf_LabelsOnFloor.cs" />
+    <Compile Include="LabelsOnFloorMod.cs" />
+    <Compile Include="LabelsOnFloorSettings.cs" />
+    <Compile Include="MapComponent_LabelsOnFloor.cs" />
+    <Compile Include="ModLog.cs" />
     <Compile Include="Patches\Building_Bed_Medical_Patch.cs" />
     <Compile Include="Patches\MapInterface_HandleLowPriorityInput_Patch.cs" />
     <Compile Include="Patches\DesignationCategoryDef_ResolvedAllowedDesignators_Patch.cs" />
@@ -276,12 +277,6 @@
     </Content>
     <Content Include="..\..\mod-structure\About\PublishedFileId.txt">
       <Link>mod-structure\About\PublishedFileId.txt</Link>
-    </Content>
-    <Content Include="..\..\mod-structure\About\Version.xml">
-      <Link>mod-structure\About\Version.xml</Link>
-    </Content>
-    <Content Include="..\..\mod-structure\Defs\UpdateFeatureDefs\UpdateFeatureDefs.xml">
-      <Link>mod-structure\Defs\UpdateFeatureDefs\UpdateFeatureDefs.xml</Link>
     </Content>
     <Content Include="..\..\mod-structure\Languages\English\Keyed\FALCLF_LanguageData.xml">
       <Link>mod-structure\Languages\English\Keyed\FALCLF_LanguageData.xml</Link>
