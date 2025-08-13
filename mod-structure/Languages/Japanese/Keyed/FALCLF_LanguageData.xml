@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
+  <!-- Mod Title -->
+  <FALCLF.ModTitle>Labels on Floor (Continued)</FALCLF.ModTitle>
+  
+  <!-- Settings Categories -->
+  <FALCLF.CategoryGeneral>一般</FALCLF.CategoryGeneral>
+  <FALCLF.CategoryGeneralDesc>Labels on Floorの基本設定</FALCLF.CategoryGeneralDesc>
+  
+  <FALCLF.CategoryDisplay>表示オプション</FALCLF.CategoryDisplay>
+  <FALCLF.CategoryDisplayDesc>表示するラベルを制御</FALCLF.CategoryDisplayDesc>
+  
+  <FALCLF.CategoryAdvanced>上級</FALCLF.CategoryAdvanced>
+  <FALCLF.CategoryAdvancedDesc>ラベルの外観と動作を細かく調整</FALCLF.CategoryAdvancedDesc>
+  
+  <!-- General Settings -->
   <FALCLF.Enabled>使用する</FALCLF.Enabled>
   <FALCLF.EnabledDesc>チェックを入れるとModを使用可能にします。</FALCLF.EnabledDesc>
 
@@ -39,6 +53,15 @@
   <FALCLF.UseDefaultColor>デフォルト色を使用</FALCLF.UseDefaultColor>
   <FALCLF.UseCustomColor>カスタム色を使用</FALCLF.UseCustomColor>
   <FALCLF.UseCustomColorDesc>この部屋のラベルにカスタム色を有効にする</FALCLF.UseCustomColorDesc>
+  
+  <!-- Settings Reset -->
+  <FALCLF.ResetToDefaults>デフォルトに戻す</FALCLF.ResetToDefaults>
+  <FALCLF.ConfirmResetSettings>すべての設定をデフォルト値にリセットしてよろしいですか？</FALCLF.ConfirmResetSettings>
+  
+  <!-- Additional UI Labels -->
+  <FALCLF.DefaultColorLabel>デフォルトカラー</FALCLF.DefaultColorLabel>
+  <FALCLF.LabelsEnabled>ラベルが有効</FALCLF.LabelsEnabled>
+  <FALCLF.LabelsDisabled>ラベルが無効</FALCLF.LabelsDisabled>
   
   <FALCLF.ChooseColor>色を選択</FALCLF.ChooseColor>
   <FALCLF.ChooseDefaultLabelColor>デフォルトラベル色を選択</FALCLF.ChooseDefaultLabelColor>

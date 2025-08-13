@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
+    <!-- Mod Title -->
+    <FALCLF.ModTitle>Labels on Floor (Continued)</FALCLF.ModTitle>
+    
+    <!-- Settings Categories -->
+    <FALCLF.CategoryGeneral>General</FALCLF.CategoryGeneral>
+    <FALCLF.CategoryGeneralDesc>Basic settings for Labels on Floor</FALCLF.CategoryGeneralDesc>
+    
+    <FALCLF.CategoryDisplay>Display Options</FALCLF.CategoryDisplay>
+    <FALCLF.CategoryDisplayDesc>Control which labels are shown</FALCLF.CategoryDisplayDesc>
+    
+    <FALCLF.CategoryAdvanced>Advanced</FALCLF.CategoryAdvanced>
+    <FALCLF.CategoryAdvancedDesc>Fine-tune label appearance and behavior</FALCLF.CategoryAdvancedDesc>
+    
+    <!-- General Settings -->
     <FALCLF.Enabled>Enabled</FALCLF.Enabled>
     <FALCLF.EnabledDesc>Enable the mod</FALCLF.EnabledDesc>
 
@@ -37,8 +51,13 @@
     <FALCLF.CustomColor>Custom Color</FALCLF.CustomColor>
     <FALCLF.DefaultColor>Default Color</FALCLF.DefaultColor>
     <FALCLF.UseDefaultColor>Use default color</FALCLF.UseDefaultColor>
+    <FALCLF.DefaultColorLabel>Default Color</FALCLF.DefaultColorLabel>
     <FALCLF.UseCustomColor>Use custom color</FALCLF.UseCustomColor>
     <FALCLF.UseCustomColorDesc>Enable custom color for this room's label</FALCLF.UseCustomColorDesc>
+    
+    <!-- Settings Reset -->
+    <FALCLF.ResetToDefaults>Reset to Defaults</FALCLF.ResetToDefaults>
+    <FALCLF.ConfirmResetSettings>Are you sure you want to reset all settings to their default values?</FALCLF.ConfirmResetSettings>
     
     <FALCLF.ChooseColor>Choose Color</FALCLF.ChooseColor>
     <FALCLF.ChooseDefaultLabelColor>Choose Default Label Color</FALCLF.ChooseDefaultLabelColor>

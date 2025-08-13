@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
+  <!-- Mod Title -->
+  <FALCLF.ModTitle>地板标签（续）</FALCLF.ModTitle>
+  
+  <!-- Settings Categories -->
+  <FALCLF.CategoryGeneral>常规</FALCLF.CategoryGeneral>
+  <FALCLF.CategoryGeneralDesc>地板标签的基本设置</FALCLF.CategoryGeneralDesc>
+  
+  <FALCLF.CategoryDisplay>显示选项</FALCLF.CategoryDisplay>
+  <FALCLF.CategoryDisplayDesc>控制显示哪些标签</FALCLF.CategoryDisplayDesc>
+  
+  <FALCLF.CategoryAdvanced>高级</FALCLF.CategoryAdvanced>
+  <FALCLF.CategoryAdvancedDesc>微调标签的外观和行为</FALCLF.CategoryAdvancedDesc>
+  
+  <!-- General Settings -->
   <FALCLF.Enabled>启用</FALCLF.Enabled>
   <FALCLF.EnabledDesc>启用此模组</FALCLF.EnabledDesc>
 
@@ -39,6 +53,15 @@
   <FALCLF.UseDefaultColor>使用默认颜色</FALCLF.UseDefaultColor>
   <FALCLF.UseCustomColor>使用自定义颜色</FALCLF.UseCustomColor>
   <FALCLF.UseCustomColorDesc>为此房间的标签启用自定义颜色</FALCLF.UseCustomColorDesc>
+  
+  <!-- Settings Reset -->
+  <FALCLF.ResetToDefaults>重置为默认值</FALCLF.ResetToDefaults>
+  <FALCLF.ConfirmResetSettings>您确定要将所有设置重置为默认值吗？</FALCLF.ConfirmResetSettings>
+  
+  <!-- Additional UI Labels -->
+  <FALCLF.DefaultColorLabel>默认颜色</FALCLF.DefaultColorLabel>
+  <FALCLF.LabelsEnabled>标签已启用</FALCLF.LabelsEnabled>
+  <FALCLF.LabelsDisabled>标签已禁用</FALCLF.LabelsDisabled>
   
   <FALCLF.ChooseColor>选择颜色</FALCLF.ChooseColor>
   <FALCLF.ChooseDefaultLabelColor>选择默认标签颜色</FALCLF.ChooseDefaultLabelColor>

@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
+  <!-- Mod Title -->
+  <FALCLF.ModTitle>Beschriftungen am Boden (Fortgesetzt)</FALCLF.ModTitle>
+  
+  <!-- Settings Categories -->
+  <FALCLF.CategoryGeneral>Allgemein</FALCLF.CategoryGeneral>
+  <FALCLF.CategoryGeneralDesc>Grundeinstellungen für Beschriftungen am Boden</FALCLF.CategoryGeneralDesc>
+  
+  <FALCLF.CategoryDisplay>Anzeigeoptionen</FALCLF.CategoryDisplay>
+  <FALCLF.CategoryDisplayDesc>Steuern, welche Beschriftungen angezeigt werden</FALCLF.CategoryDisplayDesc>
+  
+  <FALCLF.CategoryAdvanced>Erweitert</FALCLF.CategoryAdvanced>
+  <FALCLF.CategoryAdvancedDesc>Erscheinungsbild und Verhalten der Beschriftungen feinabstimmen</FALCLF.CategoryAdvancedDesc>
+  
+  <!-- General Settings -->
   <FALCLF.Enabled>Aktiviert</FALCLF.Enabled>
   <FALCLF.EnabledDesc>Mod aktivieren</FALCLF.EnabledDesc>
 
@@ -39,6 +53,15 @@
   <FALCLF.UseDefaultColor>Standardfarbe verwenden</FALCLF.UseDefaultColor>
   <FALCLF.UseCustomColor>Benutzerdefinierte Farbe verwenden</FALCLF.UseCustomColor>
   <FALCLF.UseCustomColorDesc>Benutzerdefinierte Farbe für die Beschriftung dieses Raumes aktivieren</FALCLF.UseCustomColorDesc>
+  
+  <!-- Settings Reset -->
+  <FALCLF.ResetToDefaults>Auf Standardwerte Zurücksetzen</FALCLF.ResetToDefaults>
+  <FALCLF.ConfirmResetSettings>Sind Sie sicher, dass Sie alle Einstellungen auf ihre Standardwerte zurücksetzen möchten?</FALCLF.ConfirmResetSettings>
+  
+  <!-- Additional UI Labels -->
+  <FALCLF.DefaultColorLabel>Standardfarbe</FALCLF.DefaultColorLabel>
+  <FALCLF.LabelsEnabled>Beschriftungen aktiviert</FALCLF.LabelsEnabled>
+  <FALCLF.LabelsDisabled>Beschriftungen deaktiviert</FALCLF.LabelsDisabled>
   
   <FALCLF.ChooseColor>Farbe Wählen</FALCLF.ChooseColor>
   <FALCLF.ChooseDefaultLabelColor>Standard-Beschriftungsfarbe Wählen</FALCLF.ChooseDefaultLabelColor>

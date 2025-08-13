@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
+  <!-- Mod Title -->
+  <FALCLF.ModTitle>Labels on Floor (Continued)</FALCLF.ModTitle>
+  
+  <!-- Settings Categories -->
+  <FALCLF.CategoryGeneral>عام</FALCLF.CategoryGeneral>
+  <FALCLF.CategoryGeneralDesc>الإعدادات الأساسية لـ Labels on Floor</FALCLF.CategoryGeneralDesc>
+  
+  <FALCLF.CategoryDisplay>خيارات العرض</FALCLF.CategoryDisplay>
+  <FALCLF.CategoryDisplayDesc>التحكم في التسميات المعروضة</FALCLF.CategoryDisplayDesc>
+  
+  <FALCLF.CategoryAdvanced>متقدم</FALCLF.CategoryAdvanced>
+  <FALCLF.CategoryAdvancedDesc>ضبط دقيق لمظهر وسلوك التسميات</FALCLF.CategoryAdvancedDesc>
+  
+  <!-- General Settings -->
   <FALCLF.Enabled>مُفعَّل</FALCLF.Enabled>
   <FALCLF.EnabledDesc>تفعيل التعديل</FALCLF.EnabledDesc>
 
@@ -39,6 +53,15 @@
   <FALCLF.UseDefaultColor>استخدام اللون الافتراضي</FALCLF.UseDefaultColor>
   <FALCLF.UseCustomColor>استخدام لون مخصص</FALCLF.UseCustomColor>
   <FALCLF.UseCustomColorDesc>تفعيل اللون المخصص لتسمية هذه الغرفة</FALCLF.UseCustomColorDesc>
+  
+  <!-- Settings Reset -->
+  <FALCLF.ResetToDefaults>إعادة تعيين إلى الافتراضي</FALCLF.ResetToDefaults>
+  <FALCLF.ConfirmResetSettings>هل أنت متأكد من أنك تريد إعادة تعيين جميع الإعدادات إلى قيمها الافتراضية؟</FALCLF.ConfirmResetSettings>
+  
+  <!-- Additional UI Labels -->
+  <FALCLF.DefaultColorLabel>اللون الافتراضي</FALCLF.DefaultColorLabel>
+  <FALCLF.LabelsEnabled>التسميات مُفعَّلة</FALCLF.LabelsEnabled>
+  <FALCLF.LabelsDisabled>التسميات مُعطَّلة</FALCLF.LabelsDisabled>
   
   <FALCLF.ChooseColor>اختيار اللون</FALCLF.ChooseColor>
   <FALCLF.ChooseDefaultLabelColor>اختيار لون التسمية الافتراضي</FALCLF.ChooseDefaultLabelColor>

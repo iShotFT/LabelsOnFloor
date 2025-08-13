@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
+  <!-- Mod Title -->
+  <FALCLF.ModTitle>Étiquettes au Sol (Suite)</FALCLF.ModTitle>
+  
+  <!-- Settings Categories -->
+  <FALCLF.CategoryGeneral>Général</FALCLF.CategoryGeneral>
+  <FALCLF.CategoryGeneralDesc>Paramètres de base pour Étiquettes au Sol</FALCLF.CategoryGeneralDesc>
+  
+  <FALCLF.CategoryDisplay>Options d'Affichage</FALCLF.CategoryDisplay>
+  <FALCLF.CategoryDisplayDesc>Contrôler quelles étiquettes sont affichées</FALCLF.CategoryDisplayDesc>
+  
+  <FALCLF.CategoryAdvanced>Avancé</FALCLF.CategoryAdvanced>
+  <FALCLF.CategoryAdvancedDesc>Ajuster finement l'apparence et le comportement des étiquettes</FALCLF.CategoryAdvancedDesc>
+  
+  <!-- General Settings -->
   <FALCLF.Enabled>Activé</FALCLF.Enabled>
   <FALCLF.EnabledDesc>Activer le mod</FALCLF.EnabledDesc>
 
@@ -39,6 +53,15 @@
   <FALCLF.UseDefaultColor>Utiliser la couleur par défaut</FALCLF.UseDefaultColor>
   <FALCLF.UseCustomColor>Utiliser une couleur personnalisée</FALCLF.UseCustomColor>
   <FALCLF.UseCustomColorDesc>Activer la couleur personnalisée pour l'étiquette de cette pièce</FALCLF.UseCustomColorDesc>
+  
+  <!-- Settings Reset -->
+  <FALCLF.ResetToDefaults>Réinitialiser aux Valeurs Par Défaut</FALCLF.ResetToDefaults>
+  <FALCLF.ConfirmResetSettings>Êtes-vous sûr de vouloir réinitialiser tous les paramètres à leurs valeurs par défaut?</FALCLF.ConfirmResetSettings>
+  
+  <!-- Additional UI Labels -->
+  <FALCLF.DefaultColorLabel>Couleur Par Défaut</FALCLF.DefaultColorLabel>
+  <FALCLF.LabelsEnabled>Étiquettes activées</FALCLF.LabelsEnabled>
+  <FALCLF.LabelsDisabled>Étiquettes désactivées</FALCLF.LabelsDisabled>
   
   <FALCLF.ChooseColor>Choisir une Couleur</FALCLF.ChooseColor>
   <FALCLF.ChooseDefaultLabelColor>Choisir la Couleur d'Étiquette Par Défaut</FALCLF.ChooseDefaultLabelColor>

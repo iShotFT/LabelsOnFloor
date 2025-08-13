@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
+  <!-- Mod Title -->
+  <FALCLF.ModTitle>Метки на Полу (Продолжение)</FALCLF.ModTitle>
+  
+  <!-- Settings Categories -->
+  <FALCLF.CategoryGeneral>Общие</FALCLF.CategoryGeneral>
+  <FALCLF.CategoryGeneralDesc>Основные настройки для Меток на Полу</FALCLF.CategoryGeneralDesc>
+  
+  <FALCLF.CategoryDisplay>Параметры Отображения</FALCLF.CategoryDisplay>
+  <FALCLF.CategoryDisplayDesc>Управление отображением меток</FALCLF.CategoryDisplayDesc>
+  
+  <FALCLF.CategoryAdvanced>Дополнительно</FALCLF.CategoryAdvanced>
+  <FALCLF.CategoryAdvancedDesc>Тонкая настройка внешнего вида и поведения меток</FALCLF.CategoryAdvancedDesc>
+  
+  <!-- General Settings -->
   <FALCLF.Enabled>Включено</FALCLF.Enabled>
   <FALCLF.EnabledDesc>Включить мод</FALCLF.EnabledDesc>
 
@@ -39,6 +53,15 @@
   <FALCLF.UseDefaultColor>Использовать цвет по умолчанию</FALCLF.UseDefaultColor>
   <FALCLF.UseCustomColor>Использовать пользовательский цвет</FALCLF.UseCustomColor>
   <FALCLF.UseCustomColorDesc>Включить пользовательский цвет для метки этой комнаты</FALCLF.UseCustomColorDesc>
+  
+  <!-- Settings Reset -->
+  <FALCLF.ResetToDefaults>Сбросить на Значения по Умолчанию</FALCLF.ResetToDefaults>
+  <FALCLF.ConfirmResetSettings>Вы уверены, что хотите сбросить все настройки на значения по умолчанию?</FALCLF.ConfirmResetSettings>
+  
+  <!-- Additional UI Labels -->
+  <FALCLF.DefaultColorLabel>Цвет по Умолчанию</FALCLF.DefaultColorLabel>
+  <FALCLF.LabelsEnabled>Метки включены</FALCLF.LabelsEnabled>
+  <FALCLF.LabelsDisabled>Метки отключены</FALCLF.LabelsDisabled>
   
   <FALCLF.ChooseColor>Выбрать Цвет</FALCLF.ChooseColor>
   <FALCLF.ChooseDefaultLabelColor>Выбрать Цвет Метки По Умолчанию</FALCLF.ChooseDefaultLabelColor>

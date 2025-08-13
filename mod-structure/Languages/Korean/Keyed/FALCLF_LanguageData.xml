@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
+  <!-- Mod Title -->
+  <FALCLF.ModTitle>Labels on Floor (Continued)</FALCLF.ModTitle>
+  
+  <!-- Settings Categories -->
+  <FALCLF.CategoryGeneral>일반</FALCLF.CategoryGeneral>
+  <FALCLF.CategoryGeneralDesc>Labels on Floor의 기본 설정</FALCLF.CategoryGeneralDesc>
+  
+  <FALCLF.CategoryDisplay>표시 옵션</FALCLF.CategoryDisplay>
+  <FALCLF.CategoryDisplayDesc>표시할 라벨 제어</FALCLF.CategoryDisplayDesc>
+  
+  <FALCLF.CategoryAdvanced>고급</FALCLF.CategoryAdvanced>
+  <FALCLF.CategoryAdvancedDesc>라벨 모양과 동작을 세밀하게 조정</FALCLF.CategoryAdvancedDesc>
+  
+  <!-- General Settings -->
   <FALCLF.Enabled>활성화</FALCLF.Enabled>
   <FALCLF.EnabledDesc>모드 활성화</FALCLF.EnabledDesc>
 
-  <FALCLF.UseLightText>흰색 텍스트 사용</FALCLF.UseLightText>
-  <FALCLF.UseLightTextDesc>검은색 대신 흰색 텍스트 사용</FALCLF.UseLightTextDesc>
+  <FALCLF.DefaultLabelColor>기본 라벨 색상</FALCLF.DefaultLabelColor>
+  <FALCLF.DefaultLabelColorDesc>모든 라벨의 기본 색상 (방별로 재정의 가능)</FALCLF.DefaultLabelColorDesc>
 
   <FALCLF.TextOpacity>텍스트 불투명도</FALCLF.TextOpacity>
   <FALCLF.TextOpacityDesc>라벨이 얼마나 선명하게 보이는지</FALCLF.TextOpacityDesc>
@@ -39,6 +53,15 @@
   <FALCLF.UseDefaultColor>기본 색상 사용</FALCLF.UseDefaultColor>
   <FALCLF.UseCustomColor>사용자 정의 색상 사용</FALCLF.UseCustomColor>
   <FALCLF.UseCustomColorDesc>이 방의 레이블에 사용자 정의 색상 활성화</FALCLF.UseCustomColorDesc>
+  
+  <!-- Settings Reset -->
+  <FALCLF.ResetToDefaults>기본값으로 재설정</FALCLF.ResetToDefaults>
+  <FALCLF.ConfirmResetSettings>모든 설정을 기본값으로 재설정하시겠습니까?</FALCLF.ConfirmResetSettings>
+  
+  <!-- Additional UI Labels -->
+  <FALCLF.DefaultColorLabel>기본 색상</FALCLF.DefaultColorLabel>
+  <FALCLF.LabelsEnabled>라벨 활성화됨</FALCLF.LabelsEnabled>
+  <FALCLF.LabelsDisabled>라벨 비활성화됨</FALCLF.LabelsDisabled>
   
   <FALCLF.ChooseColor>색상 선택</FALCLF.ChooseColor>
   <FALCLF.ChooseDefaultLabelColor>기본 레이블 색상 선택</FALCLF.ChooseDefaultLabelColor>

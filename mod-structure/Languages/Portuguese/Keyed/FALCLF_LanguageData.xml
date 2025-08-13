@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
+  <!-- Mod Title -->
+  <FALCLF.ModTitle>Etiquetas no Chão (Continuado)</FALCLF.ModTitle>
+  
+  <!-- Settings Categories -->
+  <FALCLF.CategoryGeneral>Geral</FALCLF.CategoryGeneral>
+  <FALCLF.CategoryGeneralDesc>Configurações básicas para Etiquetas no Chão</FALCLF.CategoryGeneralDesc>
+  
+  <FALCLF.CategoryDisplay>Opções de Exibição</FALCLF.CategoryDisplay>
+  <FALCLF.CategoryDisplayDesc>Controlar quais etiquetas são exibidas</FALCLF.CategoryDisplayDesc>
+  
+  <FALCLF.CategoryAdvanced>Avançado</FALCLF.CategoryAdvanced>
+  <FALCLF.CategoryAdvancedDesc>Ajustar finamente a aparência e comportamento das etiquetas</FALCLF.CategoryAdvancedDesc>
+  
+  <!-- General Settings -->
   <FALCLF.Enabled>Ativado</FALCLF.Enabled>
   <FALCLF.EnabledDesc>Ativar o mod</FALCLF.EnabledDesc>
 
@@ -39,6 +53,15 @@
   <FALCLF.UseDefaultColor>Usar cor padrão</FALCLF.UseDefaultColor>
   <FALCLF.UseCustomColor>Usar cor personalizada</FALCLF.UseCustomColor>
   <FALCLF.UseCustomColorDesc>Ativar cor personalizada para a etiqueta desta sala</FALCLF.UseCustomColorDesc>
+  
+  <!-- Settings Reset -->
+  <FALCLF.ResetToDefaults>Redefinir para Padrões</FALCLF.ResetToDefaults>
+  <FALCLF.ConfirmResetSettings>Tem certeza de que deseja redefinir todas as configurações para os valores padrão?</FALCLF.ConfirmResetSettings>
+  
+  <!-- Additional UI Labels -->
+  <FALCLF.DefaultColorLabel>Cor Padrão</FALCLF.DefaultColorLabel>
+  <FALCLF.LabelsEnabled>Etiquetas ativadas</FALCLF.LabelsEnabled>
+  <FALCLF.LabelsDisabled>Etiquetas desativadas</FALCLF.LabelsDisabled>
   
   <FALCLF.ChooseColor>Escolher Cor</FALCLF.ChooseColor>
   <FALCLF.ChooseDefaultLabelColor>Escolher Cor Padrão das Etiquetas</FALCLF.ChooseDefaultLabelColor>

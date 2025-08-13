@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
+  <!-- Mod Title -->
+  <FALCLF.ModTitle>Etichette sul Pavimento (Continuato)</FALCLF.ModTitle>
+  
+  <!-- Settings Categories -->
+  <FALCLF.CategoryGeneral>Generale</FALCLF.CategoryGeneral>
+  <FALCLF.CategoryGeneralDesc>Impostazioni di base per Etichette sul Pavimento</FALCLF.CategoryGeneralDesc>
+  
+  <FALCLF.CategoryDisplay>Opzioni di Visualizzazione</FALCLF.CategoryDisplay>
+  <FALCLF.CategoryDisplayDesc>Controlla quali etichette vengono mostrate</FALCLF.CategoryDisplayDesc>
+  
+  <FALCLF.CategoryAdvanced>Avanzate</FALCLF.CategoryAdvanced>
+  <FALCLF.CategoryAdvancedDesc>Regola finemente l'aspetto e il comportamento delle etichette</FALCLF.CategoryAdvancedDesc>
+  
+  <!-- General Settings -->
   <FALCLF.Enabled>Abilitato</FALCLF.Enabled>
   <FALCLF.EnabledDesc>Abilita il mod</FALCLF.EnabledDesc>
 
@@ -39,6 +53,15 @@
   <FALCLF.UseDefaultColor>Usa colore predefinito</FALCLF.UseDefaultColor>
   <FALCLF.UseCustomColor>Usa colore personalizzato</FALCLF.UseCustomColor>
   <FALCLF.UseCustomColorDesc>Attiva colore personalizzato per l'etichetta di questa stanza</FALCLF.UseCustomColorDesc>
+  
+  <!-- Settings Reset -->
+  <FALCLF.ResetToDefaults>Ripristina Valori Predefiniti</FALCLF.ResetToDefaults>
+  <FALCLF.ConfirmResetSettings>Sei sicuro di voler ripristinare tutte le impostazioni ai valori predefiniti?</FALCLF.ConfirmResetSettings>
+  
+  <!-- Additional UI Labels -->
+  <FALCLF.DefaultColorLabel>Colore Predefinito</FALCLF.DefaultColorLabel>
+  <FALCLF.LabelsEnabled>Etichette abilitate</FALCLF.LabelsEnabled>
+  <FALCLF.LabelsDisabled>Etichette disabilitate</FALCLF.LabelsDisabled>
   
   <FALCLF.ChooseColor>Scegli Colore</FALCLF.ChooseColor>
   <FALCLF.ChooseDefaultLabelColor>Scegli Colore Etichetta Predefinito</FALCLF.ChooseDefaultLabelColor>

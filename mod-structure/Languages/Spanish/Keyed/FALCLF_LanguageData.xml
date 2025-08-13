@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
+  <!-- Mod Title -->
+  <FALCLF.ModTitle>Etiquetas en el Suelo (Continuado)</FALCLF.ModTitle>
+  
+  <!-- Settings Categories -->
+  <FALCLF.CategoryGeneral>General</FALCLF.CategoryGeneral>
+  <FALCLF.CategoryGeneralDesc>Configuraciones básicas para Etiquetas en el Suelo</FALCLF.CategoryGeneralDesc>
+  
+  <FALCLF.CategoryDisplay>Opciones de Visualización</FALCLF.CategoryDisplay>
+  <FALCLF.CategoryDisplayDesc>Controla qué etiquetas se muestran</FALCLF.CategoryDisplayDesc>
+  
+  <FALCLF.CategoryAdvanced>Avanzado</FALCLF.CategoryAdvanced>
+  <FALCLF.CategoryAdvancedDesc>Ajusta finamente la apariencia y comportamiento de las etiquetas</FALCLF.CategoryAdvancedDesc>
+  
+  <!-- General Settings -->
   <FALCLF.Enabled>Habilitado</FALCLF.Enabled>
   <FALCLF.EnabledDesc>Habilitar el mod</FALCLF.EnabledDesc>
 
@@ -39,6 +53,15 @@
   <FALCLF.UseDefaultColor>Usar color por defecto</FALCLF.UseDefaultColor>
   <FALCLF.UseCustomColor>Usar color personalizado</FALCLF.UseCustomColor>
   <FALCLF.UseCustomColorDesc>Activar color personalizado para la etiqueta de esta habitación</FALCLF.UseCustomColorDesc>
+  
+  <!-- Settings Reset -->
+  <FALCLF.ResetToDefaults>Restablecer Valores Predeterminados</FALCLF.ResetToDefaults>
+  <FALCLF.ConfirmResetSettings>¿Estás seguro de que quieres restablecer todas las configuraciones a sus valores predeterminados?</FALCLF.ConfirmResetSettings>
+  
+  <!-- Additional UI Labels -->
+  <FALCLF.DefaultColorLabel>Color Predeterminado</FALCLF.DefaultColorLabel>
+  <FALCLF.LabelsEnabled>Etiquetas activadas</FALCLF.LabelsEnabled>
+  <FALCLF.LabelsDisabled>Etiquetas desactivadas</FALCLF.LabelsDisabled>
   
   <FALCLF.ChooseColor>Elegir Color</FALCLF.ChooseColor>
   <FALCLF.ChooseDefaultLabelColor>Elegir Color de Etiqueta Por Defecto</FALCLF.ChooseDefaultLabelColor>
