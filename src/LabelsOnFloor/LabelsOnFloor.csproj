@@ -30,8 +30,8 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="0Harmony, Version=2.2.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lib.Harmony.2.2.2\lib\net472\0Harmony.dll</HintPath>
+    <Reference Include="0Harmony, Version=2.3.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lib.Harmony.2.3.3\lib\net472\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>..\..\ThirdParty\Assembly-CSharp.dll</HintPath>
@@ -229,11 +229,9 @@
     <Compile Include="Dialog_RenameRoomWithColor.cs" />
     <Compile Include="Dialog_RoomColorPicker.cs" />
     <Compile Include="ColorGridFloatMenu.cs" />
-    <Compile Include="GameComponent_LabelsOnFloor.cs" />
     <Compile Include="KeyBindingDefOf_LabelsOnFloor.cs" />
     <Compile Include="LabelsOnFloorMod.cs" />
     <Compile Include="LabelsOnFloorSettings.cs" />
-    <Compile Include="MapComponent_LabelsOnFloor.cs" />
     <Compile Include="ModLog.cs" />
     <Compile Include="Patches\Building_Bed_Medical_Patch.cs" />
     <Compile Include="Patches\MapInterface_HandleLowPriorityInput_Patch.cs" />
