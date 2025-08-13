@@ -265,6 +265,20 @@
     <Compile Include="Resources.cs" />
     <Compile Include="PlacementDataFinderForRooms.cs" />
     <Compile Include="RoomRoleFinder.cs" />
+    <!-- Settings Library -->
+    <Compile Include="SettingsLibrary\Core\ModSettingsFramework.cs" />
+    <Compile Include="SettingsLibrary\Core\ISettingsCategory.cs" />
+    <Compile Include="SettingsLibrary\Core\ISettingsItem.cs" />
+    <Compile Include="SettingsLibrary\Core\SettingsCategory.cs" />
+    <Compile Include="SettingsLibrary\Core\SettingsItemBase.cs" />
+    <Compile Include="SettingsLibrary\Controls\CheckboxControl.cs" />
+    <Compile Include="SettingsLibrary\Controls\ColorPickerControl.cs" />
+    <Compile Include="SettingsLibrary\Controls\DropdownControl.cs" />
+    <Compile Include="SettingsLibrary\Controls\GapControl.cs" />
+    <Compile Include="SettingsLibrary\Controls\SeparatorControl.cs" />
+    <Compile Include="SettingsLibrary\Controls\SliderControl.cs" />
+    <Compile Include="SettingsLibrary\Controls\SliderDropdownControl.cs" />
+    <Compile Include="SettingsLibrary\Widgets\ColorDropdownWidget.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\..\mod-structure\About\About.xml">
