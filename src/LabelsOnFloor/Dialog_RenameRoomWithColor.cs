@@ -1,6 +1,7 @@
 using System.Linq;
 using UnityEngine;
 using Verse;
+using LabelsOnFloor.SettingsLibrary.Widgets;
 
 namespace LabelsOnFloor
 {
@@ -13,6 +14,7 @@ namespace LabelsOnFloor
         private Color? selectedColor;
         private bool focusedNameField;
         private int startAcceptingInputAtFrame;
+        private bool hasSelectedText;
         
         // Standard RimWorld dialog sizing
         private const float LabelWidth = 100f;
@@ -30,7 +32,8 @@ namespace LabelsOnFloor
             originalName = GetRoomDisplayName(customRoomData);
             
             // If there's a custom label, use it; otherwise use the original name
-            curName = !string.IsNullOrEmpty(customRoomData.Label) ? customRoomData.Label : originalName;
+            // Always show in uppercase
+            curName = !string.IsNullOrEmpty(customRoomData.Label) ? customRoomData.Label.ToUpper() : originalName.ToUpper();
             selectedColor = customRoomData.CustomColor;
             
             forcePause = true;
@@ -56,7 +59,7 @@ namespace LabelsOnFloor
             Text.Font = GameFont.Medium;
             Rect titleRect = new Rect(0f, 0f, inRect.width, Text.LineHeight);
             string title = "FALCLF.RenameRoom".Translate() + ": " + originalName;
-            Widgets.Label(titleRect, title);
+            Verse.Widgets.Label(titleRect, title);
             Text.Font = GameFont.Small;
             
             float curY = titleRect.yMax + 15f;
@@ -68,7 +71,7 @@ namespace LabelsOnFloor
             // Row 1: Room Name
             Rect nameLabelRect = new Rect(0f, curY, LabelWidth, RowHeight);
             Text.Anchor = TextAnchor.MiddleLeft;
-            Widgets.Label(nameLabelRect, "FALCLF.RoomName".Translate());
+            Verse.Widgets.Label(nameLabelRect, "FALCLF.RoomName".Translate());
             Text.Anchor = TextAnchor.UpperLeft;
             
             Rect nameFieldRect = new Rect(LabelWidth + FieldSpacing, curY, fieldWidth, RowHeight);
@@ -78,7 +81,9 @@ namespace LabelsOnFloor
             string tempName = curName;
             if (AcceptsInput)
             {
-                tempName = Widgets.TextField(nameFieldRect, curName);
+                tempName = Verse.Widgets.TextField(nameFieldRect, curName);
+                // Force uppercase and limit length
+                tempName = tempName.ToUpper();
                 if (tempName.Length < 28) // Max name length from base Dialog_Rename
                 {
                     curName = tempName;
@@ -87,7 +92,7 @@ namespace LabelsOnFloor
             else
             {
                 // Draw the field but don't accept input yet
-                Widgets.TextField(nameFieldRect, curName);
+                Verse.Widgets.TextField(nameFieldRect, curName);
             }
             
             // Auto-focus and select all text
@@ -95,16 +100,16 @@ namespace LabelsOnFloor
             {
                 UI.FocusControl("RenameField", this);
                 focusedNameField = true;
-                
-                // If opened by hotkey, select all text on the next frame
-                if (!AcceptsInput)
+            }
+            
+            // Select all text on the first frame where we're focused and accepting input
+            if (focusedNameField && AcceptsInput && !hasSelectedText)
+            {
+                var textEditor = (UnityEngine.TextEditor)GUIUtility.GetStateObject(typeof(UnityEngine.TextEditor), GUIUtility.keyboardControl);
+                if (textEditor != null && textEditor.text == curName)
                 {
-                    var textEditor = (UnityEngine.TextEditor)GUIUtility.GetStateObject(typeof(UnityEngine.TextEditor), GUIUtility.keyboardControl);
-                    if (textEditor != null)
-                    {
-                        textEditor.text = curName;
-                        textEditor.SelectAll();
-                    }
+                    textEditor.SelectAll();
+                    hasSelectedText = true;
                 }
             }
             
@@ -113,7 +118,7 @@ namespace LabelsOnFloor
             // Row 2: Room Color
             Rect colorLabelRect = new Rect(0f, curY, LabelWidth, RowHeight);
             Text.Anchor = TextAnchor.MiddleLeft;
-            Widgets.Label(colorLabelRect, "FALCLF.RoomColor".Translate());
+            Verse.Widgets.Label(colorLabelRect, "FALCLF.RoomColor".Translate());
             Text.Anchor = TextAnchor.UpperLeft;
             
             Rect colorFieldRect = new Rect(LabelWidth + FieldSpacing, curY, fieldWidth, RowHeight);
@@ -131,13 +136,13 @@ namespace LabelsOnFloor
             float buttonY = inRect.yMax - ButtonHeight;
             
             // Cancel button (left)
-            if (Widgets.ButtonText(new Rect(0f, buttonY, buttonWidth, ButtonHeight), "CancelButton".Translate()))
+            if (Verse.Widgets.ButtonText(new Rect(0f, buttonY, buttonWidth, ButtonHeight), "CancelButton".Translate()))
             {
                 Close();
             }
             
             // OK button (right)
-            if (Widgets.ButtonText(new Rect(buttonWidth + 10f, buttonY, buttonWidth, ButtonHeight), "OK".Translate()))
+            if (Verse.Widgets.ButtonText(new Rect(buttonWidth + 10f, buttonY, buttonWidth, ButtonHeight), "OK".Translate()))
             {
                 ApplyChanges();
                 Close();
@@ -154,7 +159,8 @@ namespace LabelsOnFloor
         
         private void ApplyChanges()
         {
-            _customRoomData.Label = curName;
+            // Ensure label is stored in uppercase
+            _customRoomData.Label = curName.ToUpper();
             _customRoomData.CustomColor = selectedColor;
             Main.Instance.LabelPlacementHandler.SetDirty();
         }

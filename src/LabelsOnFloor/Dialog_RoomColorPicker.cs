@@ -119,8 +119,8 @@ namespace LabelsOnFloor
             // Current color preview
             listing.Label("FALCLF.CurrentColor".Translate());
             Rect colorPreviewRect = listing.GetRect(40f);
-            Widgets.DrawBoxSolid(colorPreviewRect, currentColor);
-            Widgets.DrawBox(colorPreviewRect);
+            Verse.Widgets.DrawBoxSolid(colorPreviewRect, currentColor);
+            Verse.Widgets.DrawBox(colorPreviewRect);
             
             listing.Gap(12f);
             listing.Label("FALCLF.SelectFromPalette".Translate());
@@ -138,13 +138,13 @@ namespace LabelsOnFloor
             float buttonWidth = 120f;
             
             // Cancel button (left)
-            if (Widgets.ButtonText(new Rect(0f, buttonY, buttonWidth, 30f), "FALCLF.Cancel".Translate()))
+            if (Verse.Widgets.ButtonText(new Rect(0f, buttonY, buttonWidth, 30f), "FALCLF.Cancel".Translate()))
             {
                 Close();
             }
             
             // OK button (right)
-            if (Widgets.ButtonText(new Rect(inRect.width - buttonWidth, buttonY, buttonWidth, 30f), "FALCLF.OK".Translate()))
+            if (Verse.Widgets.ButtonText(new Rect(inRect.width - buttonWidth, buttonY, buttonWidth, 30f), "FALCLF.OK".Translate()))
             {
                 onColorSelected?.Invoke(currentColor);
                 Close();
@@ -162,20 +162,20 @@ namespace LabelsOnFloor
                 Rect buttonRect = new Rect(x, y, ColorButtonSize, ColorButtonSize);
                 
                 // Draw color button
-                Widgets.DrawBoxSolid(buttonRect, color);
+                Verse.Widgets.DrawBoxSolid(buttonRect, color);
                 
                 // Highlight selected color
                 if (ColorsAreClose(currentColor, color))
                 {
-                    Widgets.DrawBox(buttonRect, 3);
+                    Verse.Widgets.DrawBox(buttonRect, 3);
                 }
                 else
                 {
-                    Widgets.DrawBox(buttonRect);
+                    Verse.Widgets.DrawBox(buttonRect);
                 }
                 
                 // Handle click
-                if (Widgets.ButtonInvisible(buttonRect))
+                if (Verse.Widgets.ButtonInvisible(buttonRect))
                 {
                     currentColor = color;
                 }

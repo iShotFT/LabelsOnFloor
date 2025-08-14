@@ -68,7 +68,6 @@ namespace LabelsOnFloor.SettingsLibrary.Controls
             {
                 SoundDefOf.Tick_Tiny.PlayOneShotOnCamera();
                 Find.WindowStack.Add(new SliderDropdownWindow(
-                    label.Translate(),
                     value,
                     min,
                     max,
@@ -88,7 +87,6 @@ namespace LabelsOnFloor.SettingsLibrary.Controls
     /// </summary>
     public class SliderDropdownWindow : Window
     {
-        private readonly string label;
         private float currentValue;
         private readonly float min;
         private readonly float max;
@@ -97,17 +95,16 @@ namespace LabelsOnFloor.SettingsLibrary.Controls
         private readonly float originalValue;
         
         private const float WindowWidth = 260f;
-        private const float WindowHeight = 100f;
-        private const float Padding = 8f;
+        private const float WindowHeight = 50f;  // Even more compact
+        private const float Padding = 6f;
         
         public override Vector2 InitialSize => new Vector2(WindowWidth, WindowHeight);
         
         protected override float Margin => 0f;
         
-        public SliderDropdownWindow(string label, float currentValue, float min, float max, 
+        public SliderDropdownWindow(float currentValue, float min, float max, 
             Action<float> onValueChanged, Func<float, string> valueFormatter)
         {
-            this.label = label;
             this.currentValue = currentValue;
             this.originalValue = currentValue;
             this.min = min;
@@ -153,24 +150,19 @@ namespace LabelsOnFloor.SettingsLibrary.Controls
             
             Rect contentRect = inRect.ContractedBy(Padding);
             
-            // Draw label
-            Text.Font = GameFont.Small;
-            Rect labelRect = new Rect(contentRect.x, contentRect.y, contentRect.width, 24f);
-            Verse.Widgets.Label(labelRect, label);
-            
-            // Draw current value
-            float y = labelRect.yMax + 8f;
+            // Draw value on the LEFT of the slider with smaller text
             string valueText = valueFormatter != null ? valueFormatter(currentValue) : currentValue.ToString("F1");
-            Rect valueRect = new Rect(contentRect.x, y, contentRect.width, 24f);
-            Text.Anchor = TextAnchor.MiddleCenter;
-            Text.Font = GameFont.Medium;
+            float valueWidth = 50f;
+            Rect valueRect = new Rect(contentRect.x, contentRect.y, valueWidth, contentRect.height);
+            Text.Anchor = TextAnchor.MiddleLeft;
+            Text.Font = GameFont.Tiny; // Smaller text size
             Verse.Widgets.Label(valueRect, valueText);
             Text.Font = GameFont.Small;
             Text.Anchor = TextAnchor.UpperLeft;
             
-            // Draw slider
-            y = valueRect.yMax + 8f;
-            Rect sliderRect = new Rect(contentRect.x, y, contentRect.width, 22f);
+            // Draw slider to the right of the value
+            float sliderX = valueRect.xMax + 8f;
+            Rect sliderRect = new Rect(sliderX, contentRect.y + (contentRect.height - 22f) / 2f, contentRect.width - valueWidth - 8f, 22f);
             float newValue = Verse.Widgets.HorizontalSlider(sliderRect, currentValue, min, max);
             
             if (Math.Abs(newValue - currentValue) > 0.001f)
@@ -179,16 +171,7 @@ namespace LabelsOnFloor.SettingsLibrary.Controls
                 onValueChanged(currentValue);
             }
             
-            // Draw min/max labels
-            Text.Font = GameFont.Tiny;
-            GUI.color = new Color(0.6f, 0.6f, 0.6f);
-            Text.Anchor = TextAnchor.UpperLeft;
-            Verse.Widgets.Label(new Rect(sliderRect.x, sliderRect.yMax + 2f, 50f, 20f), min.ToString("F1"));
-            Text.Anchor = TextAnchor.UpperRight;
-            Verse.Widgets.Label(new Rect(sliderRect.xMax - 50f, sliderRect.yMax + 2f, 50f, 20f), max.ToString("F1"));
-            Text.Anchor = TextAnchor.UpperLeft;
-            Text.Font = GameFont.Small;
-            GUI.color = Color.white;
+            // Min/max labels removed for compactness - the slider shows them visually
             
             // Handle escape to cancel
             if (Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Escape)

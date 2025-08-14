@@ -42,6 +42,79 @@ namespace LabelsOnFloor.SettingsLibrary.Widgets
         };
         
         /// <summary>
+        /// Draws a color dropdown button and handles opening the dropdown
+        /// </summary>
+        /// <param name="rect">Rectangle for the button</param>
+        /// <param name="currentColor">Currently selected color</param>
+        /// <param name="defaultColor">Default color when null is selected</param>
+        /// <param name="onColorSelected">Callback when color is selected</param>
+        /// <returns>True if color was changed</returns>
+        public static bool DrawColorDropdownButton(Rect rect, ref Color? currentColor, Color defaultColor, Action<Color?> onColorSelected = null)
+        {
+            Color displayColor = currentColor ?? defaultColor;
+            bool colorChanged = false;
+            
+            // Draw RimWorld-style button frame
+            Verse.Widgets.DrawAtlas(rect, TexUI.FloatMenuOptionBG);
+            
+            // Create sections: color preview on left, text in middle, dropdown arrow on right
+            float colorPreviewSize = rect.height - 6f;
+            Rect colorPreviewRect = new Rect(rect.x + 3f, rect.y + 3f, colorPreviewSize, colorPreviewSize);
+            Rect labelRect = new Rect(colorPreviewRect.xMax + 6f, rect.y, rect.width - colorPreviewSize - 40f, rect.height);
+            Rect arrowRect = new Rect(rect.xMax - 25f, rect.y, 20f, rect.height);
+            
+            // Highlight on hover
+            if (Mouse.IsOver(rect))
+            {
+                Verse.Widgets.DrawHighlight(rect);
+            }
+            
+            // Draw color preview with border
+            Verse.Widgets.DrawBoxSolid(colorPreviewRect, displayColor);
+            Verse.Widgets.DrawBox(colorPreviewRect, 2);
+            
+            // Draw label
+            Text.Anchor = TextAnchor.MiddleLeft;
+            GUI.color = Color.white;
+            string label;
+            if (currentColor.HasValue)
+            {
+                // Show RGB values for custom color
+                Color c = currentColor.Value;
+                label = $"RGB ({(int)(c.r * 255)}, {(int)(c.g * 255)}, {(int)(c.b * 255)})";
+            }
+            else
+            {
+                label = "FALCLF.DefaultColorLabel".Translate();
+            }
+            Verse.Widgets.Label(labelRect, label);
+            
+            // Draw dropdown arrow
+            Text.Anchor = TextAnchor.MiddleCenter;
+            Text.Font = GameFont.Small;
+            Verse.Widgets.Label(arrowRect, "▼");
+            
+            // Reset text settings
+            GUI.color = Color.white;
+            Text.Anchor = TextAnchor.UpperLeft;
+            
+            // Handle button click
+            if (Verse.Widgets.ButtonInvisible(rect))
+            {
+                SoundDefOf.Tick_Tiny.PlayOneShotOnCamera();
+                Find.WindowStack.Add(new ColorGridFloatMenu(
+                    StandardColorPalette,
+                    currentColor,
+                    onColorSelected,
+                    defaultColor,
+                    "FALCLF.UseDefaultColor"
+                ));
+            }
+            
+            return colorChanged;
+        }
+        
+        /// <summary>
         /// Draws a minimal color dropdown button without text label (for settings page)
         /// </summary>
         /// <param name="rect">Rectangle for the button</param>

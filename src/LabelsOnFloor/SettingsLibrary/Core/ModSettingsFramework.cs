@@ -61,16 +61,18 @@ namespace LabelsOnFloor.SettingsLibrary.Core
             // Store the rect for proper bounds checking
             lastInRect = inRect;
             
-            // IMPORTANT: Dialog_ModSettings already draws the title in the first 40 pixels
-            // We receive a rect that already accounts for this, so we use it directly
-            // DO NOT draw any title here - it's handled by Dialog_ModSettings
+            // IMPORTANT: Dialog_ModSettings already draws the title ABOVE the inRect we receive
+            // The inRect we get starts at y=40 (after the title) and has height reduced by 40 + CloseButSize.y
+            // However, there seems to be rendering overlap issues, so we add extra top padding
             
-            // Calculate content area (leave space for Close button which is handled by Dialog_ModSettings)
-            float bottomButtonHeight = 0f; // Close button is handled by the dialog
-            float bottomMargin = 0f;
+            // Add extra top padding to avoid title overlap
+            float topPadding = 10f;
+            inRect.y += topPadding;
+            inRect.height -= topPadding;
             
-            // Calculate available width for content
-            float contentHeight = inRect.height - bottomButtonHeight - bottomMargin;
+            // The Close button is already handled by Dialog_ModSettings outside our rect
+            // We get the full content area to use
+            float contentHeight = inRect.height;
             
             // Calculate if we need scrollbar
             CalculateTotalHeight(inRect.width);
@@ -116,7 +118,6 @@ namespace LabelsOnFloor.SettingsLibrary.Core
             Verse.Widgets.EndScrollView();
             
             // Draw reset button if enabled
-            // Place it at the bottom left, opposite of the Close button
             if (config.ShowResetButton)
             {
                 DrawResetButton(inRect);
@@ -189,33 +190,34 @@ namespace LabelsOnFloor.SettingsLibrary.Core
         
         private void DrawResetButton(Rect inRect)
         {
-            // Position reset button at bottom, to the left of where Close button would be
-            // RimWorld standard: buttons are 160x40 at the bottom
-            float buttonWidth = 160f;
-            float buttonHeight = 40f;
-            float buttonY = inRect.height - buttonHeight - 4f; // Small margin from bottom
+            // Draw reset as a small text link in the top right corner
+            Text.Font = GameFont.Tiny;
+            string resetText = config.ResetButtonLabelKey.Translate();
+            float textWidth = Text.CalcSize(resetText).x + 10f;
             
-            // Place on the left side (Close is on the right)
-            Rect buttonRect = new Rect(
-                config.SideMargin,
-                buttonY,
-                buttonWidth,
-                buttonHeight
+            Rect resetRect = new Rect(
+                inRect.width - textWidth - 5f,
+                5f,
+                textWidth,
+                20f
             );
             
-            if (Verse.Widgets.ButtonText(buttonRect, config.ResetButtonLabelKey.Translate()))
+            // Draw as a subtle link
+            GUI.color = Mouse.IsOver(resetRect) ? new Color(0.9f, 0.9f, 1f) : new Color(0.7f, 0.7f, 0.7f);
+            if (Verse.Widgets.ButtonText(resetRect, resetText, drawBackground: false))
             {
                 Find.WindowStack.Add(Dialog_MessageBox.CreateConfirmation(
                     config.ResetConfirmMessageKey.Translate(),
                     () => {
                         config.ResetToDefaults?.Invoke();
-                        // Force refresh
-                        categories.Clear();
+                        // Force refresh  
                         scrollPosition = Vector2.zero;
                     },
                     destructive: true
                 ));
             }
+            GUI.color = Color.white;
+            Text.Font = GameFont.Small;
         }
         
         private void CalculateTotalHeight(float width)

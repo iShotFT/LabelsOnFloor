@@ -82,7 +82,7 @@ namespace LabelsOnFloor
             // Draw background
             GUI.color = ColorBGActive;
             GUI.DrawTexture(inRect, BaseContent.WhiteTex);
-            Widgets.DrawAtlas(inRect, TexUI.FloatMenuOptionBG);
+            Verse.Widgets.DrawAtlas(inRect, TexUI.FloatMenuOptionBG);
             GUI.color = Color.white;
             
             // Draw color grid
@@ -109,19 +109,19 @@ namespace LabelsOnFloor
                 // Draw hover highlight
                 if (isHovering)
                 {
-                    Widgets.DrawHighlight(colorRect.ExpandedBy(2f));
+                    Verse.Widgets.DrawHighlight(colorRect.ExpandedBy(2f));
                 }
                 
                 // Draw color square
                 if (color.HasValue)
                 {
-                    Widgets.DrawBoxSolid(colorRect, color.Value);
+                    Verse.Widgets.DrawBoxSolid(colorRect, color.Value);
                 }
                 else
                 {
                     // Draw default color option with checkerboard pattern to indicate "default"
                     Color defaultColor = Main.Instance?.GetDefaultLabelColor() ?? Color.white;
-                    Widgets.DrawBoxSolid(colorRect, defaultColor);
+                    Verse.Widgets.DrawBoxSolid(colorRect, defaultColor);
                     
                     // Add subtle overlay to indicate this is the default option
                     GUI.color = new Color(0f, 0f, 0f, 0.2f);
@@ -129,10 +129,10 @@ namespace LabelsOnFloor
                     GUI.color = Color.white;
                     
                     // Add "Default" text
-                    GUI.color = ColorDropdownWidget.GetContrastingTextColor(defaultColor);
+                    GUI.color = GetContrastingTextColor(defaultColor);
                     Text.Font = GameFont.Tiny;
                     Text.Anchor = TextAnchor.MiddleCenter;
-                    Widgets.Label(colorRect, "D");
+                    Verse.Widgets.Label(colorRect, "D");
                     Text.Anchor = TextAnchor.UpperLeft;
                     Text.Font = GameFont.Small;
                     GUI.color = Color.white;
@@ -141,15 +141,15 @@ namespace LabelsOnFloor
                 // Draw selection indicator with thicker border
                 if ((color == selectedColor) || (color == null && selectedColor == null))
                 {
-                    Widgets.DrawBox(colorRect, 3);
+                    Verse.Widgets.DrawBox(colorRect, 3);
                     // Add corner indicators for selected item
                     GUI.color = new Color(1f, 1f, 1f, 0.5f);
-                    Widgets.DrawBox(colorRect.ContractedBy(2f), 1);
+                    Verse.Widgets.DrawBox(colorRect.ContractedBy(2f), 1);
                     GUI.color = Color.white;
                 }
                 else
                 {
-                    Widgets.DrawBox(colorRect, 1);
+                    Verse.Widgets.DrawBox(colorRect, 1);
                 }
                 
                 // Handle hover sound and tooltip
@@ -170,7 +170,7 @@ namespace LabelsOnFloor
                 }
                 
                 // Handle click
-                if (Widgets.ButtonInvisible(colorRect))
+                if (Verse.Widgets.ButtonInvisible(colorRect))
                 {
                     onColorSelected?.Invoke(color);
                     SoundDefOf.Click.PlayOneShotOnCamera();
@@ -206,178 +206,11 @@ namespace LabelsOnFloor
             // Play close sound if needed
             SoundDefOf.FloatMenu_Cancel?.PlayOneShotOnCamera();
         }
-    }
-    
-    /// <summary>
-    /// Static helper class for creating color dropdown buttons
-    /// </summary>
-    public static class ColorDropdownWidget
-    {
-        // Standard color palette
-        public static readonly List<Color?> StandardColorPalette = new List<Color?>
-        {
-            null, // Default/no custom color
-            Color.white,
-            new Color(0.9f, 0.9f, 0.9f), // Light gray
-            new Color(0.7f, 0.7f, 0.7f), // Medium gray
-            new Color(0.5f, 0.5f, 0.5f), // Gray
-            new Color(0.3f, 0.3f, 0.3f), // Dark gray
-            
-            new Color(1f, 0.2f, 0.2f), // Red
-            new Color(1f, 0.5f, 0.2f), // Orange
-            new Color(1f, 1f, 0.2f), // Yellow
-            new Color(0.2f, 1f, 0.2f), // Green
-            new Color(0.2f, 1f, 1f), // Cyan
-            new Color(0.2f, 0.2f, 1f), // Blue
-            new Color(0.8f, 0.2f, 1f), // Purple
-            new Color(1f, 0.2f, 0.8f), // Pink
-            
-            new Color(0.6f, 0.2f, 0.2f), // Dark red
-            new Color(0.6f, 0.3f, 0.1f), // Brown
-            new Color(0.6f, 0.6f, 0.2f), // Dark yellow
-            new Color(0.1f, 0.6f, 0.1f), // Dark green
-            new Color(0.1f, 0.6f, 0.6f), // Dark cyan
-            new Color(0.1f, 0.1f, 0.6f), // Dark blue
-            new Color(0.4f, 0.1f, 0.6f), // Dark purple
-            new Color(0.6f, 0.1f, 0.4f), // Dark pink
-        };
-        
-        /// <summary>
-        /// Draws a color dropdown button and handles opening the dropdown
-        /// </summary>
-        /// <param name="rect">Rectangle for the button</param>
-        /// <param name="currentColor">Currently selected color</param>
-        /// <param name="defaultColor">Default color when null is selected</param>
-        /// <param name="onColorSelected">Callback when color is selected</param>
-        /// <returns>True if color was changed</returns>
-        public static bool DrawColorDropdownButton(Rect rect, ref Color? currentColor, Color defaultColor, Action<Color?> onColorSelected = null)
-        {
-            Color displayColor = currentColor ?? defaultColor;
-            bool colorChanged = false;
-            
-            // Draw RimWorld-style button frame
-            Widgets.DrawAtlas(rect, TexUI.FloatMenuOptionBG);
-            
-            // Create sections: color preview on left, text in middle, dropdown arrow on right
-            float colorPreviewSize = rect.height - 6f;
-            Rect colorPreviewRect = new Rect(rect.x + 3f, rect.y + 3f, colorPreviewSize, colorPreviewSize);
-            Rect labelRect = new Rect(colorPreviewRect.xMax + 6f, rect.y, rect.width - colorPreviewSize - 40f, rect.height);
-            Rect arrowRect = new Rect(rect.xMax - 25f, rect.y, 20f, rect.height);
-            
-            // Highlight on hover
-            if (Mouse.IsOver(rect))
-            {
-                Widgets.DrawHighlight(rect);
-            }
-            
-            // Draw color preview with border
-            Widgets.DrawBoxSolid(colorPreviewRect, displayColor);
-            Widgets.DrawBox(colorPreviewRect, 2);
-            
-            // Draw label
-            Text.Anchor = TextAnchor.MiddleLeft;
-            GUI.color = Color.white;
-            string label;
-            if (currentColor.HasValue)
-            {
-                // Show RGB values for custom color
-                Color c = currentColor.Value;
-                label = $"RGB ({(int)(c.r * 255)}, {(int)(c.g * 255)}, {(int)(c.b * 255)})";
-            }
-            else
-            {
-                label = "Default Color";
-            }
-            Widgets.Label(labelRect, label);
-            
-            // Draw dropdown arrow
-            Text.Anchor = TextAnchor.MiddleCenter;
-            Text.Font = GameFont.Small;
-            Widgets.Label(arrowRect, "▼");
-            
-            // Reset text settings
-            GUI.color = Color.white;
-            Text.Anchor = TextAnchor.UpperLeft;
-            
-            // Handle button click
-            if (Widgets.ButtonInvisible(rect))
-            {
-                SoundDefOf.Tick_Tiny.PlayOneShotOnCamera();
-                Find.WindowStack.Add(new ColorGridFloatMenu(
-                    StandardColorPalette,
-                    currentColor,
-                    onColorSelected
-                ));
-            }
-            
-            return colorChanged;
-        }
-        
-        /// <summary>
-        /// Draws a minimal color dropdown button without text label (for settings page)
-        /// </summary>
-        /// <param name="rect">Rectangle for the button</param>
-        /// <param name="currentColor">Currently selected color</param>
-        /// <param name="defaultColor">Default color when null is selected</param>
-        /// <param name="onColorSelected">Callback when color is selected</param>
-        /// <param name="tooltip">Optional tooltip text</param>
-        /// <returns>True if color was changed</returns>
-        public static bool DrawMinimalColorDropdownButton(Rect rect, ref Color? currentColor, Color defaultColor, Action<Color?> onColorSelected = null, string tooltip = null)
-        {
-            Color displayColor = currentColor ?? defaultColor;
-            bool colorChanged = false;
-            
-            // Draw RimWorld-style button frame
-            Widgets.DrawAtlas(rect, TexUI.FloatMenuOptionBG);
-            
-            // Highlight on hover
-            if (Mouse.IsOver(rect))
-            {
-                Widgets.DrawHighlight(rect);
-            }
-            
-            // Draw color preview filling most of the button
-            float margin = 4f;
-            Rect colorRect = rect.ContractedBy(margin);
-            
-            // Leave space for dropdown arrow
-            colorRect.width -= 20f;
-            Widgets.DrawBoxSolid(colorRect, displayColor);
-            Widgets.DrawBox(colorRect, 2);
-            
-            // Draw dropdown arrow
-            Rect arrowRect = new Rect(rect.xMax - 20f, rect.y, 20f, rect.height);
-            Text.Anchor = TextAnchor.MiddleCenter;
-            Text.Font = GameFont.Small;
-            GUI.color = GetContrastingTextColor(displayColor);
-            Widgets.Label(arrowRect, "▼");
-            GUI.color = Color.white;
-            Text.Anchor = TextAnchor.UpperLeft;
-            
-            // Add tooltip if provided
-            if (!string.IsNullOrEmpty(tooltip))
-            {
-                TooltipHandler.TipRegion(rect, tooltip);
-            }
-            
-            // Handle button click
-            if (Widgets.ButtonInvisible(rect))
-            {
-                SoundDefOf.Tick_Tiny.PlayOneShotOnCamera();
-                Find.WindowStack.Add(new ColorGridFloatMenu(
-                    StandardColorPalette,
-                    currentColor,
-                    onColorSelected
-                ));
-            }
-            
-            return colorChanged;
-        }
         
         /// <summary>
         /// Get contrasting text color (black or white) for given background
         /// </summary>
-        public static Color GetContrastingTextColor(Color backgroundColor)
+        private static Color GetContrastingTextColor(Color backgroundColor)
         {
             float brightness = (backgroundColor.r + backgroundColor.g + backgroundColor.b) / 3f;
             return brightness > 0.5f ? Color.black : Color.white;

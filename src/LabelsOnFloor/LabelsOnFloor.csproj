@@ -232,6 +232,7 @@
     <Compile Include="KeyBindingDefOf_LabelsOnFloor.cs" />
     <Compile Include="LabelsOnFloorMod.cs" />
     <Compile Include="LabelsOnFloorSettings.cs" />
+    <Compile Include="LegacyComponents.cs" />
     <Compile Include="ModLog.cs" />
     <Compile Include="Patches\Building_Bed_Medical_Patch.cs" />
     <Compile Include="Patches\MapInterface_HandleLowPriorityInput_Patch.cs" />

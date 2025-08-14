@@ -8,14 +8,46 @@ namespace LabelsOnFloor
         // Settings fields
         public bool enabled = true;
         public Color defaultLabelColor = Color.white;
-        public int opacity = 30;
+        public int opacity = 18;  // Changed from 30 to match screenshot default
         public bool showRoomLabels = true;
-        public bool showZoneLabels = true;
+        public bool showZoneLabels = true;  // Default should be true per feedback
         public bool showGrowingZoneLabels = true;
         public bool showStockpileZoneLabels = true;
         public float maxFontScale = 1f;
         public float minFontScale = 0.2f;
         public CameraZoomRange maxAllowedZoom = CameraZoomRange.Furthest;
+        
+        // Default values for reset
+        public static class Defaults
+        {
+            public const bool Enabled = true;
+            public static readonly Color DefaultLabelColor = Color.white;
+            public const int Opacity = 18;
+            public const bool ShowRoomLabels = true;
+            public const bool ShowZoneLabels = true;
+            public const bool ShowGrowingZoneLabels = true;
+            public const bool ShowStockpileZoneLabels = true;
+            public const float MaxFontScale = 1f;
+            public const float MinFontScale = 0.2f;
+            public const CameraZoomRange MaxAllowedZoom = CameraZoomRange.Furthest;
+        }
+        
+        /// <summary>
+        /// Reset all settings to default values
+        /// </summary>
+        public void ResetToDefaults()
+        {
+            enabled = Defaults.Enabled;
+            defaultLabelColor = Defaults.DefaultLabelColor;
+            opacity = Defaults.Opacity;
+            showRoomLabels = Defaults.ShowRoomLabels;
+            showZoneLabels = Defaults.ShowZoneLabels;
+            showGrowingZoneLabels = Defaults.ShowGrowingZoneLabels;
+            showStockpileZoneLabels = Defaults.ShowStockpileZoneLabels;
+            maxFontScale = Defaults.MaxFontScale;
+            minFontScale = Defaults.MinFontScale;
+            maxAllowedZoom = Defaults.MaxAllowedZoom;
+        }
         
         public override void ExposeData()
         {
