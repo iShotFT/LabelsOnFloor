@@ -10,12 +10,21 @@
     <FALCLF.CategoryDisplay>Display Options</FALCLF.CategoryDisplay>
     <FALCLF.CategoryDisplayDesc>Control which labels are shown</FALCLF.CategoryDisplayDesc>
     
+    <FALCLF.CategoryFontRendering>Font Rendering Options</FALCLF.CategoryFontRendering>
+    <FALCLF.CategoryFontRenderingDesc>Configure font appearance and rendering settings</FALCLF.CategoryFontRenderingDesc>
+    
     <FALCLF.CategoryAdvanced>Advanced</FALCLF.CategoryAdvanced>
     <FALCLF.CategoryAdvancedDesc>Fine-tune label appearance and behavior</FALCLF.CategoryAdvancedDesc>
     
     <!-- General Settings -->
     <FALCLF.Enabled>Enabled</FALCLF.Enabled>
     <FALCLF.EnabledDesc>Enable the mod</FALCLF.EnabledDesc>
+
+    <!-- Font Rendering Settings -->
+    <FALCLF.Font>Font</FALCLF.Font>
+    <FALCLF.FontDesc>Select the font to use for rendering labels</FALCLF.FontDesc>
+    <FALCLF.FontPreviewText>AaBbCc 123</FALCLF.FontPreviewText>
+    <FALCLF.NoFontsAvailable>No fonts available</FALCLF.NoFontsAvailable>
 
     <FALCLF.DefaultLabelColor>Default label color</FALCLF.DefaultLabelColor>
     <FALCLF.DefaultLabelColorDesc>Default color for all labels (can be overridden per room)</FALCLF.DefaultLabelColorDesc>
@@ -46,8 +55,11 @@
 
     <FALCLF.RenameDesc>Rename a room or zone</FALCLF.RenameDesc>
     <FALCLF.RenameRoom>Rename Room</FALCLF.RenameRoom>
+    <FALCLF.RenameZone>Rename Zone</FALCLF.RenameZone>
     <FALCLF.RoomName>Room name:</FALCLF.RoomName>
+    <FALCLF.ZoneName>Zone name:</FALCLF.ZoneName>
     <FALCLF.RoomColor>Room color:</FALCLF.RoomColor>
+    <FALCLF.LabelColor>Label color:</FALCLF.LabelColor>
     <FALCLF.CustomColor>Custom Color</FALCLF.CustomColor>
     <FALCLF.DefaultColor>Default Color</FALCLF.DefaultColor>
     <FALCLF.UseDefaultColor>Use default color</FALCLF.UseDefaultColor>
