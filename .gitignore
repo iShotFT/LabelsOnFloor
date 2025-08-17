@@ -300,3 +300,5 @@ STEAM_WORKSHOP_DESCRIPTION.txt
 Preview_original.png
 nuget.exe
 RimWorldDubsPerfomanceAnalyzer
+fonts/*
+workshop/*
