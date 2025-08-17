@@ -5,14 +5,13 @@ namespace LabelsOnFloor
 {
     public class LabelMaker
     {
-        private readonly string _defaultGrowingZonePrefix;
-
         private readonly CustomRoomLabelManagerComponent _customRoomLabelManager;
+        private readonly CustomZoneLabelManagerComponent _customZoneLabelManager;
 
-        public LabelMaker(CustomRoomLabelManagerComponent customRoomLabelManager)
+        public LabelMaker(CustomRoomLabelManagerComponent customRoomLabelManager, CustomZoneLabelManagerComponent customZoneLabelManager)
         {
             _customRoomLabelManager = customRoomLabelManager;
-            _defaultGrowingZonePrefix = "GrowingZone".Translate();
+            _customZoneLabelManager = customZoneLabelManager;
         }
 
         public string GetRoomLabel(Room room)
@@ -30,14 +29,20 @@ namespace LabelsOnFloor
             if (zone == null)
                 return string.Empty;
 
-            if (!(zone is Zone_Growing growingZone))
-                return zone.label?.ToUpper() ?? string.Empty;
+            // Check for custom label first
+            if (_customZoneLabelManager != null && _customZoneLabelManager.IsZoneCustomised(zone))
+                return _customZoneLabelManager.GetCustomLabelFor(zone);
 
-            // Use custom zone name, if it looks like it has been changed
-            if (growingZone.label?.StartsWith(_defaultGrowingZonePrefix) ?? false)
-                return growingZone.GetPlantDefToGrow()?.label?.ToUpper() ?? string.Empty;
+            // For growing zones, always show the plant name (unless customized above)
+            if (zone is Zone_Growing growingZone)
+            {
+                var plantDef = growingZone.GetPlantDefToGrow();
+                if (plantDef != null)
+                    return plantDef.label?.ToUpper() ?? zone.label?.ToUpper() ?? string.Empty;
+            }
 
-            return growingZone.label?.ToUpper() ?? string.Empty;
+            // Use the zone's label for all other zone types (stockpiles, etc.)
+            return zone.label?.ToUpper() ?? string.Empty;
         }
     }
 }

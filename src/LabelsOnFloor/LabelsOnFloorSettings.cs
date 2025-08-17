@@ -7,9 +7,9 @@ namespace LabelsOnFloor
     {
         // Settings fields
         public bool enabled = true;
-        public string selectedFont = "JetBrainsMono";  // Font selection
+        public string selectedFont = "Classic";  // Default to Classic font
         public Color defaultLabelColor = Color.white;
-        public int opacity = 18;  // Changed from 30 to match screenshot default
+        public int opacity = 75;  // Changed to 75% for better visibility
         public bool showRoomLabels = true;
         public bool showZoneLabels = true;  // Default should be true per feedback
         public bool showGrowingZoneLabels = true;
@@ -22,9 +22,9 @@ namespace LabelsOnFloor
         public static class Defaults
         {
             public const bool Enabled = true;
-            public const string SelectedFont = "JetBrainsMono";
+            public const string SelectedFont = "Classic";
             public static readonly Color DefaultLabelColor = Color.white;
-            public const int Opacity = 18;
+            public const int Opacity = 75;
             public const bool ShowRoomLabels = true;
             public const bool ShowZoneLabels = true;
             public const bool ShowGrowingZoneLabels = true;

@@ -225,8 +225,11 @@
     <Compile Include="CustomRoomData.cs" />
     <Compile Include="CustomRoomLabelManager.cs" />
     <Compile Include="CustomRoomLabelManager_Legacy.cs" />
+    <Compile Include="CustomZoneData.cs" />
+    <Compile Include="CustomZoneLabelManagerComponent.cs" />
     <Compile Include="Designator_Rename.cs" />
     <Compile Include="Dialog_RenameRoomWithColor.cs" />
+    <Compile Include="Dialog_RenameZoneWithColor.cs" />
     <Compile Include="Dialog_RoomColorPicker.cs" />
     <Compile Include="ColorGridFloatMenu.cs" />
     <Compile Include="KeyBindingDefOf_LabelsOnFloor.cs" />
@@ -237,7 +240,6 @@
     <Compile Include="Patches\Building_Bed_Medical_Patch.cs" />
     <Compile Include="Patches\MapInterface_HandleLowPriorityInput_Patch.cs" />
     <Compile Include="Patches\DesignationCategoryDef_ResolvedAllowedDesignators_Patch.cs" />
-    <Compile Include="Patches\Dialog_RenameZone_SetName_Patch.cs" />
     <Compile Include="Patches\LegacyMigrationPatch.cs" />
     <Compile Include="Patches\DynamicDrawManager_DrawDynamicThings_Patch.cs" />
     <Compile Include="EdgeFinder.cs" />

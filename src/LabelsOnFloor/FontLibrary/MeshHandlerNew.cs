@@ -41,7 +41,6 @@ namespace LabelsOnFloor.FontLibrary
                 _font = newFont;
                 _renderer = new FontRenderer(_font);
                 ClearCache();
-                ModLog.Message($"MeshHandlerNew: Switched to font '{fontName}'");
             }
         }
 

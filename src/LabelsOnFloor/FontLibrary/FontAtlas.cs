@@ -121,5 +121,10 @@ namespace LabelsOnFloor.FontLibrary
 
             return new FontAtlas(texture, gridWidth, gridHeight, characterMapping, flipVertical: true);
         }
+        
+        public bool HasGlyph(char character)
+        {
+            return _characterToIndex.ContainsKey(character);
+        }
     }
 }

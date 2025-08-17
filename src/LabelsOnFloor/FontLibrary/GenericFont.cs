@@ -5,6 +5,13 @@ using Verse;
 
 namespace LabelsOnFloor.FontLibrary
 {
+    public class FontMetadata
+    {
+        public bool hasLatinSupport;
+        public bool hasAccentSupport;
+        public bool hasCyrillicSupport;
+    }
+    
     /// <summary>
     /// Generic font implementation that can load any font from the Fonts/[FontName]/ directory structure
     /// </summary>
@@ -16,6 +23,7 @@ namespace LabelsOnFloor.FontLibrary
         private Texture2D _previewTexture;
         private readonly Dictionary<int, Material> _materialCache = new Dictionary<int, Material>();
         private bool _initialized = false;
+        private FontMetadata _metadata;
 
         public string Name => _fontName;
         public Texture2D PreviewTexture => _previewTexture;
@@ -84,6 +92,9 @@ namespace LabelsOnFloor.FontLibrary
                 }
                 
                 _atlas = new FontAtlas(_texture, gridWidth, gridHeight, characterMapping, flipVertical: true);
+                
+                // Try to load metadata from Atlas.json
+                LoadMetadata();
                 
                 _initialized = true;
             }
@@ -186,6 +197,48 @@ namespace LabelsOnFloor.FontLibrary
             _materialCache[colorHash] = material;
 
             return material;
+        }
+        
+        private void LoadMetadata()
+        {
+            // Initialize default metadata
+            _metadata = new FontMetadata
+            {
+                hasLatinSupport = true,  // Assume basic Latin support
+                hasAccentSupport = false,
+                hasCyrillicSupport = false
+            };
+            
+            // Try to detect from loaded character mapping
+            if (_atlas != null)
+            {
+                // Check for accented characters (Latin-1 Supplement)
+                var testAccents = "àéíñüÀÉÍÑÜ";
+                int accentCount = 0;
+                foreach (char c in testAccents)
+                {
+                    if (_atlas.HasGlyph(c))
+                        accentCount++;
+                }
+                _metadata.hasAccentSupport = accentCount >= 5;
+                
+                // Check for Cyrillic
+                var testCyrillic = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
+                int cyrillicCount = 0;
+                foreach (char c in testCyrillic)
+                {
+                    if (_atlas.HasGlyph(c))
+                        cyrillicCount++;
+                }
+                _metadata.hasCyrillicSupport = cyrillicCount >= 20;
+            }
+        }
+        
+        public FontMetadata GetMetadata()
+        {
+            if (!_initialized)
+                Initialize();
+            return _metadata;
         }
     }
 }

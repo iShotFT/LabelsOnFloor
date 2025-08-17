@@ -21,9 +21,19 @@ namespace LabelsOnFloor
             return LabelsOnFloorMod.Instance?.GetRoomRenamer(room, loc);
         }
         
+        public Dialog_RenameZoneWithColor GetZoneRenamer(Zone zone)
+        {
+            return LabelsOnFloorMod.Instance?.GetZoneRenamer(zone);
+        }
+        
         public CustomRoomLabelManagerComponent GetCustomRoomLabelManager()
         {
             return LabelsOnFloorMod.Instance?.GetCustomRoomLabelManager();
+        }
+        
+        public CustomZoneLabelManagerComponent GetCustomZoneLabelManager()
+        {
+            return LabelsOnFloorMod.Instance?.GetCustomZoneLabelManager();
         }
         
         public void Draw()

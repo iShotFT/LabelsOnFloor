@@ -22,6 +22,7 @@ namespace LabelsOnFloor
         private LabelDrawer _labelDrawer;
         private MeshHandlerNew _meshHandler;
         private CustomRoomLabelManagerComponent _customRoomLabelManager;
+        private CustomZoneLabelManagerComponent _customZoneLabelManager;
         
         // Static constructor for early initialization
         static LabelsOnFloorMod()
@@ -42,9 +43,10 @@ namespace LabelsOnFloor
             Settings = GetSettings<LabelsOnFloorSettings>();
         }
         
-        public void InitializeWorldComponents(CustomRoomLabelManagerComponent customRoomLabelManager)
+        public void InitializeWorldComponents(CustomRoomLabelManagerComponent customRoomLabelManager, CustomZoneLabelManagerComponent customZoneLabelManager)
         {
             _customRoomLabelManager = customRoomLabelManager;
+            _customZoneLabelManager = customZoneLabelManager;
             
             // Initialize the new mesh handler with the selected font from settings
             _meshHandler = new MeshHandlerNew(Settings.selectedFont);
@@ -52,7 +54,7 @@ namespace LabelsOnFloor
             LabelPlacementHandler = new LabelPlacementHandler(
                 _labelHolder,
                 new MeshHandlerAdapter(_meshHandler),
-                new LabelMaker(_customRoomLabelManager),
+                new LabelMaker(_customRoomLabelManager, _customZoneLabelManager),
                 new RoomRoleFinder(_customRoomLabelManager)
             );
             
@@ -71,9 +73,27 @@ namespace LabelsOnFloor
             );
         }
         
+        public Dialog_RenameZoneWithColor GetZoneRenamer(Zone zone)
+        {
+            if (_customZoneLabelManager == null)
+            {
+                ModLog.Error("CustomZoneLabelManager is null when trying to get zone renamer");
+                return null;
+            }
+            return new Dialog_RenameZoneWithColor(
+                zone,
+                _customZoneLabelManager.GetOrCreateCustomData(zone)
+            );
+        }
+        
         public CustomRoomLabelManagerComponent GetCustomRoomLabelManager()
         {
             return _customRoomLabelManager;
+        }
+        
+        public CustomZoneLabelManagerComponent GetCustomZoneLabelManager()
+        {
+            return _customZoneLabelManager;
         }
         
         public void Draw()
@@ -85,15 +105,16 @@ namespace LabelsOnFloor
             }
             
             // Check if we're properly initialized
-            if (LabelPlacementHandler == null || _labelDrawer == null || _customRoomLabelManager == null)
+            if (LabelPlacementHandler == null || _labelDrawer == null || _customRoomLabelManager == null || _customZoneLabelManager == null)
             {
                 // Try to initialize if we have a world
                 if (Find.World != null)
                 {
                     var customRoomLabelManager = Find.World.GetComponent<CustomRoomLabelManagerComponent>();
-                    if (customRoomLabelManager != null && LabelPlacementHandler == null)
+                    var customZoneLabelManager = Find.World.GetComponent<CustomZoneLabelManagerComponent>();
+                    if (customRoomLabelManager != null && customZoneLabelManager != null && LabelPlacementHandler == null)
                     {
-                        InitializeWorldComponents(customRoomLabelManager);
+                        InitializeWorldComponents(customRoomLabelManager, customZoneLabelManager);
                     }
                 }
                 // Still not initialized, skip drawing

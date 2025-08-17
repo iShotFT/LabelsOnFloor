@@ -159,8 +159,8 @@ namespace LabelsOnFloor
         
         private void ApplyChanges()
         {
-            // Ensure label is stored in uppercase
-            _customRoomData.Label = curName.ToUpper();
+            // Trim whitespace and ensure label is stored in uppercase
+            _customRoomData.Label = curName?.Trim().ToUpper() ?? "";
             _customRoomData.CustomColor = selectedColor;
             Main.Instance.LabelPlacementHandler.SetDirty();
         }

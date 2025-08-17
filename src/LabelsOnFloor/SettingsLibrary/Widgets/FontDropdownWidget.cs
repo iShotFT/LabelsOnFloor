@@ -78,9 +78,11 @@ namespace LabelsOnFloor.SettingsLibrary.Widgets
         
         private static void ShowFontDropdownMenu(Rect buttonRect, string currentFontName, Action<string> onFontSelected)
         {
+            var fontNames = FontRegistry.GetRegisteredFontNames().ToList();
+            
             // Use custom font preview window instead of standard FloatMenu
             Find.WindowStack.Add(new FontPreviewFloatMenu(
-                FontRegistry.GetRegisteredFontNames().ToList(),
+                fontNames,
                 currentFontName,
                 onFontSelected
             ));
@@ -98,8 +100,8 @@ namespace LabelsOnFloor.SettingsLibrary.Widgets
         
         // Visual settings
         private const float MenuWidth = 250f;
-        private const float ItemHeight = 30f;
-        private const float MenuPadding = 4f;
+        private const float ItemHeight = 38f;  // Reduced but still room for indicators
+        private const float MenuPadding = 3f;
         private static readonly Color ColorBGActive = new ColorInt(21, 25, 29).ToColor;
         private static readonly Color ColorBGHover = new ColorInt(29, 45, 50).ToColor;
         private static readonly Vector2 InitialPositionShift = new Vector2(4f, 0f);
@@ -227,28 +229,42 @@ namespace LabelsOnFloor.SettingsLibrary.Widgets
             // Use the pre-rendered Preview.png image
             if (font?.PreviewTexture != null)
             {
-                // Left-align the preview with consistent vertical centering
-                float previewHeight = Mathf.Min(font.PreviewTexture.height, rect.height - 6f);
+                // Reserve space for language indicators below
+                float previewAreaHeight = rect.height * 0.6f;  // Top 60% for preview
+                float indicatorAreaHeight = rect.height * 0.4f;  // Bottom 40% for indicators
+                
+                // Calculate preview dimensions
+                float previewHeight = Mathf.Min(font.PreviewTexture.height, previewAreaHeight - 2f);
                 float aspectRatio = (float)font.PreviewTexture.width / font.PreviewTexture.height;
                 float previewWidth = previewHeight * aspectRatio;
                 
-                // Ensure it doesn't overflow the rect
-                if (previewWidth > rect.width - 16f)
+                // Ensure it doesn't overflow horizontally
+                float maxPreviewWidth = rect.width - 20f;
+                if (previewWidth > maxPreviewWidth)
                 {
-                    previewWidth = rect.width - 16f;
+                    previewWidth = maxPreviewWidth;
                     previewHeight = previewWidth / aspectRatio;
                 }
                 
-                // Left-aligned with padding, vertically centered
+                // Draw preview in top portion, left-aligned
                 Rect previewRect = new Rect(
-                    rect.x + 12f,  // Consistent left padding
-                    rect.y + (rect.height - previewHeight) / 2f,  // Vertical center
+                    rect.x + 12f,
+                    rect.y + 2f,  // Small top padding
                     previewWidth,
                     previewHeight
                 );
                 
                 GUI.color = Color.white;
                 GUI.DrawTexture(previewRect, font.PreviewTexture, ScaleMode.ScaleToFit);
+                
+                // Draw language support indicators below the preview
+                Rect indicatorRect = new Rect(
+                    rect.x,
+                    rect.y + previewAreaHeight,
+                    rect.width,
+                    indicatorAreaHeight
+                );
+                DrawLanguageSupport(indicatorRect, font);
             }
             else
             {
@@ -256,12 +272,82 @@ namespace LabelsOnFloor.SettingsLibrary.Widgets
                 Text.Font = GameFont.Small;
                 Text.Anchor = TextAnchor.MiddleLeft;
                 GUI.color = Color.white;
-                Rect textRect = new Rect(rect.x + 12f, rect.y, rect.width - 16f, rect.height);
+                
+                float textAreaHeight = rect.height * 0.6f;
+                Rect textRect = new Rect(rect.x + 12f, rect.y, rect.width - 20f, textAreaHeight);
                 Verse.Widgets.Label(textRect, fontName);
+                
+                // Draw language support indicators below
+                Rect indicatorRect = new Rect(
+                    rect.x,
+                    rect.y + textAreaHeight,
+                    rect.width,
+                    rect.height * 0.4f
+                );
+                DrawLanguageSupport(indicatorRect, font);
             }
             
             GUI.color = Color.white;
             Text.Anchor = TextAnchor.UpperLeft;
+        }
+        
+        private void DrawLanguageSupport(Rect rect, IFont font)
+        {
+            if (font == null) return;
+            
+            // Get language support from font
+            var genericFont = font as GenericFont;
+            if (genericFont == null) return;
+            
+            var metadata = genericFont.GetMetadata();
+            if (metadata == null) return;
+            
+            // Draw language support indicators with boxes
+            Text.Font = GameFont.Tiny;
+            Text.Anchor = TextAnchor.MiddleCenter;
+            
+            // Define colors
+            Color mutedGreen = new Color(0.4f, 0.7f, 0.4f, 0.8f);  // Muted green for supported
+            Color mutedRed = new Color(0.7f, 0.4f, 0.4f, 0.8f);    // Muted red for unsupported
+            Color borderColor = new Color(0.8f, 0.8f, 0.8f, 0.5f);  // Muted white border
+            
+            // Draw indicators left to right with boxes
+            string[] indicators = { "Lat", "Ext", "Cyr" };
+            bool[] supported = { 
+                metadata.hasLatinSupport,
+                metadata.hasAccentSupport,
+                metadata.hasCyrillicSupport
+            };
+            
+            float xPos = rect.x + 12f;  // Same left padding as preview
+            float boxWidth = 24f;
+            float boxHeight = rect.height - 2f;
+            float spacing = 2f;
+            
+            for (int i = 0; i < indicators.Length; i++)
+            {
+                Rect boxRect = new Rect(
+                    xPos,
+                    rect.y + 1f,
+                    boxWidth,
+                    boxHeight
+                );
+                
+                // Draw border
+                GUI.color = borderColor;
+                Verse.Widgets.DrawBox(boxRect, 1);
+                
+                // Draw text with appropriate color
+                GUI.color = supported[i] ? mutedGreen : mutedRed;
+                Verse.Widgets.Label(boxRect, indicators[i]);
+                
+                xPos += boxWidth + spacing;
+            }
+            
+            // Reset
+            GUI.color = Color.white;
+            Text.Anchor = TextAnchor.UpperLeft;
+            Text.Font = GameFont.Small;
         }
         
         

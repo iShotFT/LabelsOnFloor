@@ -130,7 +130,20 @@ namespace LabelsOnFloor
                 AddLabelForArea(zone, text, () => PlacementDataFinderForZones.GetData(zone, _map, text.Length));
 
             if (addedLabel != null)
+            {
                 addedLabel.IsZone = true;
+                
+                // Apply custom color if zone has one
+                var customZoneLabelManager = Main.Instance.GetCustomZoneLabelManager();
+                if (customZoneLabelManager != null)
+                {
+                    var customColor = customZoneLabelManager.GetCustomColorFor(zone);
+                    if (customColor.HasValue)
+                    {
+                        addedLabel.CustomColor = customColor;
+                    }
+                }
+            }
         }
 
         private Label AddLabelForArea(object area, string text, Func<PlacementData> placementDataGetter)

@@ -51,9 +51,8 @@ namespace LabelsOnFloor.Patches
                 // Consume the event to prevent 'R' from appearing in the text field
                 Event.current.Use();
                 
-                // Open the dialog on the next frame to avoid input propagation
-                var zoneDialog = new Dialog_RenameZone(zone);
-                // Dialog_RenameZone inherits from Dialog_Rename<Zone> which has WasOpenedByHotkey
+                // Use our custom zone rename dialog with color picker
+                var zoneDialog = new Dialog_RenameZoneWithColor(zone);
                 zoneDialog.WasOpenedByHotkey();
                 Find.WindowStack.Add(zoneDialog);
                 return;

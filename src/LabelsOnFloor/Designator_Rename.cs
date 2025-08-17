@@ -28,7 +28,7 @@ namespace LabelsOnFloor
             var zone = c.GetZone(map);
             if (zone != null)
             {
-                Find.WindowStack.Add(new Dialog_RenameZone(zone));
+                Find.WindowStack.Add(Main.Instance.GetZoneRenamer(zone));
                 return;
             }
 
