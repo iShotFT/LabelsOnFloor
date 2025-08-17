@@ -7,6 +7,7 @@ namespace LabelsOnFloor
     {
         // Settings fields
         public bool enabled = true;
+        public string selectedFont = "JetBrainsMono";  // Font selection
         public Color defaultLabelColor = Color.white;
         public int opacity = 18;  // Changed from 30 to match screenshot default
         public bool showRoomLabels = true;
@@ -21,6 +22,7 @@ namespace LabelsOnFloor
         public static class Defaults
         {
             public const bool Enabled = true;
+            public const string SelectedFont = "JetBrainsMono";
             public static readonly Color DefaultLabelColor = Color.white;
             public const int Opacity = 18;
             public const bool ShowRoomLabels = true;
@@ -38,6 +40,7 @@ namespace LabelsOnFloor
         public void ResetToDefaults()
         {
             enabled = Defaults.Enabled;
+            selectedFont = Defaults.SelectedFont;
             defaultLabelColor = Defaults.DefaultLabelColor;
             opacity = Defaults.Opacity;
             showRoomLabels = Defaults.ShowRoomLabels;
@@ -52,6 +55,7 @@ namespace LabelsOnFloor
         public override void ExposeData()
         {
             Scribe_Values.Look(ref enabled, "enabled", true);
+            Scribe_Values.Look(ref selectedFont, "selectedFont", "JetBrainsMono");
             Scribe_Values.Look(ref defaultLabelColor, "defaultLabelColor", Color.white);
             Scribe_Values.Look(ref opacity, "opacity", 30);
             Scribe_Values.Look(ref showRoomLabels, "showRoomLabels", true);

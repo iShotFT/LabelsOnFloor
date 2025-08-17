@@ -23,6 +23,7 @@ namespace LabelsOnFloor.SettingsLibrary.Core
         ISettingsItem AddDropdown<T>(string id, string labelKey, Func<T> getter, Action<T> setter, IEnumerable<T> options, Func<T, string> optionLabelGetter, string tooltipKey = null);
         ISettingsItem AddSliderDropdown(string id, string labelKey, Func<float> getter, Action<float> setter, float min, float max, string tooltipKey = null, Func<float, string> valueFormatter = null);
         ISettingsItem AddIntSliderDropdown(string id, string labelKey, Func<int> getter, Action<int> setter, int min, int max, string tooltipKey = null, Func<int, string> valueFormatter = null);
+        ISettingsItem AddControl(ISettingsItem control);
         void AddGap(float height = 12f);
         void AddSeparator();
     }

@@ -6,6 +6,7 @@ using RimWorld;
 using RimWorld.Planet;
 using UnityEngine;
 using Verse;
+using LabelsOnFloor.FontLibrary;
 
 namespace LabelsOnFloor
 {
@@ -19,7 +20,7 @@ namespace LabelsOnFloor
         
         private readonly LabelHolder _labelHolder = new LabelHolder();
         private LabelDrawer _labelDrawer;
-        private readonly FontHandler _fontHandler = new FontHandler();
+        private MeshHandlerNew _meshHandler;
         private CustomRoomLabelManagerComponent _customRoomLabelManager;
         
         // Static constructor for early initialization
@@ -28,7 +29,8 @@ namespace LabelsOnFloor
             // Initialize Harmony patches here
             var harmony = new Harmony("LabelsOnFloor");
             harmony.PatchAll();
-            ModLog.Message("LabelsOnFloor: Harmony patches applied");
+            
+            // Don't initialize fonts here - will be done lazily on main thread
             
             // Initialize the Main compatibility wrapper
             _ = new Main();
@@ -38,22 +40,23 @@ namespace LabelsOnFloor
         {
             Instance = this;
             Settings = GetSettings<LabelsOnFloorSettings>();
-            ModLog.Message("LabelsOnFloor: Mod initialized");
         }
         
         public void InitializeWorldComponents(CustomRoomLabelManagerComponent customRoomLabelManager)
         {
             _customRoomLabelManager = customRoomLabelManager;
             
+            // Initialize the new mesh handler with the selected font from settings
+            _meshHandler = new MeshHandlerNew(Settings.selectedFont);
+            
             LabelPlacementHandler = new LabelPlacementHandler(
                 _labelHolder,
-                new MeshHandler(_fontHandler),
+                new MeshHandlerAdapter(_meshHandler),
                 new LabelMaker(_customRoomLabelManager),
                 new RoomRoleFinder(_customRoomLabelManager)
             );
             
-            _labelDrawer = new LabelDrawer(_labelHolder, _fontHandler);
-            ModLog.Message("LabelsOnFloor: World components initialized");
+            _labelDrawer = new LabelDrawer(_labelHolder, _meshHandler);
         }
         
         public Dialog_RenameRoomWithColor GetRoomRenamer(Room room, IntVec3 loc)
@@ -167,7 +170,7 @@ namespace LabelsOnFloor
                     ShowResetButton = true,
                     ResetToDefaults = () => {
                         Settings.ResetToDefaults();
-                        _fontHandler?.Reset();
+                        _meshHandler?.ClearCache();
                         LabelPlacementHandler?.SetDirty();
                         // Force recreate settings framework to refresh UI
                         settingsFramework = null;
@@ -184,24 +187,68 @@ namespace LabelsOnFloor
                     v => Settings.enabled = v, 
                     "FALCLF.EnabledDesc");
                 
-                generalCategory.AddSeparator();
+                // Font Rendering Options Category
+                var fontCategory = settingsFramework.AddCategory("FALCLF.CategoryFontRendering", "FALCLF.CategoryFontRenderingDesc");
                 
-                generalCategory.AddColorPicker("defaultColor", "FALCLF.DefaultLabelColor", 
+                // Font selection dropdown
+                fontCategory.AddControl(new SettingsLibrary.Controls.FontDropdownControl(
+                    "selectedFont",
+                    "FALCLF.Font",  // Don't translate here, control will translate it
+                    () => Settings.selectedFont,
+                    v => {
+                        Settings.selectedFont = v;
+                        // Update font in mesh handler
+                        _meshHandler?.SetFont(v);
+                        LabelPlacementHandler?.SetDirty();
+                        // Font changed
+                    },
+                    "FALCLF.FontDesc".Translate()
+                ));
+                
+                fontCategory.AddColorPicker("defaultColor", "FALCLF.DefaultLabelColor", 
                     () => Settings.defaultLabelColor,
                     v => {
                         Settings.defaultLabelColor = v;
-                        _fontHandler?.Reset();
+                        _meshHandler?.ClearCache();
                         LabelPlacementHandler?.SetDirty();
                     }, 
                     "FALCLF.DefaultLabelColorDesc");
                 
                 // Use slider-dropdown for opacity
-                generalCategory.AddIntSliderDropdown("opacity", "FALCLF.TextOpacity", 
+                fontCategory.AddIntSliderDropdown("opacity", "FALCLF.TextOpacity", 
                     () => Settings.opacity,
                     v => Settings.opacity = v,
                     1, 100,
                     "FALCLF.TextOpacityDesc", 
                     (val) => val + "%");
+                
+                // Use slider-dropdown for font scales
+                fontCategory.AddSliderDropdown("maxFontScale", "FALCLF.MaxFontScale", 
+                    () => Settings.maxFontScale,
+                    v => {
+                        Settings.maxFontScale = v;
+                        LabelPlacementHandler?.SetDirty();
+                    },
+                    0.1f, 5.0f, 
+                    "FALCLF.MaxFontScaleDesc", 
+                    (val) => val.ToString("F1"));
+                    
+                fontCategory.AddSliderDropdown("minFontScale", "FALCLF.MinFontScale", 
+                    () => Settings.minFontScale,
+                    v => {
+                        Settings.minFontScale = v;
+                        LabelPlacementHandler?.SetDirty();
+                    },
+                    0.1f, 1.0f, 
+                    "FALCLF.MinFontScaleDesc", 
+                    (val) => val.ToString("F1"));
+                    
+                fontCategory.AddDropdown("maxZoom", "FALCLF.MaxAllowedZoom", 
+                    () => Settings.maxAllowedZoom,
+                    v => Settings.maxAllowedZoom = v,
+                    Enum.GetValues(typeof(CameraZoomRange)).Cast<CameraZoomRange>(),
+                    (zoom) => ("FALCLF.enumSetting_" + zoom.ToString()).Translate(),
+                    "FALCLF.MaxAllowedZoomDesc");
                 
                 // Display Settings Category
                 var displayCategory = settingsFramework.AddCategory("FALCLF.CategoryDisplay", "FALCLF.CategoryDisplayDesc");
@@ -239,31 +286,6 @@ namespace LabelsOnFloor
                     "FALCLF.ShowStockpileZoneLabelsDesc")
                     .DependsOn(() => Settings.showZoneLabels)
                     .SetIndentLevel(1);
-                
-                // Advanced Settings Category
-                var advancedCategory = settingsFramework.AddCategory("FALCLF.CategoryAdvanced", "FALCLF.CategoryAdvancedDesc");
-                
-                // Use slider-dropdown for font scales
-                advancedCategory.AddSliderDropdown("maxFontScale", "FALCLF.MaxFontScale", 
-                    () => Settings.maxFontScale,
-                    v => Settings.maxFontScale = v,
-                    0.1f, 5.0f, 
-                    "FALCLF.MaxFontScaleDesc", 
-                    (val) => val.ToString("F1"));
-                    
-                advancedCategory.AddSliderDropdown("minFontScale", "FALCLF.MinFontScale", 
-                    () => Settings.minFontScale,
-                    v => Settings.minFontScale = v,
-                    0.1f, 1.0f, 
-                    "FALCLF.MinFontScaleDesc", 
-                    (val) => val.ToString("F1"));
-                    
-                advancedCategory.AddDropdown("maxZoom", "FALCLF.MaxAllowedZoom", 
-                    () => Settings.maxAllowedZoom,
-                    v => Settings.maxAllowedZoom = v,
-                    Enum.GetValues(typeof(CameraZoomRange)).Cast<CameraZoomRange>(),
-                    (zoom) => ("FALCLF.enumSetting_" + zoom.ToString()).Translate(),
-                    "FALCLF.MaxAllowedZoomDesc");
             }
             
             return settingsFramework;
@@ -286,7 +308,7 @@ namespace LabelsOnFloor
         {
             base.WriteSettings();
             // Trigger any necessary updates when settings are saved
-            _fontHandler?.Reset();
+            _meshHandler?.ClearCache();
             LabelPlacementHandler?.SetDirty();
         }
     }

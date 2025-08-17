@@ -35,7 +35,21 @@ namespace LabelsOnFloor
             if (RoomObject == null || _map == null)
                 return false;
 
-            return _keyCell.GetRoom(_map) == RoomObject;
+            // Check if map is properly initialized with regions
+            if (_map.regionAndRoomUpdater == null || !_map.regionAndRoomUpdater.Enabled)
+                return false;
+            
+            // Safely get the room at the key cell
+            try
+            {
+                var currentRoom = _keyCell.GetRoom(_map);
+                return currentRoom == RoomObject;
+            }
+            catch
+            {
+                // If we can't get the room, it's not valid
+                return false;
+            }
         }
 
         public void AllocateRoomObjectIfNeeded()
@@ -43,7 +57,19 @@ namespace LabelsOnFloor
             if (RoomObject != null || _map == null)
                 return;
 
-            RoomObject = _keyCell.GetRoom(_map);
+            // Check if map is properly initialized with regions
+            if (_map.regionAndRoomUpdater == null || !_map.regionAndRoomUpdater.Enabled)
+                return;
+
+            try
+            {
+                RoomObject = _keyCell.GetRoom(_map);
+            }
+            catch
+            {
+                // If we can't get the room, leave RoomObject as null
+                RoomObject = null;
+            }
         }
 
         public void ExposeData()

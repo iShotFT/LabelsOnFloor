@@ -116,5 +116,11 @@ namespace LabelsOnFloor.SettingsLibrary.Core
         {
             items.Add(new SeparatorControl());
         }
+        
+        public ISettingsItem AddControl(ISettingsItem control)
+        {
+            items.Add(control);
+            return control;
+        }
     }
 }

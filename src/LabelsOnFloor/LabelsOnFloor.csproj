@@ -266,6 +266,16 @@
     <Compile Include="Resources.cs" />
     <Compile Include="PlacementDataFinderForRooms.cs" />
     <Compile Include="RoomRoleFinder.cs" />
+    <!-- Font Library -->
+    <Compile Include="FontLibrary\IFont.cs" />
+    <Compile Include="FontLibrary\CharacterGlyph.cs" />
+    <Compile Include="FontLibrary\FontAtlas.cs" />
+    <Compile Include="FontLibrary\FontRenderer.cs" />
+    <Compile Include="FontLibrary\FontRegistry.cs" />
+    <Compile Include="FontLibrary\GenericFont.cs" />
+    <Compile Include="FontLibrary\JetBrainsMonoFont.cs" />
+    <Compile Include="FontLibrary\MeshHandlerNew.cs" />
+    <Compile Include="FontLibrary\MeshHandlerAdapter.cs" />
     <!-- Settings Library -->
     <Compile Include="SettingsLibrary\Core\ModSettingsFramework.cs" />
     <Compile Include="SettingsLibrary\Core\ISettingsCategory.cs" />
@@ -279,7 +289,9 @@
     <Compile Include="SettingsLibrary\Controls\SeparatorControl.cs" />
     <Compile Include="SettingsLibrary\Controls\SliderControl.cs" />
     <Compile Include="SettingsLibrary\Controls\SliderDropdownControl.cs" />
+    <Compile Include="SettingsLibrary\Controls\FontDropdownControl.cs" />
     <Compile Include="SettingsLibrary\Widgets\ColorDropdownWidget.cs" />
+    <Compile Include="SettingsLibrary\Widgets\FontDropdownWidget.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\..\mod-structure\About\About.xml">

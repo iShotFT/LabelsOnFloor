@@ -1,18 +1,18 @@
-﻿using UnityEngine;
+using UnityEngine;
 using Verse;
+using LabelsOnFloor.FontLibrary;
 
 namespace LabelsOnFloor
 {
     public class LabelDrawer
     {
         private readonly LabelHolder _labelHolder;
+        private readonly MeshHandlerNew _meshHandler;
 
-        private readonly FontHandler _fontHandler;
-
-        public LabelDrawer(LabelHolder labelHolder, FontHandler fontHandler)
+        public LabelDrawer(LabelHolder labelHolder, MeshHandlerNew meshHandler)
         {
             _labelHolder = labelHolder;
-            _fontHandler = fontHandler;
+            _meshHandler = meshHandler;
         }
 
         public void Draw()
@@ -48,18 +48,13 @@ namespace LabelsOnFloor
             matrix.SetTRS(pos, rotation, label.LabelPlacementData.Scale);
 
             // Get the material and apply custom color if available
-            var material = _fontHandler.GetMaterial();
-            if (label.CustomColor.HasValue)
+            var color = label.CustomColor ?? Main.Instance.GetDefaultLabelColor();
+            var material = _meshHandler.Font.GetMaterial(color, Main.Instance.GetOpacity());
+
+            if (material != null && label.LabelMesh != null)
             {
-                // Create a new material instance with the custom color
-                material = new Material(material);
-                var colorWithOpacity = label.CustomColor.Value;
-                colorWithOpacity.a = Main.Instance.GetOpacity();
-                material.color = colorWithOpacity;
+                Graphics.DrawMesh(label.LabelMesh, matrix, material, 0);
             }
-
-            Graphics.DrawMesh(label.LabelMesh, matrix, material, 0);
-
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace LabelsOnFloor
@@ -6,16 +6,14 @@ namespace LabelsOnFloor
     public class MeshHandler
     {
         private readonly Dictionary<string, Mesh> _cachedMeshes = new Dictionary<string, Mesh>();
-
         private readonly FontHandler _fontHandler;
-
 
         public MeshHandler(FontHandler fontHandler)
         {
             _fontHandler = fontHandler;
         }
 
-        public Mesh GetMeshFor(string label)
+        public virtual Mesh GetMeshFor(string label)
         {
             if (string.IsNullOrEmpty(label))
                 return null;
@@ -46,6 +44,7 @@ namespace LabelsOnFloor
             var startingTriangleVertex = 0;
             var startingVertexXOffset = 0f;
             var yTop = size.y - 0.4f;
+            
             foreach (var charBoundsInTexture in boundsInTexture)
             {
                 vertices.Add(new Vector3(startingVertexXOffset, 0f, -0.4f));
@@ -54,10 +53,11 @@ namespace LabelsOnFloor
                 vertices.Add(new Vector3(startingVertexXOffset + size.x, 0f, -0.4f));
                 startingVertexXOffset += size.x;
 
-                uvMap.Add(new Vector2(charBoundsInTexture.Left, 0f));
-                uvMap.Add(new Vector2(charBoundsInTexture.Left, 1f));
-                uvMap.Add(new Vector2(charBoundsInTexture.Right, 1f));
-                uvMap.Add(new Vector2(charBoundsInTexture.Right, 0f));
+                // Use the actual UV coordinates from the texture bounds
+                uvMap.Add(new Vector2(charBoundsInTexture.Left, charBoundsInTexture.Bottom));  // Bottom-left
+                uvMap.Add(new Vector2(charBoundsInTexture.Left, charBoundsInTexture.Top));     // Top-left
+                uvMap.Add(new Vector2(charBoundsInTexture.Right, charBoundsInTexture.Top));    // Top-right
+                uvMap.Add(new Vector2(charBoundsInTexture.Right, charBoundsInTexture.Bottom)); // Bottom-right
 
                 triangles.Add(startingTriangleVertex + 0);
                 triangles.Add(startingTriangleVertex + 1);
