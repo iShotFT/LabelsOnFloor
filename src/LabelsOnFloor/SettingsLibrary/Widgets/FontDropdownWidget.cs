@@ -11,6 +11,74 @@ namespace LabelsOnFloor.SettingsLibrary.Widgets
 {
     public static class FontDropdownWidget
     {
+        // Performance optimization: Optimized version that accepts cached font
+        public static bool ButtonDropdownOptimized(Rect rect, string currentFontName, IFont cachedFont, Action<string> onFontSelected, bool needsRedraw)
+        {
+            // Only perform expensive drawing when needed
+            if (needsRedraw)
+            {
+                // Draw RimWorld-style button frame (matching other dropdowns)
+                Verse.Widgets.DrawAtlas(rect, TexUI.FloatMenuOptionBG);
+                
+                // Highlight on hover
+                if (Mouse.IsOver(rect))
+                {
+                    Verse.Widgets.DrawHighlight(rect);
+                }
+                
+                // Use cached font if available
+                var font = cachedFont ?? FontRegistry.GetFont(currentFontName);
+                
+                // Draw the preview image in the button (no text, just the preview)
+                if (font?.PreviewTexture != null)
+                {
+                    // Calculate preview position (left-aligned with padding, vertically centered)
+                    float maxPreviewWidth = rect.width - 30f; // Leave space for dropdown arrow
+                    float previewHeight = Mathf.Min(font.PreviewTexture.height, rect.height - 4f);
+                    float aspectRatio = (float)font.PreviewTexture.width / font.PreviewTexture.height;
+                    float previewWidth = Mathf.Min(previewHeight * aspectRatio, maxPreviewWidth);
+                    
+                    Rect previewRect = new Rect(
+                        rect.x + 8f,
+                        rect.y + (rect.height - previewHeight) / 2f,
+                        previewWidth,
+                        previewHeight
+                    );
+                    
+                    GUI.color = Color.white;
+                    GUI.DrawTexture(previewRect, font.PreviewTexture, ScaleMode.ScaleToFit);
+                }
+                else
+                {
+                    // Fallback to text if no preview available
+                    var buttonLabel = font?.Name ?? currentFontName;
+                    Text.Font = GameFont.Small;
+                    Text.Anchor = TextAnchor.MiddleLeft;
+                    GUI.color = Color.white;
+                    var textRect = new Rect(rect.x + 8f, rect.y, rect.width - 30f, rect.height);
+                    Verse.Widgets.Label(textRect, buttonLabel);
+                }
+                
+                // Draw dropdown arrow on the right side (consistent with other dropdowns)
+                var arrowRect = new Rect(rect.xMax - 20f, rect.y, 20f, rect.height);
+                Text.Font = GameFont.Small;
+                Text.Anchor = TextAnchor.MiddleCenter;
+                Verse.Widgets.Label(arrowRect, "▼");
+                
+                Text.Anchor = TextAnchor.UpperLeft;
+                GUI.color = Color.white;
+            }
+            
+            // Handle button click (always check for interaction)
+            if (Verse.Widgets.ButtonInvisible(rect))
+            {
+                SoundDefOf.Tick_Tiny.PlayOneShotOnCamera();
+                ShowFontDropdownMenu(rect, currentFontName, onFontSelected);
+                return true;
+            }
+            
+            return false;
+        }
         
         public static bool ButtonDropdown(Rect rect, string currentFontName, Action<string> onFontSelected)
         {

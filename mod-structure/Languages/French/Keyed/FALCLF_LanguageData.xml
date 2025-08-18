@@ -60,6 +60,12 @@
   
   <!-- Additional UI Labels -->
   <FALCLF.DefaultColorLabel>Couleur Par Défaut</FALCLF.DefaultColorLabel>
+  <!-- Label visibility toggle messages -->
+  <FALCLF.LabelsVisible>Étiquettes visibles</FALCLF.LabelsVisible>
+  <FALCLF.LabelsDrawOnTop>Étiquettes dessinées au-dessus</FALCLF.LabelsDrawOnTop>
+  <FALCLF.LabelsHidden>Étiquettes cachées</FALCLF.LabelsHidden>
+  
+  <!-- Legacy messages for compatibility -->
   <FALCLF.LabelsEnabled>Étiquettes activées</FALCLF.LabelsEnabled>
   <FALCLF.LabelsDisabled>Étiquettes désactivées</FALCLF.LabelsDisabled>
   

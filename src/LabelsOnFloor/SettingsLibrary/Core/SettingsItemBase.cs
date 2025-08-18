@@ -16,6 +16,13 @@ namespace LabelsOnFloor.SettingsLibrary.Core
         protected Func<bool> enabledCondition;
         protected Func<bool> visibilityCondition;
         
+        // Performance optimization: Dirty flag system
+        private bool isDirty = true;
+        private bool wasHovering = false;
+        private object lastValue = null;
+        private Rect lastRect;
+        private int lastDrawFrame = -1;
+        
         protected SettingsItemBase(string id, string label, string tooltip = null)
         {
             this.id = id;
@@ -74,6 +81,50 @@ namespace LabelsOnFloor.SettingsLibrary.Core
             // Right-align controls in their column
             float controlX = x + labelWidth + config.ControlPadding + (controlWidth - controlActualWidth);
             return new Rect(controlX, y, controlActualWidth, height);
+        }
+        
+        /// <summary>
+        /// Performance optimization: Check if control needs redrawing
+        /// </summary>
+        protected bool NeedsRedraw(Rect rect, object currentValue)
+        {
+            // Always redraw on first frame or if explicitly marked dirty
+            if (isDirty || Time.frameCount != lastDrawFrame)
+            {
+                isDirty = false;
+                lastDrawFrame = Time.frameCount;
+                lastValue = currentValue;
+                lastRect = rect;
+                return true;
+            }
+            
+            // Check if rect changed (window resized/scrolled)
+            bool rectChanged = !rect.Equals(lastRect);
+            
+            // Check hover state change
+            bool hovering = Mouse.IsOver(rect);
+            bool hoverChanged = hovering != wasHovering;
+            
+            // Check value change
+            bool valueChanged = !Equals(lastValue, currentValue);
+            
+            if (rectChanged || hoverChanged || valueChanged)
+            {
+                wasHovering = hovering;
+                lastValue = currentValue;
+                lastRect = rect;
+                return true;
+            }
+            
+            return false;
+        }
+        
+        /// <summary>
+        /// Mark this control as needing redraw
+        /// </summary>
+        public void MarkDirty()
+        {
+            isDirty = true;
         }
     }
 }

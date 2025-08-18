@@ -80,6 +80,12 @@
     <FALCLF.Cancel>Cancel</FALCLF.Cancel>
     <FALCLF.OK>OK</FALCLF.OK>
     
+    <!-- Label visibility toggle messages -->
+    <FALCLF.LabelsVisible>Labels visible</FALCLF.LabelsVisible>
+    <FALCLF.LabelsDrawOnTop>Labels drawn on top</FALCLF.LabelsDrawOnTop>
+    <FALCLF.LabelsHidden>Labels hidden</FALCLF.LabelsHidden>
+    
+    <!-- Legacy messages for compatibility -->
     <FALCLF.LabelsEnabled>Labels enabled</FALCLF.LabelsEnabled>
     <FALCLF.LabelsDisabled>Labels disabled</FALCLF.LabelsDisabled>
 

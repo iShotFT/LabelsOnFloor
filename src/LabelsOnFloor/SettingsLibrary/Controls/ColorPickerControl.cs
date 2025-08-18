@@ -16,6 +16,10 @@ namespace LabelsOnFloor.SettingsLibrary.Controls
         private const float ButtonWidth = 140f;  // Standardized width across all controls
         private const float ButtonHeight = 26f;
         
+        // Performance optimization: Cache color values
+        private Color cachedColor;
+        private Color? cachedNullableColor;
+        
         public ColorPickerControl(string id, string label, Func<Color> getter, Action<Color> setter, string tooltip = null)
             : base(id, label, tooltip)
         {
@@ -38,6 +42,7 @@ namespace LabelsOnFloor.SettingsLibrary.Controls
             Color? nullableColor = currentColor;
             
             // Use the minimal color dropdown widget (no RGB text)
+            // This widget handles its own rendering and input
             ColorDropdownWidget.DrawMinimalColorDropdownButton(
                 pickerRect,
                 ref nullableColor,

@@ -60,6 +60,12 @@
   
   <!-- Additional UI Labels -->
   <FALCLF.DefaultColorLabel>Standardfarbe</FALCLF.DefaultColorLabel>
+  <!-- Label visibility toggle messages -->
+  <FALCLF.LabelsVisible>Beschriftungen sichtbar</FALCLF.LabelsVisible>
+  <FALCLF.LabelsDrawOnTop>Beschriftungen oben gezeichnet</FALCLF.LabelsDrawOnTop>
+  <FALCLF.LabelsHidden>Beschriftungen versteckt</FALCLF.LabelsHidden>
+  
+  <!-- Legacy messages for compatibility -->
   <FALCLF.LabelsEnabled>Beschriftungen aktiviert</FALCLF.LabelsEnabled>
   <FALCLF.LabelsDisabled>Beschriftungen deaktiviert</FALCLF.LabelsDisabled>
   

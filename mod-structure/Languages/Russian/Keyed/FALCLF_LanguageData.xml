@@ -60,6 +60,12 @@
   
   <!-- Additional UI Labels -->
   <FALCLF.DefaultColorLabel>Цвет по Умолчанию</FALCLF.DefaultColorLabel>
+  <!-- Label visibility toggle messages -->
+  <FALCLF.LabelsVisible>Метки видимы</FALCLF.LabelsVisible>
+  <FALCLF.LabelsDrawOnTop>Метки поверх всего</FALCLF.LabelsDrawOnTop>
+  <FALCLF.LabelsHidden>Метки скрыты</FALCLF.LabelsHidden>
+  
+  <!-- Legacy messages for compatibility -->
   <FALCLF.LabelsEnabled>Метки включены</FALCLF.LabelsEnabled>
   <FALCLF.LabelsDisabled>Метки отключены</FALCLF.LabelsDisabled>
   

@@ -128,15 +128,23 @@ namespace LabelsOnFloor
                 return;
             
             LabelPlacementHandler.RegenerateIfNeeded(_customRoomLabelManager);
-            _labelDrawer.Draw();
+            
+            // Draw at the appropriate altitude based on visibility mode
+            bool drawOnTop = Settings.visibilityMode == LabelVisibilityMode.DrawOnTop;
+            _labelDrawer.Draw(drawOnTop);
         }
         
         public bool IsModActive()
         {
-            return Settings.enabled
+            // Check if we're in any active drawing mode (Visible or DrawOnTop)
+            return Settings.visibilityMode != LabelVisibilityMode.Hidden
                    && Current.ProgramState == ProgramState.Playing
                    && Find.CurrentMap != null
+#if RIMWORLD_1_5
+                   && !WorldRendererUtility.WorldRenderedNow;
+#else
                    && WorldRendererUtility.CurrentWorldRenderMode == WorldRenderMode.None;
+#endif
         }
         
         public Color GetDefaultLabelColor()

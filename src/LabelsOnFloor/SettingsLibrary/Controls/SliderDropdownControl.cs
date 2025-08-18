@@ -20,6 +20,10 @@ namespace LabelsOnFloor.SettingsLibrary.Controls
         private const float ButtonWidth = 140f;  // Standardized width across all controls
         private const float ButtonHeight = 26f;
         
+        // Performance optimization: Cache formatted values
+        private float cachedValue = float.MinValue;
+        private string cachedValueText = null;
+        
         public SliderDropdownControl(string id, string label, Func<float> getter, Action<float> setter,
             float min, float max, string tooltip = null, Func<float, string> valueFormatter = null)
             : base(id, label, tooltip)
@@ -52,10 +56,16 @@ namespace LabelsOnFloor.SettingsLibrary.Controls
                 Verse.Widgets.DrawHighlight(buttonRect);
             }
             
+            // Cache formatted value text to avoid string allocations
+            if (!Mathf.Approximately(value, cachedValue))
+            {
+                cachedValue = value;
+                cachedValueText = valueFormatter != null ? valueFormatter(value) : value.ToString("F1");
+            }
+            
             // Draw current value
-            string valueText = valueFormatter != null ? valueFormatter(value) : value.ToString("F1");
             Text.Anchor = TextAnchor.MiddleCenter;
-            Verse.Widgets.Label(buttonRect, valueText);
+            Verse.Widgets.Label(buttonRect, cachedValueText);
             
             // Draw dropdown arrow on the right side
             Text.Font = GameFont.Small;

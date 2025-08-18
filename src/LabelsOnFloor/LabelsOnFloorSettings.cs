@@ -3,10 +3,18 @@ using Verse;
 
 namespace LabelsOnFloor
 {
+    public enum LabelVisibilityMode
+    {
+        Visible = 0,       // Normal rendering
+        DrawOnTop = 1,     // Draw above everything
+        Hidden = 2         // Not visible
+    }
+    
     public class LabelsOnFloorSettings : ModSettings
     {
         // Settings fields
-        public bool enabled = true;
+        public bool enabled = true;  // Legacy - kept for compatibility
+        public LabelVisibilityMode visibilityMode = LabelVisibilityMode.Visible;
         public string selectedFont = "Classic";  // Default to Classic font
         public Color defaultLabelColor = Color.white;
         public int opacity = 75;  // Changed to 75% for better visibility
@@ -55,6 +63,7 @@ namespace LabelsOnFloor
         public override void ExposeData()
         {
             Scribe_Values.Look(ref enabled, "enabled", true);
+            Scribe_Values.Look(ref visibilityMode, "visibilityMode", LabelVisibilityMode.Visible);
             Scribe_Values.Look(ref selectedFont, "selectedFont", "JetBrainsMono");
             Scribe_Values.Look(ref defaultLabelColor, "defaultLabelColor", Color.white);
             Scribe_Values.Look(ref opacity, "opacity", 30);
@@ -65,6 +74,13 @@ namespace LabelsOnFloor
             Scribe_Values.Look(ref maxFontScale, "maxFontScale", 1f);
             Scribe_Values.Look(ref minFontScale, "minFontScale", 0.2f);
             Scribe_Values.Look(ref maxAllowedZoom, "maxAllowedZoom", CameraZoomRange.Furthest);
+            
+            // Legacy compatibility: if enabled is false, set mode to Hidden
+            if (Scribe.mode == LoadSaveMode.LoadingVars && !enabled && visibilityMode == LabelVisibilityMode.Visible)
+            {
+                visibilityMode = LabelVisibilityMode.Hidden;
+            }
+            
             base.ExposeData();
         }
         

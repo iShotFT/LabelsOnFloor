@@ -20,6 +20,12 @@ namespace LabelsOnFloor.SettingsLibrary.Core
         private Rect lastInRect;
         private readonly string modName;
         
+        // Performance optimization: Framework-level dirty tracking
+        private bool frameworkDirty = true;
+        private int lastDrawFrame = -1;
+        private float cachedTotalHeight = 0f;
+        private float lastWindowWidth = 0f;
+        
         // Default configuration values
         public static class Defaults
         {
@@ -74,8 +80,19 @@ namespace LabelsOnFloor.SettingsLibrary.Core
             // We get the full content area to use
             float contentHeight = inRect.height;
             
-            // Calculate if we need scrollbar
-            CalculateTotalHeight(inRect.width);
+            // Performance optimization: Only recalculate height when window resized
+            bool windowResized = Math.Abs(inRect.width - lastWindowWidth) > 0.1f;
+            if (windowResized || cachedTotalHeight == 0f)
+            {
+                lastWindowWidth = inRect.width;
+                CalculateTotalHeight(inRect.width);
+                cachedTotalHeight = totalHeight;
+                frameworkDirty = true;
+            }
+            else
+            {
+                totalHeight = cachedTotalHeight;
+            }
             bool needsScrollBar = totalHeight > contentHeight;
             
             // Adjust for scrollbar
@@ -253,6 +270,15 @@ namespace LabelsOnFloor.SettingsLibrary.Core
             }
             
             totalHeight += config.SideMargin;
+        }
+        
+        /// <summary>
+        /// Mark the framework as needing layout recalculation
+        /// </summary>
+        public void MarkDirty()
+        {
+            frameworkDirty = true;
+            cachedTotalHeight = 0f;
         }
     }
     

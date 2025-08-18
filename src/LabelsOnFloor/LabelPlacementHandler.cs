@@ -173,7 +173,11 @@ namespace LabelsOnFloor
                 return;
 
             var roomPlacementDataFinder = new PlacementDataFinderForRooms(_map);
+#if RIMWORLD_1_5
+            foreach (var room in _map.regionGrid.allRooms)
+#else
             foreach (var room in _map.regionGrid.AllRooms)
+#endif
             {
                 AddOrUpdateRoom(room, roomPlacementDataFinder);
             }

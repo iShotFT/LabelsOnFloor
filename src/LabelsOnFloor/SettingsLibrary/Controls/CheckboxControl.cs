@@ -34,6 +34,8 @@ namespace LabelsOnFloor.SettingsLibrary.Controls
             
             bool value = getter();
             bool oldValue = value;
+            
+            // We must always call Checkbox as it handles both rendering and input
             Verse.Widgets.Checkbox(checkboxRect.position, ref value);
             
             if (value != oldValue)

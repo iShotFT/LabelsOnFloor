@@ -3,12 +3,86 @@
   <LabelsOnFloor>
     <Methods>
       <li>LabelsOnFloor.Main:Draw</li>
+      <li>LabelsOnFloor.LabelsOnFloorMod:Draw</li>
+      <li>LabelsOnFloor.LabelDrawer:Draw</li>
       <li>LabelsOnFloor.LabelHolder:GetLabels</li>
       <li>LabelsOnFloor.LabelHolder:UpdateFilteredLabels</li>
       <li>LabelsOnFloor.LabelHolder:RemoveRoomsWithZonesOptimized</li>
-      <li>LabelsOnFloor.LabelDrawer:Draw</li>
+      <li>LabelsOnFloor.LabelPlacementHandler:SetDirty</li>
       <li>LabelsOnFloor.LabelPlacementHandler:RegenerateIfNeeded</li>
-      <li>LabelsOnFloor.LabelPlacementHandler:AddOrUpdateZone</li>
+      <li>LabelsOnFloor.LabelPlacementHandler:RegenerateRoomLabels</li>
+      <li>LabelsOnFloor.LabelPlacementHandler:RegenerateZoneLabels</li>
+      <li>LabelsOnFloor.LabelMaker:MakeRoomLabel</li>
+      <li>LabelsOnFloor.LabelMaker:MakeZoneLabel</li>
+      <li>LabelsOnFloor.PlacementDataFinderForRooms:GetLabelPlacementDataForRoom</li>
+      <li>LabelsOnFloor.PlacementDataFinderForZones:GetLabelPlacementDataForZone</li>
+      <li>LabelsOnFloor.EdgeFinder:GetEdges</li>
+      <li>LabelsOnFloor.FontLibrary.FontRegistry:Initialize</li>
+      <li>LabelsOnFloor.FontLibrary.FontRegistry:GetFont</li>
+      <li>LabelsOnFloor.FontLibrary.FontRegistry:GetAvailableFonts</li>
+      <li>LabelsOnFloor.FontLibrary.FontRegistry:RefreshFonts</li>
+      <li>LabelsOnFloor.FontLibrary.FontRenderer:GenerateMesh</li>
+      <li>LabelsOnFloor.FontLibrary.FontRenderer:CreateVertices</li>
+      <li>LabelsOnFloor.FontLibrary.FontRenderer:CreateTriangles</li>
+      <li>LabelsOnFloor.FontLibrary.MeshHandlerNew:GetMeshFor</li>
+      <li>LabelsOnFloor.FontLibrary.MeshHandlerNew:SetFont</li>
+      <li>LabelsOnFloor.FontLibrary.MeshHandlerNew:ClearCache</li>
+      <li>LabelsOnFloor.FontLibrary.MeshHandlerAdapter:GetMeshFor</li>
+      <li>LabelsOnFloor.FontLibrary.GenericFont:LoadTexture</li>
+      <li>LabelsOnFloor.FontLibrary.GenericFont:LoadAtlas</li>
+      <li>LabelsOnFloor.FontLibrary.GenericFont:GetCharacterGlyph</li>
+      <li>LabelsOnFloor.FontLibrary.FontAtlas:GetGlyph</li>
+      <li>LabelsOnFloor.MeshHandler:GetMeshFor</li>
+      <li>LabelsOnFloor.FontHandler:GetUVRectForChar</li>
+      <li>LabelsOnFloor.CustomRoomLabelManagerComponent:GetCustomRoomData</li>
+      <li>LabelsOnFloor.CustomRoomLabelManagerComponent:GetOrCreateCustomRoomDataFor</li>
+      <li>LabelsOnFloor.CustomRoomLabelManagerComponent:UpdateCustomRoomData</li>
+      <li>LabelsOnFloor.CustomRoomLabelManagerComponent:ExposeData</li>
+      <li>LabelsOnFloor.CustomZoneLabelManagerComponent:GetCustomData</li>
+      <li>LabelsOnFloor.CustomZoneLabelManagerComponent:GetOrCreateCustomData</li>
+      <li>LabelsOnFloor.CustomZoneLabelManagerComponent:UpdateCustomData</li>
+      <li>LabelsOnFloor.CustomZoneLabelManagerComponent:ExposeData</li>
+      <li>LabelsOnFloor.Dialog_RenameRoomWithColor:DoWindowContents</li>
+      <li>LabelsOnFloor.Dialog_RenameZoneWithColor:DoWindowContents</li>
+      <li>LabelsOnFloor.Dialog_RoomColorPicker:DoWindowContents</li>
+      <li>LabelsOnFloor.Designator_Rename:CanDesignateCell</li>
+      <li>LabelsOnFloor.Designator_Rename:DesignateSingleCell</li>
+      <li>LabelsOnFloor.LabelsOnFloorMod:DoSettingsWindowContents</li>
+      <li>LabelsOnFloor.LabelsOnFloorMod:InitializeWorldComponents</li>
+      <li>LabelsOnFloor.LabelsOnFloorMod:IsModActive</li>
+      <li>LabelsOnFloor.LabelsOnFloorMod:GetSettingsFramework</li>
+      <li>LabelsOnFloor.SettingsLibrary.Core.ModSettingsFramework:Draw</li>
+      <li>LabelsOnFloor.SettingsLibrary.Core.ModSettingsFramework:AddCategory</li>
+      <li>LabelsOnFloor.SettingsLibrary.Core.SettingsCategory:Draw</li>
+      <li>LabelsOnFloor.SettingsLibrary.Core.SettingsCategory:AddControl</li>
+      <li>LabelsOnFloor.SettingsLibrary.Controls.CheckboxControl:Draw</li>
+      <li>LabelsOnFloor.SettingsLibrary.Controls.SliderControl:Draw</li>
+      <li>LabelsOnFloor.SettingsLibrary.Controls.SliderDropdownControl:Draw</li>
+      <li>LabelsOnFloor.SettingsLibrary.Controls.DropdownControl:Draw</li>
+      <li>LabelsOnFloor.SettingsLibrary.Controls.ColorPickerControl:Draw</li>
+      <li>LabelsOnFloor.SettingsLibrary.Controls.FontDropdownControl:Draw</li>
+      <li>LabelsOnFloor.SettingsLibrary.Widgets.FontDropdownWidget:Draw</li>
+      <li>LabelsOnFloor.SettingsLibrary.Widgets.ColorDropdownWidget:Draw</li>
+      <li>LabelsOnFloor.Patches.DynamicDrawManager_DrawDynamicThings_Patch:Prefix</li>
+      <li>LabelsOnFloor.Patches.Room_MakeNew_Patch:Postfix</li>
+      <li>LabelsOnFloor.Patches.Room_RemoveRegion_Patch:Postfix</li>
+      <li>LabelsOnFloor.Patches.Room_Notify_RoomShapeOrContainedBedsChanged_Patch:Postfix</li>
+      <li>LabelsOnFloor.Patches.Room_Notify_BedTypeChanged_Patch:Postfix</li>
+      <li>LabelsOnFloor.Patches.ZoneManager_RegisterZone_Patch:Postfix</li>
+      <li>LabelsOnFloor.Patches.ZoneManager_DeregisterZone_Patch:Postfix</li>
+      <li>LabelsOnFloor.Patches.Zone_RemoveCell_Patch:Postfix</li>
+      <li>LabelsOnFloor.Patches.Zone_Growing_SetPlantDefToGrow_Patch:Postfix</li>
+      <li>LabelsOnFloor.Patches.ListerBuildings_Add_Patch:Postfix</li>
+      <li>LabelsOnFloor.Patches.ListerBuildings_Remove_Patch:Postfix</li>
+      <li>LabelsOnFloor.Patches.GatherSpotLister_RegisterActivated_Patch:Postfix</li>
+      <li>LabelsOnFloor.Patches.GatherSpotLister_RegisterDeactivated_Patch:Postfix</li>
+      <li>LabelsOnFloor.Patches.MapInterface_HandleLowPriorityInput_Patch:Postfix</li>
+      <li>LabelsOnFloor.Patches.Dialog_RenameZone_Constructor_Patch:Prefix</li>
+      <li>LabelsOnFloor.Patches.RenameUIUtility_DrawRenameButton_Patch:Prefix</li>
+      <li>LabelsOnFloor.Patches.Zone_GetGizmos_Patch:Postfix</li>
+      <li>LabelsOnFloor.Patches.Building_Bed_Medical_Patch:Postfix</li>
+      <li>LabelsOnFloor.Patches.DesignationCategoryDef_ResolvedAllowedDesignators_Patch:Postfix</li>
+      <li>LabelsOnFloor.RoomRoleFinder:GetRoomRole</li>
     </Methods>
   </LabelsOnFloor>
 </Analyzer>

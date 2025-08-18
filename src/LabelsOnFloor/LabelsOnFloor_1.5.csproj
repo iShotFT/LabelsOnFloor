@@ -1,0 +1,333 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B2130D81-9482-4727-BA55-10CACC544F2D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LabelsOnFloor</RootNamespace>
+    <AssemblyName>LabelsOnFloor</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release_1.5\</OutputPath>
+    <DefineConstants>TRACE;RIMWORLD_1_5</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net472" Version="1.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony, Version=2.3.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lib.Harmony.2.3.3\lib\net472\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\ThirdParty1.5\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>..\..\ThirdParty1.5\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AccessibilityModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.AccessibilityModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AIModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.AIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AndroidJNIModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.AndroidJNIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ARModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.ARModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.AssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClothModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.ClothModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterInputModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.ClusterInputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterRendererModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.ClusterRendererModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CrashReportingModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.CrashReportingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.DirectorModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.DirectorModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.DSPGraphModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.DSPGraphModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GameCenterModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.GameCenterModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GridModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.GridModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.HotReloadModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.HotReloadModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.InputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.JSONSerializeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.LocalizationModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.LocalizationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.ParticleSystemModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PerformanceReportingModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.PerformanceReportingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.Physics2DModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ProfilerModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.ProfilerModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ScreenCaptureModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.ScreenCaptureModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SharedInternalsModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.SharedInternalsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteMaskModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.SpriteMaskModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteShapeModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.SpriteShapeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.StreamingModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.StreamingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SubstanceModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.SubstanceModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.TerrainModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainPhysicsModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TilemapModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.TilemapModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TLSModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.TLSModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.UIElementsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UmbraModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.UmbraModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityAnalyticsModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityConnectModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.UnityConnectModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityTestProtocolModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.UnityWebRequestModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VehiclesModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.VehiclesModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VFXModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.VFXModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VideoModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.VideoModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VRModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.VRModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.WindModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.WindModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.XRModule">
+      <HintPath>..\..\ThirdParty1.5\UnityEngine.XRModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CustomRoomData.cs" />
+    <Compile Include="CustomRoomLabelManager.cs" />
+    <Compile Include="CustomRoomLabelManager_Legacy.cs" />
+    <Compile Include="CustomZoneData.cs" />
+    <Compile Include="CustomZoneLabelManagerComponent.cs" />
+    <Compile Include="Designator_Rename.cs" />
+    <Compile Include="Dialog_RenameRoomWithColor.cs" />
+    <Compile Include="Dialog_RenameZoneWithColor.cs" />
+    <Compile Include="Dialog_RoomColorPicker.cs" />
+    <Compile Include="ColorGridFloatMenu.cs" />
+    <Compile Include="KeyBindingDefOf_LabelsOnFloor.cs" />
+    <Compile Include="LabelsOnFloorMod.cs" />
+    <Compile Include="LabelsOnFloorSettings.cs" />
+    <Compile Include="LegacyComponents.cs" />
+    <Compile Include="ModLog.cs" />
+    <Compile Include="Patches\Building_Bed_Medical_Patch.cs" />
+    <Compile Include="Patches\MapInterface_HandleLowPriorityInput_Patch.cs" />
+    <Compile Include="Patches\DesignationCategoryDef_ResolvedAllowedDesignators_Patch.cs" />
+    <Compile Include="Patches\LegacyMigrationPatch.cs" />
+    <Compile Include="Patches\DynamicDrawManager_DrawDynamicThings_Patch.cs" />
+    <Compile Include="EdgeFinder.cs" />
+    <Compile Include="FontHandler.cs" />
+    <Compile Include="LabelDrawer.cs" />
+    <Compile Include="LabelHolder.cs" />
+    <Compile Include="LabelMaker.cs" />
+    <Compile Include="LabelPlacementHandler.cs" />
+    <Compile Include="Main.cs" />
+    <Compile Include="MeshHandler.cs" />
+    <Compile Include="Patches\GatherSpotLister_RegisterActivated_Patch.cs" />
+    <Compile Include="Patches\GatherSpotLister_RegisterDeactivated_Patch.cs" />
+    <Compile Include="Patches\ListerBuildings_Add_Patch.cs" />
+    <Compile Include="Patches\ListerBuildings_Remove_Patch.cs" />
+    <Compile Include="Patches\Room_MakeNew_Patch.cs" />
+    <Compile Include="Patches\Room_Notify_BedTypeChanged_Patch.cs" />
+    <Compile Include="Patches\Room_Notify_RoomShapeOrContainedBedsChanged_Patch.cs" />
+    <Compile Include="Patches\Room_RemoveRegion_Patch.cs" />
+    <Compile Include="Patches\ZoneManager_DeregisterZone_Patch.cs" />
+    <Compile Include="Patches\ZoneManager_RegisterZone_Patch.cs" />
+    <Compile Include="Patches\Zone_Growing_SetPlantDefToGrow_Patch.cs" />
+    <Compile Include="Patches\Zone_RemoveCell_Patch.cs" />
+    <Compile Include="Patches\Zone_AddCell_Patch.cs" />
+    <Compile Include="PlacementDataFinderForZones.cs" />
+    <Compile Include="Properties\AssemblyInfo_1.5.cs" />
+    <Compile Include="Resources.cs" />
+    <Compile Include="PlacementDataFinderForRooms.cs" />
+    <Compile Include="RoomRoleFinder.cs" />
+    <!-- Font Library -->
+    <Compile Include="FontLibrary\IFont.cs" />
+    <Compile Include="FontLibrary\CharacterGlyph.cs" />
+    <Compile Include="FontLibrary\FontAtlas.cs" />
+    <Compile Include="FontLibrary\FontRenderer.cs" />
+    <Compile Include="FontLibrary\FontRegistry.cs" />
+    <Compile Include="FontLibrary\GenericFont.cs" />
+    <Compile Include="FontLibrary\JetBrainsMonoFont.cs" />
+    <Compile Include="FontLibrary\MeshHandlerNew.cs" />
+    <Compile Include="FontLibrary\MeshHandlerAdapter.cs" />
+    <!-- Settings Library -->
+    <Compile Include="SettingsLibrary\Core\ModSettingsFramework.cs" />
+    <Compile Include="SettingsLibrary\Core\ISettingsCategory.cs" />
+    <Compile Include="SettingsLibrary\Core\ISettingsItem.cs" />
+    <Compile Include="SettingsLibrary\Core\SettingsCategory.cs" />
+    <Compile Include="SettingsLibrary\Core\SettingsItemBase.cs" />
+    <Compile Include="SettingsLibrary\Controls\CheckboxControl.cs" />
+    <Compile Include="SettingsLibrary\Controls\ColorPickerControl.cs" />
+    <Compile Include="SettingsLibrary\Controls\DropdownControl.cs" />
+    <Compile Include="SettingsLibrary\Controls\GapControl.cs" />
+    <Compile Include="SettingsLibrary\Controls\SeparatorControl.cs" />
+    <Compile Include="SettingsLibrary\Controls\SliderControl.cs" />
+    <Compile Include="SettingsLibrary\Controls\SliderDropdownControl.cs" />
+    <Compile Include="SettingsLibrary\Controls\FontDropdownControl.cs" />
+    <Compile Include="SettingsLibrary\Widgets\ColorDropdownWidget.cs" />
+    <Compile Include="SettingsLibrary\Widgets\FontDropdownWidget.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\mod-structure\About\About.xml">
+      <Link>mod-structure\About\About.xml</Link>
+    </Content>
+    <Content Include="..\..\mod-structure\About\Preview.png">
+      <Link>mod-structure\About\Preview.png</Link>
+    </Content>
+    <Content Include="..\..\mod-structure\About\PublishedFileId.txt">
+      <Link>mod-structure\About\PublishedFileId.txt</Link>
+    </Content>
+    <Content Include="..\..\mod-structure\Languages\English\Keyed\FALCLF_LanguageData.xml">
+      <Link>mod-structure\Languages\English\Keyed\FALCLF_LanguageData.xml</Link>
+    </Content>
+    <Content Include="..\..\mod-structure\Languages\Japanese\Keyed\FALCLF_LanguageData.xml">
+      <Link>mod-structure\Languages\Japanese\Keyed\FALCLF_LanguageData.xml</Link>
+    </Content>
+    <Content Include="..\..\mod-structure\Textures\Consolas.png">
+      <Link>mod-structure\Textures\Consolas.png</Link>
+    </Content>
+    <Content Include="..\..\mod-structure\Textures\Rename.png">
+      <Link>mod-structure\Textures\Rename.png</Link>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>powershell.exe -EP Unrestricted $(ProjectDir)..\..\build.ps1 doPreBuild</PreBuildEvent>
+  </PropertyGroup>
+  <!-- Disabled auto post-build because it hangs when RimWorld is running
+  <PropertyGroup>
+    <PostBuildEvent>powershell.exe -EP Unrestricted $(ProjectDir)..\..\build.ps1 doPostBuild</PostBuildEvent>
+  </PropertyGroup>
+  -->
+</Project>

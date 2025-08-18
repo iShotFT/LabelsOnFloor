@@ -17,21 +17,38 @@ namespace LabelsOnFloor
 
         public void Draw()
         {
+            Draw(false);
+        }
+        
+        public void Draw(bool drawOnTop)
+        {
             var currentViewRect = Find.CameraDriver.CurrentViewRect;
             foreach (var label in _labelHolder.GetLabels())
             {
                 if (!currentViewRect.Contains(label.LabelPlacementData.Position))
                     continue;
 
-                DrawLabel(label);
+                DrawLabel(label, drawOnTop);
             }
         }
 
-        private void DrawLabel(Label label)
+        private void DrawLabel(Label label, bool drawOnTop = false)
         {
             Matrix4x4 matrix = default;
             var pos = label.LabelPlacementData.Position.ToVector3();
             pos.x += 0.2f;
+            
+            // Set altitude based on draw mode
+            if (drawOnTop)
+            {
+                // Draw on top of everything including items and buildings
+                pos.y = AltitudeLayer.MoteOverhead.AltitudeFor();
+            }
+            else
+            {
+                // Normal floor-level drawing
+                pos.y = AltitudeLayer.Floor.AltitudeFor();
+            }
 
             var rotation = Quaternion.identity;
             if (label.LabelPlacementData.Flipped)
