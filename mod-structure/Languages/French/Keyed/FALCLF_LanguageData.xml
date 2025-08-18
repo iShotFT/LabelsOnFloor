@@ -78,6 +78,15 @@
   <FALCLF.Cancel>Annuler</FALCLF.Cancel>
   <FALCLF.OK>OK</FALCLF.OK>
 
+  <!-- Mod Compatibility Settings -->
+  <FALCLF.CategoryCompatibility>Compatibilité des Mods</FALCLF.CategoryCompatibility>
+  <FALCLF.CategoryCompatibilityDesc>Paramètres pour la compatibilité avec d'autres mods</FALCLF.CategoryCompatibilityDesc>
+  
+  <FALCLF.HideLabelsInScreenshots>Masquer les étiquettes pendant les captures</FALCLF.HideLabelsInScreenshots>
+  <FALCLF.HideLabelsInScreenshotsDesc>Lorsqu'activé, les étiquettes de pièces et zones seront masquées pendant que Progress Renderer ou les captures natives de RimWorld sont en cours</FALCLF.HideLabelsInScreenshotsDesc>
+  
+  <FALCLF.DetectedMods>Mods compatibles détectés</FALCLF.DetectedMods>
+
   <FALCLF.enumSetting_Closest>Le plus proche</FALCLF.enumSetting_Closest>
   <FALCLF.enumSetting_Close>Proche</FALCLF.enumSetting_Close>
   <FALCLF.enumSetting_Middle>Moyen</FALCLF.enumSetting_Middle>

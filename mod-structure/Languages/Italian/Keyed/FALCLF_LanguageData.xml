@@ -78,6 +78,15 @@
   <FALCLF.Cancel>Annulla</FALCLF.Cancel>
   <FALCLF.OK>OK</FALCLF.OK>
 
+  <!-- Mod Compatibility Settings -->
+  <FALCLF.CategoryCompatibility>Compatibilità Mod</FALCLF.CategoryCompatibility>
+  <FALCLF.CategoryCompatibilityDesc>Impostazioni per compatibilità con altri mod</FALCLF.CategoryCompatibilityDesc>
+  
+  <FALCLF.HideLabelsInScreenshots>Nascondi etichette durante screenshot</FALCLF.HideLabelsInScreenshots>
+  <FALCLF.HideLabelsInScreenshotsDesc>Quando abilitato, le etichette di stanze e zone verranno nascoste mentre Progress Renderer o gli screenshot nativi di RimWorld sono in corso</FALCLF.HideLabelsInScreenshotsDesc>
+  
+  <FALCLF.DetectedMods>Mod compatibili rilevati</FALCLF.DetectedMods>
+
   <FALCLF.enumSetting_Closest>Più vicino</FALCLF.enumSetting_Closest>
   <FALCLF.enumSetting_Close>Vicino</FALCLF.enumSetting_Close>
   <FALCLF.enumSetting_Middle>Medio</FALCLF.enumSetting_Middle>

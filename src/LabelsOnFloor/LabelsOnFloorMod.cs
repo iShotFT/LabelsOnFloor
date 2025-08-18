@@ -7,6 +7,7 @@ using RimWorld.Planet;
 using UnityEngine;
 using Verse;
 using LabelsOnFloor.FontLibrary;
+using LabelsOnFloor.Services;
 
 namespace LabelsOnFloor
 {
@@ -41,6 +42,9 @@ namespace LabelsOnFloor
         {
             Instance = this;
             Settings = GetSettings<LabelsOnFloorSettings>();
+            
+            // Initialize screenshot detection for mod compatibility
+            ScreenshotDetector.Initialize();
         }
         
         public void InitializeWorldComponents(CustomRoomLabelManagerComponent customRoomLabelManager, CustomZoneLabelManagerComponent customZoneLabelManager)
@@ -101,6 +105,12 @@ namespace LabelsOnFloor
             if (!IsModActive())
             {
                 LabelPlacementHandler?.SetDirty();
+                return;
+            }
+            
+            // Screenshot compatibility: hide labels if screenshot in progress and setting enabled
+            if (Settings.hideLabelsInScreenshots && ScreenshotDetector.IsScreenshotInProgress())
+            {
                 return;
             }
             
@@ -315,6 +325,17 @@ namespace LabelsOnFloor
                     "FALCLF.ShowStockpileZoneLabelsDesc")
                     .DependsOn(() => Settings.showZoneLabels)
                     .SetIndentLevel(1);
+                    
+                // Mod Compatibility Category (only shown if compatible mods detected)
+                if (ScreenshotDetector.ShouldShowCompatibilityCategory())
+                {
+                    var compatCategory = settingsFramework.AddCategory("FALCLF.CategoryCompatibility", "FALCLF.CategoryCompatibilityDesc");
+                    
+                    compatCategory.AddCheckbox("hideLabelsInScreenshots", "FALCLF.HideLabelsInScreenshots", 
+                        () => Settings.hideLabelsInScreenshots,
+                        v => Settings.hideLabelsInScreenshots = v,
+                        "FALCLF.HideLabelsInScreenshotsDesc");
+                }
             }
             
             return settingsFramework;

@@ -89,6 +89,15 @@
     <FALCLF.LabelsEnabled>Labels enabled</FALCLF.LabelsEnabled>
     <FALCLF.LabelsDisabled>Labels disabled</FALCLF.LabelsDisabled>
 
+    <!-- Mod Compatibility Settings -->
+    <FALCLF.CategoryCompatibility>Mod Compatibility</FALCLF.CategoryCompatibility>
+    <FALCLF.CategoryCompatibilityDesc>Settings for compatibility with other mods</FALCLF.CategoryCompatibilityDesc>
+    
+    <FALCLF.HideLabelsInScreenshots>Hide labels during screenshots</FALCLF.HideLabelsInScreenshots>
+    <FALCLF.HideLabelsInScreenshotsDesc>When enabled, room and zone labels will be hidden while Progress Renderer or native RimWorld screenshots are being taken</FALCLF.HideLabelsInScreenshotsDesc>
+    
+    <FALCLF.DetectedMods>Detected compatible mods</FALCLF.DetectedMods>
+
     <FALCLF.enumSetting_Closest>Closest</FALCLF.enumSetting_Closest>
     <FALCLF.enumSetting_Close>Close</FALCLF.enumSetting_Close>
     <FALCLF.enumSetting_Middle>Middle</FALCLF.enumSetting_Middle>

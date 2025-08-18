@@ -26,6 +26,9 @@ namespace LabelsOnFloor
         public float minFontScale = 0.2f;
         public CameraZoomRange maxAllowedZoom = CameraZoomRange.Furthest;
         
+        // Mod Compatibility Settings
+        public bool hideLabelsInScreenshots = false;
+        
         // Default values for reset
         public static class Defaults
         {
@@ -40,6 +43,7 @@ namespace LabelsOnFloor
             public const float MaxFontScale = 1f;
             public const float MinFontScale = 0.2f;
             public const CameraZoomRange MaxAllowedZoom = CameraZoomRange.Furthest;
+            public const bool HideLabelsInScreenshots = false;
         }
         
         /// <summary>
@@ -58,6 +62,7 @@ namespace LabelsOnFloor
             maxFontScale = Defaults.MaxFontScale;
             minFontScale = Defaults.MinFontScale;
             maxAllowedZoom = Defaults.MaxAllowedZoom;
+            hideLabelsInScreenshots = Defaults.HideLabelsInScreenshots;
         }
         
         public override void ExposeData()
@@ -74,6 +79,7 @@ namespace LabelsOnFloor
             Scribe_Values.Look(ref maxFontScale, "maxFontScale", 1f);
             Scribe_Values.Look(ref minFontScale, "minFontScale", 0.2f);
             Scribe_Values.Look(ref maxAllowedZoom, "maxAllowedZoom", CameraZoomRange.Furthest);
+            Scribe_Values.Look(ref hideLabelsInScreenshots, "hideLabelsInScreenshots", false);
             
             // Legacy compatibility: if enabled is false, set mode to Hidden
             if (Scribe.mode == LoadSaveMode.LoadingVars && !enabled && visibilityMode == LabelVisibilityMode.Visible)

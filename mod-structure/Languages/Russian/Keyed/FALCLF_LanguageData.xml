@@ -78,6 +78,15 @@
   <FALCLF.Cancel>Отмена</FALCLF.Cancel>
   <FALCLF.OK>OK</FALCLF.OK>
 
+  <!-- Mod Compatibility Settings -->
+  <FALCLF.CategoryCompatibility>Совместимость модов</FALCLF.CategoryCompatibility>
+  <FALCLF.CategoryCompatibilityDesc>Настройки совместимости с другими модами</FALCLF.CategoryCompatibilityDesc>
+  
+  <FALCLF.HideLabelsInScreenshots>Скрывать метки во время скриншотов</FALCLF.HideLabelsInScreenshots>
+  <FALCLF.HideLabelsInScreenshotsDesc>Когда включено, метки комнат и зон будут скрыты во время создания скриншотов Progress Renderer или встроенных скриншотов RimWorld</FALCLF.HideLabelsInScreenshotsDesc>
+  
+  <FALCLF.DetectedMods>Обнаруженные совместимые моды</FALCLF.DetectedMods>
+
   <FALCLF.enumSetting_Closest>Ближайший</FALCLF.enumSetting_Closest>
   <FALCLF.enumSetting_Close>Близко</FALCLF.enumSetting_Close>
   <FALCLF.enumSetting_Middle>Средне</FALCLF.enumSetting_Middle>

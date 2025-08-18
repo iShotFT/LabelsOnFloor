@@ -60,20 +60,16 @@ namespace LabelsOnFloor.SettingsLibrary.Controls
                                             refreshButtonSize, ButtonHeight, config);
             refreshRect.x -= (ButtonWidth + spacing); // Position to the left of dropdown
             
-            // Only redraw refresh button when needed
-            if (NeedsRedraw(refreshRect, currentValue))
+            // Always draw refresh button (IMGUI requires consistent widget calls)
+            if (Verse.Widgets.ButtonText(refreshRect, "↻", false))
             {
-                // Draw refresh icon/text
-                if (Verse.Widgets.ButtonText(refreshRect, "↻", false))
-                {
-                    // Refresh the font registry
-                    FontLibrary.FontRegistry.RefreshFonts();
-                    Messages.Message("Fonts refreshed", MessageTypeDefOf.NeutralEvent, false);
-                    cachedFontName = null; // Clear cache to force refresh
-                    MarkDirty();
-                }
-                TooltipHandler.TipRegion(refreshRect, "Refresh font list");
+                // Refresh the font registry
+                FontLibrary.FontRegistry.RefreshFonts();
+                Messages.Message("Fonts refreshed", MessageTypeDefOf.NeutralEvent, false);
+                cachedFontName = null; // Clear cache to force refresh
+                MarkDirty();
             }
+            TooltipHandler.TipRegion(refreshRect, "Refresh font list");
             
             // Draw dropdown button (original position)
             Rect buttonRect = GetControlRect(x, y + (rowHeight - ButtonHeight) / 2f, labelWidth, controlWidth, ButtonWidth, ButtonHeight, config);

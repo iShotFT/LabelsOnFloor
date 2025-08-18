@@ -78,6 +78,15 @@
   <FALCLF.Cancel>Cancelar</FALCLF.Cancel>
   <FALCLF.OK>OK</FALCLF.OK>
 
+  <!-- Mod Compatibility Settings -->
+  <FALCLF.CategoryCompatibility>Compatibilidade de Mods</FALCLF.CategoryCompatibility>
+  <FALCLF.CategoryCompatibilityDesc>Configurações para compatibilidade com outros mods</FALCLF.CategoryCompatibilityDesc>
+  
+  <FALCLF.HideLabelsInScreenshots>Ocultar etiquetas durante capturas</FALCLF.HideLabelsInScreenshots>
+  <FALCLF.HideLabelsInScreenshotsDesc>Quando habilitado, as etiquetas de quartos e zonas serão ocultadas enquanto Progress Renderer ou capturas nativas do RimWorld estiverem sendo feitas</FALCLF.HideLabelsInScreenshotsDesc>
+  
+  <FALCLF.DetectedMods>Mods compatíveis detectados</FALCLF.DetectedMods>
+
   <FALCLF.enumSetting_Closest>Mais próximo</FALCLF.enumSetting_Closest>
   <FALCLF.enumSetting_Close>Próximo</FALCLF.enumSetting_Close>
   <FALCLF.enumSetting_Middle>Médio</FALCLF.enumSetting_Middle>

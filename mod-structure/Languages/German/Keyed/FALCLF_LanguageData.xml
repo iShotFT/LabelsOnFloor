@@ -78,6 +78,15 @@
   <FALCLF.Cancel>Abbrechen</FALCLF.Cancel>
   <FALCLF.OK>OK</FALCLF.OK>
 
+  <!-- Mod Compatibility Settings -->
+  <FALCLF.CategoryCompatibility>Mod-Kompatibilität</FALCLF.CategoryCompatibility>
+  <FALCLF.CategoryCompatibilityDesc>Einstellungen für Kompatibilität mit anderen Mods</FALCLF.CategoryCompatibilityDesc>
+  
+  <FALCLF.HideLabelsInScreenshots>Beschriftungen bei Screenshots ausblenden</FALCLF.HideLabelsInScreenshots>
+  <FALCLF.HideLabelsInScreenshotsDesc>Wenn aktiviert, werden Raum- und Zonenbeschriftungen ausgeblendet, während Progress Renderer oder native RimWorld-Screenshots aufgenommen werden</FALCLF.HideLabelsInScreenshotsDesc>
+  
+  <FALCLF.DetectedMods>Erkannte kompatible Mods</FALCLF.DetectedMods>
+
   <FALCLF.enumSetting_Closest>Am nächsten</FALCLF.enumSetting_Closest>
   <FALCLF.enumSetting_Close>Nah</FALCLF.enumSetting_Close>
   <FALCLF.enumSetting_Middle>Mittel</FALCLF.enumSetting_Middle>
