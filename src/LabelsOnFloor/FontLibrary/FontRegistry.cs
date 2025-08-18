@@ -54,7 +54,6 @@ namespace LabelsOnFloor.FontLibrary
                 // RimWorld's ContentFinder will look for textures in the mod's Textures folder
                 
                 var allTextures = ContentFinder<Texture2D>.GetAllInFolder("Fonts");
-                Log.Message($"[LabelsOnFloor] First GetAllInFolder returned {allTextures?.Count() ?? 0} textures");
                 
                 foreach (var texture in allTextures)
                 {
@@ -71,7 +70,7 @@ namespace LabelsOnFloor.FontLibrary
                             if (pathParts.Length >= 2)
                             {
                                 fontName = pathParts[pathParts.Length - 2];
-                                Log.Message($"[LabelsOnFloor] FIRST PASS: Found font '{fontName}' from texture '{texture.name}'");
+                                // Log.Message($"[LabelsOnFloor] FIRST PASS: Found font '{fontName}' from texture '{texture.name}'");
                             }
                         }
                         // Pattern 2: Might be just "Font" if in subdirectory
@@ -105,11 +104,11 @@ namespace LabelsOnFloor.FontLibrary
                 // Dynamic font discovery - properly scan the Fonts folder
                 // Each font has structure: Fonts/[FontName]/Font.png, Atlas.json, Preview.png
                 
-                Log.Message($"[LabelsOnFloor] Starting SECOND PASS font discovery...");
+                // Log.Message($"[LabelsOnFloor] Starting SECOND PASS font discovery...");
                 
                 // Use GetAllInFolder to find all textures in Fonts subdirectories
                 var allTexturesSecond = ContentFinder<Texture2D>.GetAllInFolder("Fonts");
-                Log.Message($"[LabelsOnFloor] Second GetAllInFolder returned {allTexturesSecond?.Count() ?? 0} textures");
+                // Log.Message($"[LabelsOnFloor] Second GetAllInFolder returned {allTexturesSecond?.Count() ?? 0} textures");
                 
                 var processedFonts = new HashSet<string>();
                 
@@ -121,7 +120,7 @@ namespace LabelsOnFloor.FontLibrary
                         continue;
                     }
                     
-                    Log.Message($"[LabelsOnFloor] SECOND PASS: Processing texture: '{texture.name}'");
+                    // Log.Message($"[LabelsOnFloor] SECOND PASS: Processing texture: '{texture.name}'");
                     
                     // Parse the texture path to extract font name
                     // texture.name could be "Fonts/JetBrainsMono/Font" or similar
@@ -132,7 +131,7 @@ namespace LabelsOnFloor.FontLibrary
                     if (pathParts.Length >= 3 && pathParts[0] == "Fonts")
                     {
                         string fontName = pathParts[1];
-                        Log.Message($"[LabelsOnFloor] SECOND PASS: Found potential font directory: '{fontName}'");
+                        // Log.Message($"[LabelsOnFloor] SECOND PASS: Found potential font directory: '{fontName}'");
                         
                         // Skip if already processed
                         if (processedFonts.Contains(fontName) || _registeredFonts.ContainsKey(fontName))
@@ -168,8 +167,8 @@ namespace LabelsOnFloor.FontLibrary
                 }
                 
                 // Set default font: Classic if available, otherwise first registered
-                Log.Message($"[LabelsOnFloor] Total registered fonts after both passes: {_registeredFonts.Count}");
-                Log.Message($"[LabelsOnFloor] Registered font names: {string.Join(", ", _registeredFonts.Keys)}");
+                // Log.Message($"[LabelsOnFloor] Total registered fonts after both passes: {_registeredFonts.Count}");
+                // Log.Message($"[LabelsOnFloor] Registered font names: {string.Join(", ", _registeredFonts.Keys)}");
                 
                 if (_registeredFonts.ContainsKey("Classic"))
                 {
