@@ -132,21 +132,48 @@ function doPostBuild
     $distTargetDir = "$distDir\$targetName"
     removePath $distDir
 
-    $targetDir = "$(getProjectDir)\bin\Release"
-    $targetPath = "$targetDir\$targetName.dll"
-
-    $distAssemblyDir = "$distTargetDir\$(getGameVersion)\Assemblies"
-    mkdir $distAssemblyDir | Out-Null
-
-    Copy-Item -Recurse -Force "$PSScriptRoot\mod-structure\*" $distTargetDir
-    Copy-Item -Force $targetPath $distAssemblyDir
-
-    $modStructureAssemblyLocation = "$PSScriptRoot\mod-structure\$(getGameVersion)\Assemblies"
-    if (!(Test-Path $modStructureAssemblyLocation))
+    # Create dist directory structure
+    if (!(Test-Path $distTargetDir))
     {
-        mkdir $modStructureAssemblyLocation | Out-Null
+        mkdir $distTargetDir -Force | Out-Null
     }
-    Copy-Item -Force $targetPath $modStructureAssemblyLocation
+    
+    # Copy mod structure
+    Copy-Item -Recurse -Force "$PSScriptRoot\mod-structure\*" $distTargetDir
+    
+    # Handle 1.6 build
+    $targetDir16 = "$(getProjectDir)\bin\Release"
+    $targetPath16 = "$targetDir16\$targetName.dll"
+    if (Test-Path $targetPath16)
+    {
+        $distAssemblyDir16 = "$distTargetDir\1.6\Assemblies"
+        mkdir $distAssemblyDir16 -Force | Out-Null
+        Copy-Item -Force $targetPath16 $distAssemblyDir16
+        
+        $modStructureAssemblyLocation16 = "$PSScriptRoot\mod-structure\1.6\Assemblies"
+        if (!(Test-Path $modStructureAssemblyLocation16))
+        {
+            mkdir $modStructureAssemblyLocation16 -Force | Out-Null
+        }
+        Copy-Item -Force $targetPath16 $modStructureAssemblyLocation16
+    }
+    
+    # Handle 1.5 build
+    $targetDir15 = "$(getProjectDir)\bin\Release_1.5"
+    $targetPath15 = "$targetDir15\$targetName.dll"
+    if (Test-Path $targetPath15)
+    {
+        $distAssemblyDir15 = "$distTargetDir\1.5\Assemblies"
+        mkdir $distAssemblyDir15 -Force | Out-Null
+        Copy-Item -Force $targetPath15 $distAssemblyDir15
+        
+        $modStructureAssemblyLocation15 = "$PSScriptRoot\mod-structure\1.5\Assemblies"
+        if (!(Test-Path $modStructureAssemblyLocation15))
+        {
+            mkdir $modStructureAssemblyLocation15 -Force | Out-Null
+        }
+        Copy-Item -Force $targetPath15 $modStructureAssemblyLocation15
+    }
 
     Write-Host "Creating distro package"
     $content = Get-Content -Raw $assemblyInfoFile
