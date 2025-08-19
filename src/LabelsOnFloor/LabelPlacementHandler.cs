@@ -65,9 +65,6 @@ namespace LabelsOnFloor
 
         public void AddOrUpdateRoom(Room room, PlacementDataFinderForRooms placementDataFinderForRooms)
         {
-            if (!Main.Instance.ShowRoomNames())
-                return;
-
             if (!_ready || room == null)
                 return;
 
@@ -76,6 +73,32 @@ namespace LabelsOnFloor
 
             if (room.Fogged || !_roomRoleFinder.IsImportantRoom(room))
                 return;
+            
+            // Check per-room visibility override
+            var customRoomLabelManager = Main.Instance.GetCustomRoomLabelManager();
+            if (customRoomLabelManager != null)
+            {
+                var customData = customRoomLabelManager.GetCustomDataFor(room);
+                if (customData != null && customData.ShowLabel.HasValue)
+                {
+                    // Room has explicit visibility override
+                    if (!customData.ShowLabel.Value)
+                        return; // Room is explicitly hidden
+                    // If ShowLabel is true, continue to show the label regardless of global setting
+                }
+                else
+                {
+                    // No override, use global setting
+                    if (!Main.Instance.ShowRoomNames())
+                        return;
+                }
+            }
+            else
+            {
+                // No custom manager, use global setting
+                if (!Main.Instance.ShowRoomNames())
+                    return;
+            }
 
             var text = _labelMaker.GetRoomLabel(room);
             if (placementDataFinderForRooms == null)
@@ -86,16 +109,12 @@ namespace LabelsOnFloor
             var label = AddLabelForArea(room, text, () => placementDataFinderForRooms.GetData(room, text.Length));
             
             // Apply custom color if available
-            if (label != null)
+            if (label != null && customRoomLabelManager != null)
             {
-                var customRoomLabelManager = Main.Instance.GetCustomRoomLabelManager();
-                if (customRoomLabelManager != null)
+                var customData = customRoomLabelManager.GetCustomDataFor(room);
+                if (customData != null && customData.CustomColor.HasValue)
                 {
-                    var customData = customRoomLabelManager.GetCustomDataFor(room);
-                    if (customData != null && customData.CustomColor.HasValue)
-                    {
-                        label.CustomColor = customData.CustomColor;
-                    }
+                    label.CustomColor = customData.CustomColor;
                 }
             }
         }
@@ -108,21 +127,58 @@ namespace LabelsOnFloor
             if (zone.Map != _map)
                 return;
 
-            // Check granular zone type settings
-            if (zone is Zone_Growing)
+            // Check per-zone visibility override
+            var customZoneLabelManager = Main.Instance.GetCustomZoneLabelManager();
+            if (customZoneLabelManager != null)
             {
-                if (!Main.Instance.ShowGrowingZoneLabels())
-                    return;
+                var customData = customZoneLabelManager.GetCustomDataFor(zone);
+                if (customData != null && customData.ShowLabel.HasValue)
+                {
+                    // Zone has explicit visibility override
+                    if (!customData.ShowLabel.Value)
+                        return; // Zone is explicitly hidden
+                    // If ShowLabel is true, continue to show the label regardless of global setting
+                }
+                else
+                {
+                    // No override, use global settings
+                    // Check granular zone type settings
+                    if (zone is Zone_Growing)
+                    {
+                        if (!Main.Instance.ShowGrowingZoneLabels())
+                            return;
+                    }
+                    else if (zone is Zone_Stockpile)
+                    {
+                        if (!Main.Instance.ShowStockpileZoneLabels())
+                            return;
+                    }
+                    // For any other zone types, use the general zone setting
+                    else if (!Main.Instance.ShowZoneNames())
+                    {
+                        return;
+                    }
+                }
             }
-            else if (zone is Zone_Stockpile)
+            else
             {
-                if (!Main.Instance.ShowStockpileZoneLabels())
+                // No custom manager, use global settings
+                // Check granular zone type settings
+                if (zone is Zone_Growing)
+                {
+                    if (!Main.Instance.ShowGrowingZoneLabels())
+                        return;
+                }
+                else if (zone is Zone_Stockpile)
+                {
+                    if (!Main.Instance.ShowStockpileZoneLabels())
+                        return;
+                }
+                // For any other zone types, use the general zone setting
+                else if (!Main.Instance.ShowZoneNames())
+                {
                     return;
-            }
-            // For any other zone types, use the general zone setting
-            else if (!Main.Instance.ShowZoneNames())
-            {
-                return;
+                }
             }
 
             var text = _labelMaker.GetZoneLabel(zone);
@@ -134,7 +190,6 @@ namespace LabelsOnFloor
                 addedLabel.IsZone = true;
                 
                 // Apply custom color if zone has one
-                var customZoneLabelManager = Main.Instance.GetCustomZoneLabelManager();
                 if (customZoneLabelManager != null)
                 {
                     var customColor = customZoneLabelManager.GetCustomColorFor(zone);

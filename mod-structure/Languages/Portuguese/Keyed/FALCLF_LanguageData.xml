@@ -46,8 +46,8 @@
 
   <FALCLF.RenameDesc>Renomear uma sala ou zona</FALCLF.RenameDesc>
   <FALCLF.RenameRoom>Renomear Sala</FALCLF.RenameRoom>
-  <FALCLF.RoomName>Nome da sala:</FALCLF.RoomName>
-  <FALCLF.RoomColor>Cor da sala:</FALCLF.RoomColor>
+  <FALCLF.RoomName>Nome:</FALCLF.RoomName>
+  <FALCLF.RoomColor>Cor:</FALCLF.RoomColor>
   <FALCLF.CustomColor>Cor Personalizada</FALCLF.CustomColor>
   <FALCLF.DefaultColor>Cor Padrão</FALCLF.DefaultColor>
   <FALCLF.UseDefaultColor>Usar cor padrão</FALCLF.UseDefaultColor>
@@ -86,6 +86,15 @@
   <FALCLF.HideLabelsInScreenshotsDesc>Quando habilitado, as etiquetas de quartos e zonas serão ocultadas enquanto Progress Renderer ou capturas nativas do RimWorld estiverem sendo feitas</FALCLF.HideLabelsInScreenshotsDesc>
   
   <FALCLF.DetectedMods>Mods compatíveis detectados</FALCLF.DetectedMods>
+
+  <!-- Per-Room Visibility Settings -->
+  <FALCLF.RoomVisibility>Visibilidade</FALCLF.RoomVisibility>
+  <FALCLF.RoomVisibilityDefault>Usar Padrão</FALCLF.RoomVisibilityDefault>
+  <FALCLF.RoomVisibilityDefaultDesc>Usa a configuração de visibilidade global</FALCLF.RoomVisibilityDefaultDesc>
+  <FALCLF.RoomVisibilityShow>Sempre Mostrar</FALCLF.RoomVisibilityShow>
+  <FALCLF.RoomVisibilityShowDesc>Substitui a configuração global para sempre mostrar</FALCLF.RoomVisibilityShowDesc>
+  <FALCLF.RoomVisibilityHide>Sempre Ocultar</FALCLF.RoomVisibilityHide>
+  <FALCLF.RoomVisibilityHideDesc>Substitui a configuração global para nunca mostrar</FALCLF.RoomVisibilityHideDesc>
 
   <FALCLF.enumSetting_Closest>Mais próximo</FALCLF.enumSetting_Closest>
   <FALCLF.enumSetting_Close>Próximo</FALCLF.enumSetting_Close>

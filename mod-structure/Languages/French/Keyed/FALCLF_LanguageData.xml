@@ -46,8 +46,8 @@
 
   <FALCLF.RenameDesc>Renommer une pièce ou une zone</FALCLF.RenameDesc>
   <FALCLF.RenameRoom>Renommer la Pièce</FALCLF.RenameRoom>
-  <FALCLF.RoomName>Nom de la pièce:</FALCLF.RoomName>
-  <FALCLF.RoomColor>Couleur de la pièce:</FALCLF.RoomColor>
+  <FALCLF.RoomName>Nom:</FALCLF.RoomName>
+  <FALCLF.RoomColor>Couleur:</FALCLF.RoomColor>
   <FALCLF.CustomColor>Couleur Personnalisée</FALCLF.CustomColor>
   <FALCLF.DefaultColor>Couleur Par Défaut</FALCLF.DefaultColor>
   <FALCLF.UseDefaultColor>Utiliser la couleur par défaut</FALCLF.UseDefaultColor>
@@ -86,6 +86,15 @@
   <FALCLF.HideLabelsInScreenshotsDesc>Lorsqu'activé, les étiquettes de pièces et zones seront masquées pendant que Progress Renderer ou les captures natives de RimWorld sont en cours</FALCLF.HideLabelsInScreenshotsDesc>
   
   <FALCLF.DetectedMods>Mods compatibles détectés</FALCLF.DetectedMods>
+
+  <!-- Per-Room Visibility Settings -->
+  <FALCLF.RoomVisibility>Visibilité</FALCLF.RoomVisibility>
+  <FALCLF.RoomVisibilityDefault>Utiliser Par Défaut</FALCLF.RoomVisibilityDefault>
+  <FALCLF.RoomVisibilityDefaultDesc>Utilise le paramètre de visibilité global</FALCLF.RoomVisibilityDefaultDesc>
+  <FALCLF.RoomVisibilityShow>Toujours Afficher</FALCLF.RoomVisibilityShow>
+  <FALCLF.RoomVisibilityShowDesc>Remplace le paramètre global pour toujours afficher</FALCLF.RoomVisibilityShowDesc>
+  <FALCLF.RoomVisibilityHide>Toujours Masquer</FALCLF.RoomVisibilityHide>
+  <FALCLF.RoomVisibilityHideDesc>Remplace le paramètre global pour ne jamais afficher</FALCLF.RoomVisibilityHideDesc>
 
   <FALCLF.enumSetting_Closest>Le plus proche</FALCLF.enumSetting_Closest>
   <FALCLF.enumSetting_Close>Proche</FALCLF.enumSetting_Close>

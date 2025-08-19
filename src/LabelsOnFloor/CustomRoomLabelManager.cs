@@ -48,7 +48,9 @@ namespace LabelsOnFloor
         public void CleanupMissingRooms()
         {
             _roomLabels.ForEach(d => d.AllocateRoomObjectIfNeeded());
-            _roomLabels.RemoveAll(data => !data.IsRoomStillValid() || string.IsNullOrEmpty(data.Label));
+            // Only remove if room is invalid OR if there's no customization at all
+            _roomLabels.RemoveAll(data => !data.IsRoomStillValid() || 
+                (string.IsNullOrEmpty(data.Label) && !data.CustomColor.HasValue && !data.ShowLabel.HasValue));
         }
         
         // Called by LegacyCustomRoomLabelManager to migrate old save data

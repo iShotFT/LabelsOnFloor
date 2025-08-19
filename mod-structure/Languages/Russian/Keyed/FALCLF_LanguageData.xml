@@ -46,8 +46,8 @@
 
   <FALCLF.RenameDesc>Переименовать комнату или зону</FALCLF.RenameDesc>
   <FALCLF.RenameRoom>Переименовать Комнату</FALCLF.RenameRoom>
-  <FALCLF.RoomName>Название комнаты:</FALCLF.RoomName>
-  <FALCLF.RoomColor>Цвет комнаты:</FALCLF.RoomColor>
+  <FALCLF.RoomName>Название:</FALCLF.RoomName>
+  <FALCLF.RoomColor>Цвет:</FALCLF.RoomColor>
   <FALCLF.CustomColor>Пользовательский Цвет</FALCLF.CustomColor>
   <FALCLF.DefaultColor>Цвет По Умолчанию</FALCLF.DefaultColor>
   <FALCLF.UseDefaultColor>Использовать цвет по умолчанию</FALCLF.UseDefaultColor>
@@ -86,6 +86,15 @@
   <FALCLF.HideLabelsInScreenshotsDesc>Когда включено, метки комнат и зон будут скрыты во время создания скриншотов Progress Renderer или встроенных скриншотов RimWorld</FALCLF.HideLabelsInScreenshotsDesc>
   
   <FALCLF.DetectedMods>Обнаруженные совместимые моды</FALCLF.DetectedMods>
+
+  <!-- Per-Room Visibility Settings -->
+  <FALCLF.RoomVisibility>Видимость</FALCLF.RoomVisibility>
+  <FALCLF.RoomVisibilityDefault>Использовать По Умолчанию</FALCLF.RoomVisibilityDefault>
+  <FALCLF.RoomVisibilityDefaultDesc>Использует глобальную настройку видимости</FALCLF.RoomVisibilityDefaultDesc>
+  <FALCLF.RoomVisibilityShow>Всегда Показывать</FALCLF.RoomVisibilityShow>
+  <FALCLF.RoomVisibilityShowDesc>Переопределяет глобальную настройку для постоянного отображения</FALCLF.RoomVisibilityShowDesc>
+  <FALCLF.RoomVisibilityHide>Всегда Скрывать</FALCLF.RoomVisibilityHide>
+  <FALCLF.RoomVisibilityHideDesc>Переопределяет глобальную настройку чтобы никогда не отображать</FALCLF.RoomVisibilityHideDesc>
 
   <FALCLF.enumSetting_Closest>Ближайший</FALCLF.enumSetting_Closest>
   <FALCLF.enumSetting_Close>Близко</FALCLF.enumSetting_Close>

@@ -24,6 +24,16 @@ namespace LabelsOnFloor
             }
         }
 
+        public CustomZoneData GetCustomDataFor(Zone zone)
+        {
+            if (zone == null)
+                return null;
+
+            // Try to find existing data - only check ID since zone references can change
+            return _zoneLabels.FirstOrDefault(data => 
+                data != null && data.ZoneId == zone.ID);
+        }
+
         public CustomZoneData GetOrCreateCustomData(Zone zone)
         {
             if (zone == null)
@@ -49,7 +59,7 @@ namespace LabelsOnFloor
 
             var data = _zoneLabels.FirstOrDefault(d => 
                 d != null && d.ZoneId == zone.ID);
-            return data != null && (!string.IsNullOrEmpty(data.Label) || data.CustomColor.HasValue);
+            return data != null && (!string.IsNullOrEmpty(data.Label) || data.CustomColor.HasValue || data.ShowLabel.HasValue);
         }
 
         public string GetCustomLabelFor(Zone zone)

@@ -8,6 +8,9 @@ namespace LabelsOnFloor
         public string Label;
         
         public Color? CustomColor;
+        
+        // Per-room visibility override: null = use global, true = always show, false = always hide
+        public bool? ShowLabel;
 
         public Room RoomObject;
 
@@ -81,6 +84,8 @@ namespace LabelsOnFloor
             {
                 CustomColor = tempColor;
             }
+            // Save/load visibility override - defaults to null for backwards compatibility
+            Scribe_Values.Look(ref ShowLabel, "showLabel", null);
             Scribe_References.Look(ref _map, "map");
             Scribe_Values.Look(ref _keyCell, "keyCell");
         }
