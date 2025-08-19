@@ -27,9 +27,8 @@ TARGET_FONTS = [
     ("JetBrainsMono-Bold.ttf", "JetBrainsMonoBold"),
     ("JetBrainsMono-Light.ttf", "JetBrainsMonoLight"),
     ("F25_BlackletterTypewriter.ttf", "Medieval"),  # Medieval style font
-    # Add more fonts here when needed, e.g.:
-    # ("RobotoMono-Regular.ttf", "RobotoMono"),
-    # ("FiraMono-Regular.ttf", "FiraMono"),
+    ("Consolas-Bold.ttf", "Classic"),  # Bold
+    ("fonts/ttf/SpecialElite-Regular.ttf", "Typewriter"),  # Typewriter style font
 ]
 
 # Preview configuration - increased size for better readability
