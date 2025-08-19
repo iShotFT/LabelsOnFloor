@@ -106,7 +106,34 @@ namespace LabelsOnFloor
                 placementDataFinderForRooms = new PlacementDataFinderForRooms(_map);
             }
 
-            var label = AddLabelForArea(room, text, () => placementDataFinderForRooms.GetData(room, text.Length));
+            var label = AddLabelForArea(room, text, () => 
+            {
+                var baseData = placementDataFinderForRooms.GetData(room, text.Length);
+                if (baseData == null)
+                    return null;
+                    
+                // Apply position offset if available
+                if (customRoomLabelManager != null)
+                {
+                    var customData = customRoomLabelManager.GetCustomDataFor(room);
+                    if (customData?.PositionOffset != null)
+                    {
+                        // Create a new PlacementData with the offset applied
+                        var offsetData = new PlacementData
+                        {
+                            Position = new IntVec3(
+                                baseData.Position.x + (int)customData.PositionOffset.Value.x,
+                                baseData.Position.y,
+                                baseData.Position.z + (int)customData.PositionOffset.Value.y
+                            ),
+                            Scale = baseData.Scale,
+                            Flipped = baseData.Flipped
+                        };
+                        return offsetData;
+                    }
+                }
+                return baseData;
+            });
             
             // Apply custom color if available
             if (label != null && customRoomLabelManager != null)
@@ -183,7 +210,34 @@ namespace LabelsOnFloor
 
             var text = _labelMaker.GetZoneLabel(zone);
             var addedLabel = 
-                AddLabelForArea(zone, text, () => PlacementDataFinderForZones.GetData(zone, _map, text.Length));
+                AddLabelForArea(zone, text, () => 
+                {
+                    var baseData = PlacementDataFinderForZones.GetData(zone, _map, text.Length);
+                    if (baseData == null)
+                        return null;
+                        
+                    // Apply position offset if available
+                    if (customZoneLabelManager != null)
+                    {
+                        var customData = customZoneLabelManager.GetCustomDataFor(zone);
+                        if (customData?.PositionOffset != null)
+                        {
+                            // Create a new PlacementData with the offset applied
+                            var offsetData = new PlacementData
+                            {
+                                Position = new IntVec3(
+                                    baseData.Position.x + (int)customData.PositionOffset.Value.x,
+                                    baseData.Position.y,
+                                    baseData.Position.z + (int)customData.PositionOffset.Value.y
+                                ),
+                                Scale = baseData.Scale,
+                                Flipped = baseData.Flipped
+                            };
+                            return offsetData;
+                        }
+                    }
+                    return baseData;
+                });
 
             if (addedLabel != null)
             {

@@ -12,6 +12,9 @@ namespace LabelsOnFloor
         // Per-zone visibility override: null = use global, true = always show, false = always hide
         public bool? ShowLabel;
         
+        // Position offset from auto-calculated position: null = no offset, X/Z offset in cells
+        public Vector2? PositionOffset;
+        
         public int ZoneId;
         private Map _map;
 
@@ -51,6 +54,15 @@ namespace LabelsOnFloor
             }
             // Save/load visibility override - defaults to null for backwards compatibility
             Scribe_Values.Look(ref ShowLabel, "showLabel", null);
+            
+            // Save/load position offset - use temporary variable for nullable Vector2
+            Vector2 tempOffset = PositionOffset ?? Vector2.zero;
+            Scribe_Values.Look(ref tempOffset, "positionOffset", Vector2.zero);
+            if (Scribe.mode == LoadSaveMode.LoadingVars && tempOffset != Vector2.zero)
+            {
+                PositionOffset = tempOffset;
+            }
+            
             Scribe_References.Look(ref _map, "map");
             Scribe_Values.Look(ref ZoneId, "zoneId");
         }

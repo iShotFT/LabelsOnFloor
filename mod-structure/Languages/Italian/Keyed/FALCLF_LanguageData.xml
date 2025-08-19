@@ -95,6 +95,10 @@
   <FALCLF.RoomVisibilityShowDesc>Sovrascrive l'impostazione globale per mostrare sempre</FALCLF.RoomVisibilityShowDesc>
   <FALCLF.RoomVisibilityHide>Nascondi Sempre</FALCLF.RoomVisibilityHide>
   <FALCLF.RoomVisibilityHideDesc>Sovrascrive l'impostazione globale per non mostrare mai</FALCLF.RoomVisibilityHideDesc>
+  
+  <!-- Position Adjustment Settings -->
+  <FALCLF.PositionAdjust>Posizione</FALCLF.PositionAdjust>
+  <FALCLF.ResetPosition>Ripristina posizione predefinita</FALCLF.ResetPosition>
 
   <FALCLF.enumSetting_Closest>Più vicino</FALCLF.enumSetting_Closest>
   <FALCLF.enumSetting_Close>Vicino</FALCLF.enumSetting_Close>

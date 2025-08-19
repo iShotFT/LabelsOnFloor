@@ -59,7 +59,7 @@ namespace LabelsOnFloor
 
             var data = _zoneLabels.FirstOrDefault(d => 
                 d != null && d.ZoneId == zone.ID);
-            return data != null && (!string.IsNullOrEmpty(data.Label) || data.CustomColor.HasValue || data.ShowLabel.HasValue);
+            return data != null && (!string.IsNullOrEmpty(data.Label) || data.CustomColor.HasValue || data.ShowLabel.HasValue || data.PositionOffset.HasValue);
         }
 
         public string GetCustomLabelFor(Zone zone)
@@ -86,7 +86,9 @@ namespace LabelsOnFloor
         {
             if (_zoneLabels != null)
             {
-                _zoneLabels.RemoveAll(data => data == null || !data.IsZoneStillValid());
+                // Only remove if zone is invalid OR if there's no customization at all
+                _zoneLabels.RemoveAll(data => data == null || !data.IsZoneStillValid() ||
+                    (string.IsNullOrEmpty(data.Label) && !data.CustomColor.HasValue && !data.ShowLabel.HasValue && !data.PositionOffset.HasValue));
             }
         }
 

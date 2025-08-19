@@ -50,7 +50,7 @@ namespace LabelsOnFloor
             _roomLabels.ForEach(d => d.AllocateRoomObjectIfNeeded());
             // Only remove if room is invalid OR if there's no customization at all
             _roomLabels.RemoveAll(data => !data.IsRoomStillValid() || 
-                (string.IsNullOrEmpty(data.Label) && !data.CustomColor.HasValue && !data.ShowLabel.HasValue));
+                (string.IsNullOrEmpty(data.Label) && !data.CustomColor.HasValue && !data.ShowLabel.HasValue && !data.PositionOffset.HasValue));
         }
         
         // Called by LegacyCustomRoomLabelManager to migrate old save data
@@ -67,6 +67,10 @@ namespace LabelsOnFloor
         {
             base.ExposeData();
             Scribe_Collections.Look(ref _roomLabels, "roomLabels", LookMode.Deep);
+            if (_roomLabels == null)
+            {
+                _roomLabels = new List<CustomRoomData>();
+            }
         }
     }
 }

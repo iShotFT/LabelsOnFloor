@@ -16,17 +16,25 @@ namespace LabelsOnFloor
         private string originalName;
         private Color? selectedColor;
         private bool? showLabel;  // null = use global, true = always show, false = always hide
+        private Vector2? positionOffset;  // null = no offset, X/Z offset in cells
         private bool focusedNameField;
         private int startAcceptingInputAtFrame;
         private bool hasSelectedText;
+        
+        // Store original values for cancel
+        private string originalCustomLabel;
+        private Color? originalCustomColor;
+        private bool? originalShowLabel;
+        private Vector2? originalPositionOffset;
         
         // Standard RimWorld dialog sizing
         private const float LabelWidth = 100f;
         private const float FieldSpacing = 10f;
         private const float RowHeight = 30f;
         private const float ButtonHeight = 30f;
+        private const float ArrowButtonSize = 24f;
         
-        public override Vector2 InitialSize => new Vector2(380f, 240f);
+        public override Vector2 InitialSize => new Vector2(380f, 300f);  // Compact with 2-row position controls
         
         public Dialog_RenameRoomWithColor(CustomRoomData customRoomData)
         {
@@ -40,6 +48,13 @@ namespace LabelsOnFloor
             curName = !string.IsNullOrEmpty(customRoomData.Label) ? customRoomData.Label.ToUpper() : originalName.ToUpper();
             selectedColor = customRoomData.CustomColor;
             showLabel = customRoomData.ShowLabel;
+            positionOffset = customRoomData.PositionOffset;
+            
+            // Store original values for cancel
+            originalCustomLabel = customRoomData.Label;
+            originalCustomColor = customRoomData.CustomColor;
+            originalShowLabel = customRoomData.ShowLabel;
+            originalPositionOffset = customRoomData.PositionOffset;
             
             forcePause = true;
             doCloseX = true;
@@ -91,7 +106,13 @@ namespace LabelsOnFloor
                 tempName = tempName.ToUpper();
                 if (tempName.Length < 28) // Max name length from base Dialog_Rename
                 {
-                    curName = tempName;
+                    if (curName != tempName)
+                    {
+                        curName = tempName;
+                        // Live update the label
+                        _customRoomData.Label = curName?.Trim().ToUpper() ?? "";
+                        Main.Instance.LabelPlacementHandler.SetDirty();
+                    }
                 }
             }
             else
@@ -133,6 +154,9 @@ namespace LabelsOnFloor
                 Main.Instance.GetDefaultLabelColor(),
                 (color) => {
                     selectedColor = color;
+                    // Live update the color
+                    _customRoomData.CustomColor = selectedColor;
+                    Main.Instance.LabelPlacementHandler.SetDirty();
                 }
             );
             
@@ -147,6 +171,21 @@ namespace LabelsOnFloor
             Rect visibilityFieldRect = new Rect(LabelWidth + FieldSpacing, curY, fieldWidth, RowHeight);
             DrawVisibilityDropdown(visibilityFieldRect);
             
+            curY += RowHeight + 10f;
+            
+            // Row 4: Position Adjustment
+            Rect positionLabelRect = new Rect(0f, curY, LabelWidth, RowHeight);
+            Text.Anchor = TextAnchor.MiddleLeft;
+            Verse.Widgets.Label(positionLabelRect, "FALCLF.PositionAdjust".Translate());
+            Text.Anchor = TextAnchor.UpperLeft;
+            
+            // Position controls need 2 rows with bordered style (compact: 22px buttons + 3px spacing + 10px padding)
+            float positionControlHeight = 22f + 3f + 22f + 10f; // button1 + spacing + button2 + padding
+            Rect positionFieldRect = new Rect(LabelWidth + FieldSpacing, curY, fieldWidth, positionControlHeight);
+            DrawPositionControls(positionFieldRect);
+            
+            curY += positionControlHeight + 10f;
+            
             // Bottom buttons - RimWorld standard style
             float buttonWidth = (inRect.width - 10f) / 2f;
             float buttonY = inRect.yMax - ButtonHeight;
@@ -154,6 +193,12 @@ namespace LabelsOnFloor
             // Cancel button (left)
             if (Verse.Widgets.ButtonText(new Rect(0f, buttonY, buttonWidth, ButtonHeight), "CancelButton".Translate()))
             {
+                // Revert to original values
+                _customRoomData.Label = originalCustomLabel;
+                _customRoomData.CustomColor = originalCustomColor;
+                _customRoomData.ShowLabel = originalShowLabel;
+                _customRoomData.PositionOffset = originalPositionOffset;
+                Main.Instance.LabelPlacementHandler.SetDirty();
                 Close();
             }
             
@@ -245,9 +290,129 @@ namespace LabelsOnFloor
                 else
                     showLabel = null;
                 
+                // Live update visibility
+                _customRoomData.ShowLabel = showLabel;
+                Main.Instance.LabelPlacementHandler.SetDirty();
+                
                 // Play click sound
                 SoundDefOf.Click.PlayOneShotOnCamera();
             }
+        }
+        
+        private void DrawPositionControls(Rect rect)
+        {
+            // Draw bordered background like other controls
+            Verse.Widgets.DrawAtlas(rect, TexUI.FloatMenuOptionBG);
+            
+            // Get current offset values
+            float xOffset = positionOffset?.x ?? 0f;
+            float yOffset = positionOffset?.y ?? 0f;
+            
+            float inset = 5f;
+            float buttonSize = 22f;
+            float valueWidth = 35f;
+            float labelWidth = 20f;
+            float resetButtonWidth = 45f;
+            
+            // Calculate available width for controls (excluding reset button)
+            float availableWidth = rect.width - (resetButtonWidth + inset * 3);
+            
+            // First row: X controls (compact layout)
+            float row1Y = rect.y + inset;
+            float startX = rect.x + inset;
+            
+            // X label
+            Rect xLabelRect = new Rect(startX, row1Y, labelWidth, buttonSize);
+            Text.Anchor = TextAnchor.MiddleLeft;
+            Verse.Widgets.Label(xLabelRect, "X:");
+            
+            // X minus button
+            Rect xMinusRect = new Rect(startX + labelWidth + 2f, row1Y, buttonSize, buttonSize);
+            if (Verse.Widgets.ButtonText(xMinusRect, "-", true, false, true))
+            {
+                Vector2 current = positionOffset ?? Vector2.zero;
+                current.x = Mathf.Clamp(current.x - 1f, -10f, 10f);
+                positionOffset = current;
+                _customRoomData.PositionOffset = positionOffset;
+                Main.Instance.LabelPlacementHandler.SetDirty();
+                SoundDefOf.Click.PlayOneShotOnCamera();
+            }
+            
+            // X value display with background
+            Rect xValueBgRect = new Rect(startX + labelWidth + buttonSize + 4f, row1Y, valueWidth, buttonSize);
+            GUI.color = new Color(1f, 1f, 1f, 0.05f);
+            Verse.Widgets.DrawTextureFitted(xValueBgRect, BaseContent.WhiteTex, 1f);
+            GUI.color = Color.white;
+            Text.Anchor = TextAnchor.MiddleCenter;
+            GUI.color = Color.gray;
+            Verse.Widgets.Label(xValueBgRect, xOffset.ToString("F0"));
+            GUI.color = Color.white;
+            
+            // X plus button
+            Rect xPlusRect = new Rect(startX + labelWidth + buttonSize + valueWidth + 6f, row1Y, buttonSize, buttonSize);
+            if (Verse.Widgets.ButtonText(xPlusRect, "+", true, false, true))
+            {
+                Vector2 current = positionOffset ?? Vector2.zero;
+                current.x = Mathf.Clamp(current.x + 1f, -10f, 10f);
+                positionOffset = current;
+                _customRoomData.PositionOffset = positionOffset;
+                Main.Instance.LabelPlacementHandler.SetDirty();
+                SoundDefOf.Click.PlayOneShotOnCamera();
+            }
+            
+            // Second row: Y controls (compact layout)
+            float row2Y = rect.y + inset + buttonSize + 3f;
+            
+            // Y label
+            Rect yLabelRect = new Rect(startX, row2Y, labelWidth, buttonSize);
+            Text.Anchor = TextAnchor.MiddleLeft;
+            Verse.Widgets.Label(yLabelRect, "Y:");
+            
+            // Y minus button
+            Rect yMinusRect = new Rect(startX + labelWidth + 2f, row2Y, buttonSize, buttonSize);
+            if (Verse.Widgets.ButtonText(yMinusRect, "-", true, false, true))
+            {
+                Vector2 current = positionOffset ?? Vector2.zero;
+                current.y = Mathf.Clamp(current.y - 1f, -10f, 10f);
+                positionOffset = current;
+                _customRoomData.PositionOffset = positionOffset;
+                Main.Instance.LabelPlacementHandler.SetDirty();
+                SoundDefOf.Click.PlayOneShotOnCamera();
+            }
+            
+            // Y value display with background
+            Rect yValueBgRect = new Rect(startX + labelWidth + buttonSize + 4f, row2Y, valueWidth, buttonSize);
+            GUI.color = new Color(1f, 1f, 1f, 0.05f);
+            Verse.Widgets.DrawTextureFitted(yValueBgRect, BaseContent.WhiteTex, 1f);
+            GUI.color = Color.white;
+            Text.Anchor = TextAnchor.MiddleCenter;
+            GUI.color = Color.gray;
+            Verse.Widgets.Label(yValueBgRect, yOffset.ToString("F0"));
+            GUI.color = Color.white;
+            
+            // Y plus button
+            Rect yPlusRect = new Rect(startX + labelWidth + buttonSize + valueWidth + 6f, row2Y, buttonSize, buttonSize);
+            if (Verse.Widgets.ButtonText(yPlusRect, "+", true, false, true))
+            {
+                Vector2 current = positionOffset ?? Vector2.zero;
+                current.y = Mathf.Clamp(current.y + 1f, -10f, 10f);
+                positionOffset = current;
+                _customRoomData.PositionOffset = positionOffset;
+                Main.Instance.LabelPlacementHandler.SetDirty();
+                SoundDefOf.Click.PlayOneShotOnCamera();
+            }
+            
+            // Reset button on the right side, vertically centered
+            Rect resetRect = new Rect(rect.xMax - resetButtonWidth - inset, rect.y + rect.height/2 - buttonSize/2, resetButtonWidth, buttonSize);
+            if (Verse.Widgets.ButtonText(resetRect, "Reset", true, false, true))
+            {
+                positionOffset = null;
+                _customRoomData.PositionOffset = positionOffset;
+                Main.Instance.LabelPlacementHandler.SetDirty();
+                SoundDefOf.Click.PlayOneShotOnCamera();
+            }
+            
+            Text.Anchor = TextAnchor.UpperLeft;
         }
         
         private void ApplyChanges()
@@ -256,6 +421,7 @@ namespace LabelsOnFloor
             _customRoomData.Label = curName?.Trim().ToUpper() ?? "";
             _customRoomData.CustomColor = selectedColor;
             _customRoomData.ShowLabel = showLabel;
+            _customRoomData.PositionOffset = positionOffset;
             Main.Instance.LabelPlacementHandler.SetDirty();
         }
         

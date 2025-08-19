@@ -17,17 +17,25 @@ namespace LabelsOnFloor
         private string originalName;
         private Color? selectedColor;
         private bool? showLabel;  // null = use global, true = always show, false = always hide
+        private Vector2? positionOffset;  // null = no offset, X/Z offset in cells
         private bool focusedNameField;
         private int startAcceptingInputAtFrame;
         private bool hasSelectedText;
+        
+        // Store original values for cancel
+        private string originalCustomLabel;
+        private Color? originalCustomColor;
+        private bool? originalShowLabel;
+        private Vector2? originalPositionOffset;
         
         // Standard RimWorld dialog sizing
         private const float LabelWidth = 100f;
         private const float FieldSpacing = 10f;
         private const float RowHeight = 30f;
         private const float ButtonHeight = 30f;
+        private const float ArrowButtonSize = 24f;
         
-        public override Vector2 InitialSize => new Vector2(380f, 240f);
+        public override Vector2 InitialSize => new Vector2(380f, 300f);  // Compact with 2-row position controls
         
         public Dialog_RenameZoneWithColor(Zone zone) : this(zone, GetOrCreateCustomZoneData(zone))
         {
@@ -60,6 +68,13 @@ namespace LabelsOnFloor
             }
             selectedColor = customZoneData.CustomColor;
             showLabel = customZoneData.ShowLabel;
+            positionOffset = customZoneData.PositionOffset;
+            
+            // Store original values for cancel
+            originalCustomLabel = customZoneData.Label;
+            originalCustomColor = customZoneData.CustomColor;
+            originalShowLabel = customZoneData.ShowLabel;
+            originalPositionOffset = customZoneData.PositionOffset;
             
             forcePause = true;
             doCloseX = true;
@@ -169,7 +184,20 @@ namespace LabelsOnFloor
             Rect visibilityFieldRect = new Rect(LabelWidth + FieldSpacing, curY, fieldWidth, RowHeight);
             DrawVisibilityDropdown(visibilityFieldRect);
             
-            curY += RowHeight + 15f;
+            curY += RowHeight + 10f;
+            
+            // Row 4: Position Adjustment
+            Rect positionLabelRect = new Rect(0f, curY, LabelWidth, RowHeight);
+            Text.Anchor = TextAnchor.MiddleLeft;
+            Verse.Widgets.Label(positionLabelRect, "FALCLF.PositionAdjust".Translate());
+            Text.Anchor = TextAnchor.UpperLeft;
+            
+            // Position controls need 2 rows with bordered style (compact: 22px buttons + 3px spacing + 10px padding)
+            float positionControlHeight = 22f + 3f + 22f + 10f; // button1 + spacing + button2 + padding
+            Rect positionFieldRect = new Rect(LabelWidth + FieldSpacing, curY, fieldWidth, positionControlHeight);
+            DrawPositionControls(positionFieldRect);
+            
+            curY += positionControlHeight + 10f;
             
             // Bottom buttons (Cancel and OK)
             float buttonWidth = (inRect.width - 10f) / 2f;
@@ -178,6 +206,12 @@ namespace LabelsOnFloor
             
             if (Verse.Widgets.ButtonText(cancelButtonRect, "Cancel".Translate()))
             {
+                // Revert to original values
+                _customZoneData.Label = originalCustomLabel;
+                _customZoneData.CustomColor = originalCustomColor;
+                _customZoneData.ShowLabel = originalShowLabel;
+                _customZoneData.PositionOffset = originalPositionOffset;
+                Main.Instance?.LabelPlacementHandler?.SetDirty();
                 Close();
             }
             
@@ -200,6 +234,7 @@ namespace LabelsOnFloor
             _customZoneData.Label = trimmedName;
             _customZoneData.CustomColor = selectedColor;
             _customZoneData.ShowLabel = showLabel;
+            _customZoneData.PositionOffset = positionOffset;
             
             // Trigger label regeneration
             Main.Instance?.LabelPlacementHandler?.SetDirty();
@@ -320,6 +355,117 @@ namespace LabelsOnFloor
                 // Play click sound
                 SoundDefOf.Click.PlayOneShotOnCamera();
             }
+        }
+        
+        private void DrawPositionControls(Rect rect)
+        {
+            // Draw bordered background like other controls
+            Verse.Widgets.DrawAtlas(rect, TexUI.FloatMenuOptionBG);
+            
+            // Get current offset values
+            float xOffset = positionOffset?.x ?? 0f;
+            float yOffset = positionOffset?.y ?? 0f;
+            
+            float inset = 5f;
+            float buttonSize = 22f;
+            float valueWidth = 35f;
+            float labelWidth = 20f;
+            float resetButtonWidth = 45f;
+            
+            // Calculate available width for controls (excluding reset button)
+            float availableWidth = rect.width - (resetButtonWidth + inset * 3);
+            
+            // First row: X controls (compact layout)
+            float row1Y = rect.y + inset;
+            float startX = rect.x + inset;
+            
+            // X label
+            Rect xLabelRect = new Rect(startX, row1Y, labelWidth, buttonSize);
+            Text.Anchor = TextAnchor.MiddleLeft;
+            Verse.Widgets.Label(xLabelRect, "X:");
+            
+            // X minus button
+            Rect xMinusRect = new Rect(startX + labelWidth + 2f, row1Y, buttonSize, buttonSize);
+            if (Verse.Widgets.ButtonText(xMinusRect, "-", true, false, true))
+            {
+                Vector2 current = positionOffset ?? Vector2.zero;
+                current.x = Mathf.Clamp(current.x - 1f, -10f, 10f);
+                positionOffset = current;
+                SoundDefOf.Click.PlayOneShotOnCamera();
+                ApplyChanges();
+            }
+            
+            // X value display with background
+            Rect xValueBgRect = new Rect(startX + labelWidth + buttonSize + 4f, row1Y, valueWidth, buttonSize);
+            GUI.color = new Color(1f, 1f, 1f, 0.05f);
+            Verse.Widgets.DrawTextureFitted(xValueBgRect, BaseContent.WhiteTex, 1f);
+            GUI.color = Color.white;
+            Text.Anchor = TextAnchor.MiddleCenter;
+            GUI.color = Color.gray;
+            Verse.Widgets.Label(xValueBgRect, xOffset.ToString("F0"));
+            GUI.color = Color.white;
+            
+            // X plus button
+            Rect xPlusRect = new Rect(startX + labelWidth + buttonSize + valueWidth + 6f, row1Y, buttonSize, buttonSize);
+            if (Verse.Widgets.ButtonText(xPlusRect, "+", true, false, true))
+            {
+                Vector2 current = positionOffset ?? Vector2.zero;
+                current.x = Mathf.Clamp(current.x + 1f, -10f, 10f);
+                positionOffset = current;
+                SoundDefOf.Click.PlayOneShotOnCamera();
+                ApplyChanges();
+            }
+            
+            // Second row: Y controls (compact layout)
+            float row2Y = rect.y + inset + buttonSize + 3f;
+            
+            // Y label
+            Rect yLabelRect = new Rect(startX, row2Y, labelWidth, buttonSize);
+            Text.Anchor = TextAnchor.MiddleLeft;
+            Verse.Widgets.Label(yLabelRect, "Y:");
+            
+            // Y minus button
+            Rect yMinusRect = new Rect(startX + labelWidth + 2f, row2Y, buttonSize, buttonSize);
+            if (Verse.Widgets.ButtonText(yMinusRect, "-", true, false, true))
+            {
+                Vector2 current = positionOffset ?? Vector2.zero;
+                current.y = Mathf.Clamp(current.y - 1f, -10f, 10f);
+                positionOffset = current;
+                SoundDefOf.Click.PlayOneShotOnCamera();
+                ApplyChanges();
+            }
+            
+            // Y value display with background
+            Rect yValueBgRect = new Rect(startX + labelWidth + buttonSize + 4f, row2Y, valueWidth, buttonSize);
+            GUI.color = new Color(1f, 1f, 1f, 0.05f);
+            Verse.Widgets.DrawTextureFitted(yValueBgRect, BaseContent.WhiteTex, 1f);
+            GUI.color = Color.white;
+            Text.Anchor = TextAnchor.MiddleCenter;
+            GUI.color = Color.gray;
+            Verse.Widgets.Label(yValueBgRect, yOffset.ToString("F0"));
+            GUI.color = Color.white;
+            
+            // Y plus button
+            Rect yPlusRect = new Rect(startX + labelWidth + buttonSize + valueWidth + 6f, row2Y, buttonSize, buttonSize);
+            if (Verse.Widgets.ButtonText(yPlusRect, "+", true, false, true))
+            {
+                Vector2 current = positionOffset ?? Vector2.zero;
+                current.y = Mathf.Clamp(current.y + 1f, -10f, 10f);
+                positionOffset = current;
+                SoundDefOf.Click.PlayOneShotOnCamera();
+                ApplyChanges();
+            }
+            
+            // Reset button on the right side, vertically centered
+            Rect resetRect = new Rect(rect.xMax - resetButtonWidth - inset, rect.y + rect.height/2 - buttonSize/2, resetButtonWidth, buttonSize);
+            if (Verse.Widgets.ButtonText(resetRect, "Reset", true, false, true))
+            {
+                positionOffset = null;
+                SoundDefOf.Click.PlayOneShotOnCamera();
+                ApplyChanges();
+            }
+            
+            Text.Anchor = TextAnchor.UpperLeft;
         }
     }
 }

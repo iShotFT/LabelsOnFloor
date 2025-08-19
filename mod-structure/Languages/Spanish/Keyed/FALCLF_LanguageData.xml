@@ -95,6 +95,10 @@
   <FALCLF.RoomVisibilityShowDesc>Anula la configuración global para mostrar siempre</FALCLF.RoomVisibilityShowDesc>
   <FALCLF.RoomVisibilityHide>Siempre Ocultar</FALCLF.RoomVisibilityHide>
   <FALCLF.RoomVisibilityHideDesc>Anula la configuración global para nunca mostrar</FALCLF.RoomVisibilityHideDesc>
+  
+  <!-- Position Adjustment Settings -->
+  <FALCLF.PositionAdjust>Posición</FALCLF.PositionAdjust>
+  <FALCLF.ResetPosition>Restablecer posición por defecto</FALCLF.ResetPosition>
 
   <FALCLF.enumSetting_Closest>Más cercano</FALCLF.enumSetting_Closest>
   <FALCLF.enumSetting_Close>Cercano</FALCLF.enumSetting_Close>
